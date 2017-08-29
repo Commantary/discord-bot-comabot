@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+    "engines": {
+    "node": "latest",
+    "npm": "latest"
+  },
   "scripts": {
     "test": "nf run nodemon index.js"
   },
@@ -26,6 +30,5 @@
   },
   "dependencies": {
     "discord.js": "^11.1.0"
-	"node": "latest"
   }
 }
