@@ -1,8 +1,6 @@
 // Mise en place des en tetes
 const discord = require('discord.js')
 const client = new discord.Client()
-var prefix = ('+')
-var mention = '<@346925580459048960>'
 var servercount = client.guilds.size
 
 // On start le bot
@@ -58,4 +56,10 @@ ban(client)
 const test1 = require('./module/test1.js')
 test1(client)
 
-client.login(process.env.TOKEN)
+var dt = process.env.TOKEN || process.argv[2]
+
+if (!dt) {
+  console.log('')
+}
+
+client.login(dt)
