@@ -31,13 +31,13 @@ message1(client)
 const say = require('./module/say.js')
 say(client)
 
-/* Partie cpasmoi */
+/* Partie cpasmoi 
 const cpasmoi = require('./module/cpasmoi.js')
-cpasmoi(client)
+cpasmoi(client) */
 
-/* Partie Verif Role */
+/* Partie Verif Role 
 const verifrole = require('./module/verifrole.js')
-verifrole(client)
+verifrole(client) */
 
 /* Partie Help */
 const help = require('./module/help.js')
@@ -51,9 +51,9 @@ kick(client)
 const ban = require('./module/ban.js')
 ban(client)
 
-/* Partie Teste1 */
+/* Partie Teste1 
 const test1 = require('./module/test1.js')
-test1(client)
+test1(client) */
 
 var dt = process.env.TOKEN || process.argv[2]
 
