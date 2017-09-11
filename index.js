@@ -1,11 +1,10 @@
 // Mise en place des en tetes
 const discord = require('discord.js')
 const client = new discord.Client()
-var servercount = client.guilds.size
 
 // On start le bot
 client.on('ready', () => {
-  client.user.setPresence({ game: { name: servercount + ' serveurs actifs', type: 0 } })
+  client.user.setPresence({ game: { name: client.guilds.size + ' serveurs actifs', type: 0 } })
   console.log('-------------------------------------')
   console.log('    [!] ComaBot connecté [!]')
   console.log('-------------------------------------')
