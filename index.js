@@ -20,9 +20,9 @@ ping(client)
 const avatar = require('./module/avatar.js')
 avatar(client)
 
-/* Partie Musique 
+/* Partie Musique */
 const music = require('./discord.js-music-v11')
-music(client) */
+music(client)
 
 /* Partie Message Aux Gens */
 const message1 = require('./module/message_personne.js')
