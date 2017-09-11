@@ -20,7 +20,7 @@ ping(client)
 const avatar = require('./module/avatar.js')
 avatar(client)
 
-/* Partie Musique 
+/* Partie Musique */
 const music = require('./discord.js-music-v11')
 music(client)
 
