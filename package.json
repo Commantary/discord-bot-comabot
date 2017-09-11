@@ -30,9 +30,10 @@
   },
   "dependencies": {
     "discord.js": "^11.1.0",
+    "ffmpeg-binaries": "3.2.2-3",
     "foobar": "^1.1.0",
+    "opusscript": "0.0.3",
     "youtube-dl": "1.11.1",
-    "ytdl": "0.7.0",
-    "ffmpeg-binaries": "3.2.2-3"
+    "ytdl": "0.7.0"
   }
 }
