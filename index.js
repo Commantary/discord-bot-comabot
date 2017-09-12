@@ -4,7 +4,8 @@ const client = new discord.Client()
 
 // On start le bot
 client.on('ready', () => {
-  client.user.setPresence({ streaming: { name: client.guilds.size + ' serveurs actifs', url: 'https://www.twitch.tv/the_commentary', type: 1 } })
+// client.user.setStreaming({ streaming: { name: client.guilds.size + ' serveurs actifs', url: 'https://www.twitch.tv/the_commentary', type: 1 } })
+  client.setStreaming('Call of Duty: Black Ops 10', 'https://www.twitch.tv/lirik', 1)
   console.log('-------------------------------------')
   console.log('    [!] ComaBot connecté [!]')
   console.log('-------------------------------------')
