@@ -1,11 +1,19 @@
 // Mise en place des en tetes
 const discord = require('discord.js')
 const client = new discord.Client()
+const ch = client.guilds.size
 
 // On start le bot
 client.on('ready', () => {
-// client.user.setStreaming({ streaming: { name: client.guilds.size + ' serveurs actifs', url: 'https://www.twitch.tv/the_commentary', type: 1 } })
-  client.setStreaming('Call of Duty: Black Ops 10', 'https://www.twitch.tv/lirik', 1)
+// client.user.setPresence({ streaming: { name: ch + ' serveurs actifs', url: 'https://www.twitch.tv/the_commentary', type: 1 } })
+  var opts = {
+    name: 'Call of Duty: Black Ops 10',
+    url: 'https://www.twitch.tv/lirik',
+    type: 1
+  }
+
+  client.setStatus(null, opts)
+
   console.log('-------------------------------------')
   console.log('    [!] ComaBot connecté [!]')
   console.log('-------------------------------------')
