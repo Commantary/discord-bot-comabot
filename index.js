@@ -4,7 +4,7 @@ const client = new discord.Client()
 
 // On start le bot
 client.on('ready', () => {
-  client.user.setPresence({ game: { name: client.guilds.size + ' serveurs actifs', type: 0 } })
+  client.user.setPresence({ game: { streaming: client.guilds.size + ' serveurs actifs', type: 0 } })
   console.log('-------------------------------------')
   console.log('    [!] ComaBot connecté [!]')
   console.log('-------------------------------------')
