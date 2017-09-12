@@ -5,15 +5,7 @@ const ch = client.guilds.size
 
 // On start le bot
 client.on('ready', () => {
-// client.user.setPresence({ streaming: { name: ch + ' serveurs actifs', url: 'https://www.twitch.tv/the_commentary', type: 1 } })
-  var opts = {
-    name: 'Call of Duty: Black Ops 10',
-    url: 'https://www.twitch.tv/lirik',
-    type: 1
-  }
-
-  client.setStatus(null, opts)
-
+  client.user.setPresence({ streaming: { name: ch + ' serveurs actifs', url: 'https://www.twitch.tv/the_commentary', type: 0 } })
   console.log('-------------------------------------')
   console.log('    [!] ComaBot connecté [!]')
   console.log('-------------------------------------')
