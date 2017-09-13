@@ -1,1 +1,1 @@
-DiscordJS: forever index.js
+DiscordJS: node index.js
