@@ -43,9 +43,9 @@ verifrole(client) */
 const help = require('./module/help.js')
 help(client)
 
-/* Partie Admini 1  */
+/* Partie Admini 1  
 const Admini1 = require('./module/admini1.js')
-Admini1(client)
+Admini1(client) */
 
 /* Partie Teste1 
 const test1 = require('./module/test1.js')
