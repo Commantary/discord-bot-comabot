@@ -5,7 +5,6 @@
  */
 
 module.exports = function (client) {
-  module.exports = function (prefix) {
     client.on('message', message => {
     // Mise en place des variables
       var h = message.author.lastMessage.createdAt
@@ -20,7 +19,7 @@ module.exports = function (client) {
       var member = message.mentions.members.first()
       let modRole = message.guild.roles.find('name', 'Mod')
 
-      if (message.content.startsWith(prefix + 'kick')) {
+      if (message.content.startsWith('+kick')) {
         if (message.member.roles.has(modRole.id)) {
           member.kick().then((member) => {
           // Message réussis
