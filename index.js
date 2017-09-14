@@ -52,4 +52,10 @@ Admini1(client)
 const test1 = require('./module/test1.js')
 test1(client) */
 
-client.login(token)
+var dt = process.env.TOKEN || process.argv[2]
+
+if (!dt) {
+  console.log('')
+}
+
+client.login(dt)
