@@ -12,11 +12,41 @@ module.exports = function (client) {
       return message.channel.sendMessage('', {embed: {
         title: 'Commandes:',
         color: 0xff0000,
-        description: ':tools: Liste des commandes :tools: \n\n**C\'est quoi mon avatar** : Pour avoir son avatar \n\n**+admin** : Pour savoir si tu as le role Anti-Modo \n\n**+modo** : Pour savoir si tu as le role Modo \n\n**Mentionne moi** : Le bot te mentionneras comme sa tu auras un ami :heart: \n\n**ping/PING/Ping/PONG** : <mystere> \n\n**Diego** : Dedicace aux :100: \n\n**Freez** : Dedicace aux :100: \n\n**Golden** : Dedicace aux :100: \n\n**c pas moi** : te réferencer aux #commandes-comabot pour savoir tout sur cela \n\nD\'autre commandes sont en dévelopement...',
+        description: ':tools: **COMMANDES** :tools:```\n\nCommandes Admin: +help admin \n\nCommandes Fun: +help fun \n\nCommandes Randoms: +help rdm```',
         footer: {
           text: 'Message par ComaBot.'
         }
       }}).catch(console.log(h + ' "help" mis par: ' + nom))
+    }
+    if (message.content === '+help admin') {
+      return message.channel.sendMessage('', {embed: {
+        title: 'Commandes:',
+        color: 0xff0000,
+        description: ':tools: Liste des commandes :tools: \n\n+ban [@(*343535365363*) | Pour ban un membre en ayant le rôle **Mod**\n\n+kick [@(*343535365363*) | Pour kick un membre en ayant le rôle **Mod**\n\nD\'autre commandes sont en dévelopement...',
+        footer: {
+          text: 'Message par ComaBot.'
+        }
+      }}).catch(console.log(h + ' "help admin" mis par: ' + nom))
+    }
+    if (message.content === '+help fun') {
+      return message.channel.sendMessage('', {embed: {
+        title: 'Commandes:',
+        color: 0xff0000,
+        description: ':tools: Liste des commandes :tools: \n\n**C\'est quoi mon avatar** : Cela te permet d\'avoir l\'url de ton avatar discord\n\n**ping/PING/Ping/PONG** : <mystere> \n\n**Mentionne moi** : Le bot te mentionneras comme sa tu auras un ami :heart:\n\nD\'autre commandes sont en dévelopement...',
+        footer: {
+          text: 'Message par ComaBot.'
+        }
+      }}).catch(console.log(h + ' "help fun" mis par: ' + nom))
+    }
+    if (message.content === '+help rdm') {
+      return message.channel.sendMessage('', {embed: {
+        title: 'Commandes:',
+        color: 0xff0000,
+        description: ':tools: Liste des commandes :tools: \n\n**Les commandes sont en développement...',
+        footer: {
+          text: 'Message par ComaBot.'
+        }
+      }}).catch(console.log(h + ' "help rdm" mis par: ' + nom))
     }
   })
 }
