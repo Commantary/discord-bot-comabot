@@ -9,6 +9,7 @@ client.on('ready', () => {
   console.log('-------------------------------------')
   console.log('    [!] ComaBot connecté [!]')
   console.log('-------------------------------------')
+  console.log('le prefix est: ' + prefix)
 })
 // Create an event listener for new guild members
 
