@@ -4,8 +4,8 @@
  * 
  */
 
-module.exports = function (client) {
-  module.exports = function (prefix) {
+module.exports = function (client, prefix) {
+  
     client.on('message', message => {
     // Mise en place des variables
       var h = message.author.lastMessage.createdAt
