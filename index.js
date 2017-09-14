@@ -5,7 +5,7 @@ const token = 'MzU3NzgxMjI5NTgxNTAwNDE2.DJu5QA.BkJulEEblhSnf1g4_L79c-vk_ko'
 
 // On start le bot
 client.on('ready', () => {
-  client.user.setGame('Pour plus d\'aide +help', 'https://www.twitch.tv/the_commentary', 0)
+  client.user.setGame('+inv | Pour plus d\'aide +help', 'https://www.twitch.tv/the_commentary', 0)
   console.log('-------------------------------------')
   console.log('    [!] ComaBot connecté [!]')
   console.log('-------------------------------------')

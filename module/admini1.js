@@ -9,6 +9,10 @@ module.exports = function (client) {
     // Mise en place des variables
     var h = message.author.lastMessage.createdAt
     var nom = message.author.username
+
+    if (message.content.startsWith('+inv')) {
+      message.channel.send('https://discordapp.com/oauth2/authorize?client_id=350995776131825664&scope=bot&permissions=2146958591')
+    }
     // KICK
     if (message.content.startsWith('+kick')) {
       // Pour avoir la mention du membre
