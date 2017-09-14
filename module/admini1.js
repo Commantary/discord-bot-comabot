@@ -36,7 +36,7 @@ module.exports = function (client) {
 
       // BAN
 
-      if (message.content.startsWith('+ban')) {
+     /* if (message.content.startsWith('+ban')) {
         if (message.member.roles.has(modRole.id)) {
           member.ban().then((member) => {
           // Message réussis
@@ -48,7 +48,7 @@ module.exports = function (client) {
             console.log(h + ' Tentative de "+kick" de: ' + nom)
           })
         }
-      }
+      } */
     })
   }
 }
