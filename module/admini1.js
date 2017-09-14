@@ -36,7 +36,7 @@ module.exports = function (client) {
 
       // BAN
 
-      if (message.content.startsWith(prefix + 'ban')) {
+      if (message.content.startsWith('+ban')) {
         if (message.member.roles.has(modRole.id)) {
           member.ban().then((member) => {
           // Message réussis

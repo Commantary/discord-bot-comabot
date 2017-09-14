@@ -16,7 +16,7 @@ module.exports = function (client) {
         footer: {
           text: 'Message par ComaBot.'
         }
-      }}).catch(console.log(h + ' "help" mis par: ' + nom))
+      }}).catch(console.error)
     }
     if (message.content === '+help admin') {
       return message.channel.sendMessage('', {embed: {
