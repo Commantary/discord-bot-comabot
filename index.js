@@ -1,7 +1,6 @@
 // Mise en place des en tetes
 const discord = require('discord.js')
 const client = new discord.Client()
-const token = 'MzU3NzgxMjI5NTgxNTAwNDE2.DJu5QA.BkJulEEblhSnf1g4_L79c-vk_ko'
 
 // On start le bot
 client.on('ready', () => {
