@@ -5,33 +5,50 @@
  */
 
 module.exports = function (client) {
-  client.on('message', message => {
+  module.exports = function (prefix) {
+    client.on('message', message => {
     // Mise en place des variables
-    var h = message.author.lastMessage.createdAt
-    var nom = message.author.username
+      var h = message.author.lastMessage.createdAt
+      var nom = message.author.username
 
-    if (message.content.startsWith('+inv')) {
-      message.channel.send('https://discordapp.com/oauth2/authorize?client_id=350995776131825664&scope=bot&permissions=2146958591')
-    }
-    // KICK
-    if (message.content.startsWith('+kick')) {
+      if (message.content.startsWith(prefix + 'inv')) {
+        message.channel.send('https://discordapp.com/oauth2/authorize?client_id=350995776131825664&scope=bot&permissions=2146958591')
+      }
+
+      // KICK
       // Pour avoir la mention du membre
       var member = message.mentions.members.first()
       let modRole = message.guild.roles.find('name', 'Mod')
 
+      if (message.content.startsWith(prefix + 'kick')) {
+        if (message.member.roles.has(modRole.id)) {
+          member.kick().then((member) => {
+          // Message réussis
+            message.channel.send(':wave: ' + member.displayName + ' à bien été kick :point_right: ')
+            console.log(h + ' +kick mis par: ' + nom)
+          }).catch(() => {
+          // Message du fail
+            message.channel.send('Acces refusé')
+            console.log(h + ' Tentative de "+kick" de: ' + nom)
+          })
+        }
+      }
+
       // BAN
 
-      if (message.member.roles.has(modRole.id)) {
-        member.kick().then((member) => {
+      if (message.content.startsWith(prefix + 'ban')) {
+        if (message.member.roles.has(modRole.id)) {
+          member.ban().then((member) => {
           // Message réussis
-          message.channel.send(':wave: ' + member.displayName + ' à bien été kick :point_right: ')
-          console.log(h + ' +kick mis par: ' + nom)
-        }).catch(() => {
+            message.channel.send(':wave: ' + member.displayName + ' à bien été kick :point_right: ')
+            console.log(h + ' +kick mis par: ' + nom)
+          }).catch(() => {
           // Message du fail
-          message.channel.send('Acces refusé')
-          console.log(h + ' Tentative de "+kick" de: ' + nom)
-        })
+            message.channel.send('Acces refusé')
+            console.log(h + ' Tentative de "+kick" de: ' + nom)
+          })
+        }
       }
-    }
-  })
+    })
+  }
 }
