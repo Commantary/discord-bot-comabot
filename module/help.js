@@ -42,7 +42,7 @@ module.exports = function (client) {
       return message.channel.sendMessage('', {embed: {
         title: 'Commandes:',
         color: 0xff0000,
-        description: ':tools: Liste des commandes :tools: \n\n**Les commandes sont en développement...',
+        description: ':tools: Liste des commandes :tools: \n\n**Les commandes sont en développement...**',
         footer: {
           text: 'Message par ComaBot.'
         }
