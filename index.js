@@ -1,7 +1,6 @@
 // Mise en place des en tetes
 const discord = require('discord.js')
 const client = new discord.Client()
-const prefix = '+'
 
 // On start le bot
 client.on('ready', () => {
