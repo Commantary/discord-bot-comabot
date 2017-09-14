@@ -4,7 +4,8 @@
  * 
  */
 
-module.exports = function (client, prefix) {
+module.exports = function (client) {
+  module.exports = function (prefix) {
   client.on('message', message => {
     // Mise en place des variables
     var h = message.author.lastMessage.createdAt
@@ -23,7 +24,7 @@ module.exports = function (client, prefix) {
       if (message.member.roles.has(modRole.id)) {
         member.kick().then((member) => {
           // Message réussis
-          message.channel.send(':wave: ' + member.displayName + ' à bien été kick :point_right: ')
+          message.channel.send(':wave: ' + member.displayName + ' à bien été **kick** :point_right: ')
           console.log(h + ' +kick mis par: ' + nom)
         }).catch(() => {
           // Message du fail
@@ -39,12 +40,12 @@ module.exports = function (client, prefix) {
       if (message.member.roles.has(modRole.id)) {
         member.ban().then((member) => {
           // Message réussis
-          message.channel.send(':wave: ' + member.displayName + ' à bien été kick :point_right: ')
+          message.channel.send(':wave: ' + member.displayName + ' à bien été **ban** :point_right: ')
           console.log(h + ' +kick mis par: ' + nom)
         }).catch(() => {
           // Message du fail
           message.channel.send('Acces refusé')
-          console.log(h + ' Tentative de "+kick" de: ' + nom)
+          console.log(h + ' Tentative de "+ban" de: ' + nom)
         })
       }
     }
