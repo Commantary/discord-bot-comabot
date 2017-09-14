@@ -5,7 +5,7 @@ const ch = client.guilds.size
 
 // On start le bot
 client.on('ready', () => {
-  client.user.setPresence({ game: { name: 'Pour plus d\'aide +help', url: 'https://www.twitch.tv/the_commentary', type: 0 } })
+  client.user.setGame('Pour plus d\'aide +help', 'https://www.twitch.tv/the_commentary', 0)
   console.log('-------------------------------------')
   console.log('    [!] ComaBot connecté [!]')
   console.log('-------------------------------------')
