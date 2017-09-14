@@ -9,11 +9,13 @@ module.exports = function (client) {
     // Mise en place des variables
     var h = message.author.lastMessage.createdAt
     var nom = message.author.username
-
+    // KICK
     if (message.content.startsWith('+kick')) {
       // Pour avoir la mention du membre
       var member = message.mentions.members.first()
       let modRole = message.guild.roles.find('name', 'Mod')
+
+      // BAN
 
       if (message.member.roles.has(modRole.id)) {
         member.kick().then((member) => {

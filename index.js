@@ -1,7 +1,7 @@
 // Mise en place des en tetes
 const discord = require('discord.js')
 const client = new discord.Client()
-const ch = client.guilds.size
+const token = 'MzU3NzgxMjI5NTgxNTAwNDE2.DJu5QA.BkJulEEblhSnf1g4_L79c-vk_ko'
 
 // On start le bot
 client.on('ready', () => {
@@ -20,9 +20,9 @@ ping(client)
 const avatar = require('./module/avatar.js')
 avatar(client)
 
-/* Partie Musique */
+/* Partie Musique 
 const music = require('./discord.js-music-v11')
-music(client)
+music(client) */
 
 /* Partie Message Aux Gens */
 const message1 = require('./module/message_personne.js')
@@ -44,22 +44,12 @@ verifrole(client) */
 const help = require('./module/help.js')
 help(client)
 
-/* Partie Kick  */
-const kick = require('./module/kick.js')
-kick(client)
-
-/* Partie Ban */
-const ban = require('./module/ban.js')
-ban(client)
+/* Partie Admini 1  */
+const Admini1 = require('./module/admini1.js')
+Admini1(client)
 
 /* Partie Teste1 
 const test1 = require('./module/test1.js')
 test1(client) */
 
-var dt = process.env.TOKEN || process.argv[2]
-
-if (!dt) {
-  console.log('')
-}
-
-client.login(dt)
+client.login(token)
