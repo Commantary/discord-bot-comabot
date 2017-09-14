@@ -4,7 +4,7 @@
  * 
  */
 
-module.exports = function (client) {
+/* module.exports = function (client) {
     client.on('message', message => {
     // Mise en place des variables
       var h = message.author.lastMessage.createdAt
@@ -50,4 +50,4 @@ module.exports = function (client) {
       }
     })
   }
-}
+} */
