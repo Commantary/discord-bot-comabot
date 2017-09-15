@@ -33,6 +33,7 @@ module.exports = function (client) {
     // BAN
 
     if (message.content.startsWith('+ban')) {
+      let modRole = message.guild.roles.find('name', 'Mod')
       if (message.member.roles.has(modRole.id)) {
         member.ban().then((member) => {
           // Message réussis
