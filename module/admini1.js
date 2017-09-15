@@ -15,7 +15,7 @@ module.exports = function (client) {
     }
 
     if (message.content.startsWith('+kick')) {
-      var member = message.mentions.members.first()
+      var member = message.guild.member(message.mentions.members.first())
       let modRole = message.guild.roles.find('name', 'Mod')
       if (message.member.roles.has(modRole.id)) {
         member.kick().then((member) => {
@@ -35,15 +35,14 @@ module.exports = function (client) {
     if (message.content.startsWith('+ban')) {
       let modRole = message.guild.roles.find('name', 'Mod')
       if (message.member.roles.has(modRole.id)) {
-        member.ban().then((member) => {
-          // Message réussis
-          message.channel.send(':wave: ' + member.displayName + ' à bien été **ban** :point_right: ')
-          console.log(h + ' +kick mis par: ' + nom)
-        }).catch(() => {
-          // Message du fail
-          message.channel.send('Acces refusé')
-          console.log(h + ' Tentative de "+ban" de: ' + nom)
-        })
+        let banMember = message.guild.member(message.mentions.users.first())
+        message.guild.member(banMember).ban()
+        // Message réussis
+        message.channel.send(':wave: ' + member.displayName + ' à bien été **ban** :point_right: ')
+        console.log(h + ' +kick mis par: ' + nom)
+        // Message du fail
+      } else {
+        return message.reply('Acces refusé')
       }
     }
   })
