@@ -4,7 +4,7 @@
  * 
  */
 
-/* module.exports = function (client) {
+ module.exports = function (client) {
     client.on('message', message => {
     // Mise en place des variables
       var h = message.author.lastMessage.createdAt
@@ -14,12 +14,9 @@
         message.channel.send('https://discordapp.com/oauth2/authorize?client_id=350995776131825664&scope=bot&permissions=2146958591')
       }
 
-      // KICK
-      // Pour avoir la mention du membre
-      var member = message.mentions.members.first()
-      let modRole = message.guild.roles.find('name', 'Mod')
-
       if (message.content.startsWith('+kick')) {
+        var member = message.mentions.members.first()
+        let modRole = message.guild.roles.find('name', 'Mod')
         if (message.member.roles.has(modRole.id)) {
           member.kick().then((member) => {
           // Message réussis
@@ -50,4 +47,4 @@
       }
     })
   }
-} */
+}
