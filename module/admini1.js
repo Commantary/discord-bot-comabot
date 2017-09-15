@@ -45,5 +45,18 @@ module.exports = function (client) {
         return message.reply('Acces refusé')
       }
     }
+    if (message.content.startsWith('+unban')) {
+      let modRole = message.guild.roles.find('name', 'Mod')
+      if (message.member.roles.has(modRole.id)) {
+        let bannedMember = message.guild.member(message.mentions.users.first())
+        message.guild.member(bannedMember).unban()
+        // Message réussis
+        message.channel.send(':wave: ' + bannedMember.displayName + ' à bien été **débannie** :point_right: ')
+        console.log(h + ' +unban mis par: ' + nom)
+        // Message du fail
+      } else {
+        return message.reply('Acces refusé')
+      }
+    }
   })
 }
