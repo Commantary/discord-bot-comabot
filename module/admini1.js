@@ -49,7 +49,7 @@ module.exports = function (client) {
       let modRole = message.guild.roles.find('name', 'Mod')
       if (message.member.roles.has(modRole.id)) {
         let bannedMember = message.guild.member(message.mentions.users.first())
-        message.guild.member(bannedMember).unban()
+        message.guild.member(bannedMember).unbanMember()
         // Message réussis
         message.channel.send(':wave: ' + bannedMember.displayName + ' à bien été **débannie** :point_right: ')
         console.log(h + ' +unban mis par: ' + nom)
