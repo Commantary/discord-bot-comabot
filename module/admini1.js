@@ -38,7 +38,7 @@ module.exports = function (client) {
         let banMember = message.guild.member(message.mentions.users.first())
         message.guild.member(banMember).ban()
         // Message réussis
-        message.channel.send(':wave: ' + member.displayName + ' à bien été **ban** :point_right: ')
+        message.channel.send(':wave: ' + banMember.displayName + ' à bien été **ban** :point_right: ')
         console.log(h + ' +kick mis par: ' + nom)
         // Message du fail
       } else {
