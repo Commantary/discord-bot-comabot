@@ -19,4 +19,20 @@ module.exports = function(client){
                     message.channel.send('C\'est quoi mon avatar');
                 }
             })
+            client.on('guildMemberAdd', member => {
+                // Envoie un message au channel designer :
+                  const channel = member.guild.channels.find('name', 'bonjour-bye')
+                  // Fais rien si le channel existe pas
+                  if (!channel) return
+                  // Envoie le message, en mentionnant le membre
+                  channel.send(`Bienvenue sur le serveur ${member}`)
+                })
+                client.on('guildMemberLeave', member => {
+                // Envoie un message au channel designer: 
+                  const channel = member.guild.channels.find('name', 'bonjour-bye')
+                  // Fais rien si le channel existe pas
+                  if (!channel) return
+                  // Envoie le message, en mentionnant le membre
+                  channel.send(`${member} est parti du serveur :(`)
+                })
         }
