@@ -45,7 +45,7 @@ module.exports = function (client) {
         return message.reply('Acces refusé')
       }
     }
-    if (message.content.startsWith('+unban')) {
+  /*  if (message.content.startsWith('+unban')) {
       let modRole = message.guild.roles.find('name', 'Mod')
       if (message.member.roles.has(modRole.id)) {
         let bannedMember = message.guild.member(message.mentions.users.first())
@@ -57,6 +57,6 @@ module.exports = function (client) {
       } else {
         return message.reply('Acces refusé')
       }
-    }
+    } */
   })
 }
