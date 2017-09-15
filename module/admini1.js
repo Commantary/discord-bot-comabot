@@ -39,7 +39,7 @@ module.exports = function (client) {
         message.guild.member(banMember).ban()
         // Message réussis
         message.channel.send(':wave: ' + banMember.displayName + ' à bien été **ban** :point_right: ')
-        console.log(h + ' +kick mis par: ' + nom)
+        console.log(h + ' +ban mis par: ' + nom)
         // Message du fail
       } else {
         return message.reply('Acces refusé')
