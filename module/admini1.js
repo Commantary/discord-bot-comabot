@@ -14,7 +14,7 @@ module.exports = function (client) {
       message.channel.send('https://discordapp.com/oauth2/authorize?client_id=350995776131825664&scope=bot&permissions=2146958591')
     }
 
-    if (message.content.startsWith('+kick')) {
+    /* if (message.content.startsWith('+kick')) {
       // Mise en place des variables
       var member = message.guild.member(message.mentions.members.first())
       let modRole = message.guild.roles.find('name', 'Mod')
@@ -30,7 +30,7 @@ module.exports = function (client) {
           console.log(h + ' Tentative de "+kick" de: ' + nom)
         })
       }
-    }
+    } */
     if (message.content.startsWith('+kick')) {
       // Mise en place des variables
       let modRole = message.guild.roles.find('name', 'Mod')
