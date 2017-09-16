@@ -1,7 +1,7 @@
 // Mise en place des en tetes
 const discord = require('discord.js')
 const client = new discord.Client()
-
+const setting = require('./prefix.json')
 // On start le bot
 client.on('ready', () => {
   client.user.setGame('+inv | +help | ' + client.guilds.size + ' serveurs', 'https://www.twitch.tv/the_commentary', 0)

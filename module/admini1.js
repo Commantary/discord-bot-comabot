@@ -13,13 +13,13 @@ module.exports = function (client) {
     if (message.content.startsWith('+inv')) {
       message.channel.send('https://discordapp.com/oauth2/authorize?client_id=350995776131825664&scope=bot&permissions=2146958591')
     }
+    if (message.content === '+kick') {
+      message.channel.send('`+kick [@(membre à kick)]`')
 
-    if (message.content.startsWith('+kick')) {
+      if (message.content.startsWith('+kick')) {
       // Mise en place des variables
-      var member = message.guild.member(message.mentions.members.first())
-      let modRole = message.guild.roles.find('name', 'Mod')
-      if (message.content === '+kick') {
-        message.channel.send('`+kick [@(membre à kick)]`')
+        var member = message.guild.member(message.mentions.members.first())
+        let modRole = message.guild.roles.find('name', 'Mod')
 
         // If du modRole
         if (message.member.roles.has(modRole.id)) {
