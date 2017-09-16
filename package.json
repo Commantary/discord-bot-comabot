@@ -32,6 +32,7 @@
     "discord.js": "^11.2.1",
     "ffmpeg-binaries": "3.2.2-3",
     "foobar": "^1.1.0",
+    "forever": "^0.15.3",
     "opusscript": "0.0.3",
     "youtube-dl": "1.11.1",
     "ytdl": "0.7.0"
