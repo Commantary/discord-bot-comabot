@@ -31,6 +31,21 @@ module.exports = function (client) {
         })
       }
     }
+    if (message.content.startsWith('+kick')) {
+      // Mise en place des variables
+      let modRole = message.guild.roles.find('name', 'Mod')
+      // If du modRole
+      if (message.member.roles.has(modRole.id)) {
+        let kickMember = message.guild.member(message.mentions.users.first())
+        message.guild.member(kickMember).kick()
+        // Message réussis
+        message.channel.send(':wave: ' + kickMember.displayName + ' à bien été **KICK** :point_right: ')
+        console.log(h + ' +kick mis par: ' + nom)
+        // Message du fail
+      } else {
+        return message.reply('Acces refusé')
+      }
+    }
 
     if (message.content === '+kick') {
       message.channel.send('`+kick [@(membre à kick)]`')
