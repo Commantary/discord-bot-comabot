@@ -4,18 +4,17 @@
  * 
  */
 
-module.exports = function (client) {
+module.exports = function prefix (client) {
   client.on('message', message => {
     // Mise en place des variables
     var h = message.author.lastMessage.createdAt
     var nom = message.author.username
 
-    if (message.content.startsWith('+inv')) {
+    if (message.content.startsWith(prefix + 'inv')) {
       message.channel.send('https://discordapp.com/oauth2/authorize?client_id=350995776131825664&scope=bot&permissions=2146958591')
     }
     if (message.content === '+kick') {
       message.channel.send('`+kick [@(membre à kick)]`')
-
       if (message.content.startsWith('+kick')) {
       // Mise en place des variables
         var member = message.guild.member(message.mentions.members.first())
