@@ -31,6 +31,7 @@ module.exports = function (client) {
         })
       }
     }
+
     if (message.content === '+kick') {
       message.channel.send('`+kick [@(membre à kick)]`')
     }
@@ -52,6 +53,7 @@ module.exports = function (client) {
         return message.reply('Acces refusé')
       }
     }
+
     if (message.content === '+ban') {
       message.channel.send('`+ban [@(membre à ban)]`')
     }
