@@ -4,12 +4,11 @@ const client = new discord.Client()
 
 // On start le bot
 client.on('ready', () => {
-  client.user.setGame('+inv | Pour plus d\'aide +help', 'https://www.twitch.tv/the_commentary', 0)
+  client.user.setGame('+inv | +help | ' + client.guilds.size + ' serveurs', 'https://www.twitch.tv/the_commentary', 0)
   console.log('-------------------------------------')
   console.log('    [!] ComaBot connecté [!]')
   console.log('-------------------------------------')
 })
-// Create an event listener for new guild members
 
 /* Partie Ping */
 const ping = require('./module/ping.js')

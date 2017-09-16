@@ -15,8 +15,10 @@ module.exports = function (client) {
     }
 
     if (message.content.startsWith('+kick')) {
+      // Mise en place des variables
       var member = message.guild.member(message.mentions.members.first())
       let modRole = message.guild.roles.find('name', 'Mod')
+      // If du modRole
       if (message.member.roles.has(modRole.id)) {
         member.kick().then((member) => {
           // Message réussis
@@ -29,11 +31,16 @@ module.exports = function (client) {
         })
       }
     }
+    if (message.content === '+kick') {
+      message.channel.send('`+kick [@(membre à kick)]`')
+    }
 
     // BAN
 
     if (message.content.startsWith('+ban')) {
+      // Mise en place des variables
       let modRole = message.guild.roles.find('name', 'Mod')
+      // If du modRole
       if (message.member.roles.has(modRole.id)) {
         let banMember = message.guild.member(message.mentions.users.first())
         message.guild.member(banMember).ban()
@@ -44,6 +51,9 @@ module.exports = function (client) {
       } else {
         return message.reply('Acces refusé')
       }
+    }
+    if (message.content === '+ban') {
+      message.channel.send('`+ban [@(membre à ban)]`')
     }
   /*  if (message.content.startsWith('+unban')) {
       let modRole = message.guild.roles.find('name', 'Mod')
