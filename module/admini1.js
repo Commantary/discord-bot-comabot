@@ -18,7 +18,7 @@ module.exports = function (client) {
       message.channel.send('https://discordapp.com/oauth2/authorize?client_id=350995776131825664&scope=bot&permissions=2146958591')
     }
 
-   /* if (message.content.startsWith(prefix + 'kick')) {
+    /* if (message.content.startsWith(prefix + 'kick')) {
       // Mise en place des variables
        var member = message.guild.member(message.mentions.members.first())
       let modRole = message.guild.roles.find('name', 'Mod')
@@ -40,25 +40,26 @@ module.exports = function (client) {
       } else {
         message.channel.send('`+kick [@242423532523]`')
       } 
-    }*/
+    } */
     if (message.content.startsWith('+kick')) {
       // Mise en place des variables
       var member = message.guild.member(message.mentions.members.first())
       let modRole = message.guild.roles.find('name', 'Mod')
       // Si il y a pas de mention dans la commande
       if (!member) {
-      message.channel.send('`+kick[@24903954938]`')
-    } else {
-      // If du modRole
-      if (message.member.roles.has(modRole.id)) {
-        let kickMember = message.guild.member(message.mentions.users.first())
-        message.guild.member(kickMember).kick()
-        // Message réussis
-        message.channel.send(':wave: ' + kickMember.displayName + ' à bien été **KICK** :point_right: ')
-        console.log(h + ' +kick mis par : ' + nom)
-        // Message du fail
+        message.channel.send('`+kick[@24903954938]`')
       } else {
-        return message.reply('Acces refusé')
+      // If du modRole
+        if (message.member.roles.has(modRole.id)) {
+          let kickMember = message.guild.member(message.mentions.users.first())
+          message.guild.member(kickMember).kick()
+          // Message réussis
+          message.channel.send(':wave: ' + kickMember.displayName + ' à bien été **KICK** :point_right: ')
+          console.log(h + ' +kick mis par : ' + nom)
+        // Message du fail
+        } else {
+          return message.reply('Acces refusé')
+        }
       }
     }
 
@@ -83,19 +84,5 @@ module.exports = function (client) {
         message.channel.send('`+ban [@24903954938]`')
       }
     }
-
-  /*  if (message.content.startsWith('+unban')) {
-      let modRole = message.guild.roles.find('name', 'Mod')
-      if (message.member.roles.has(modRole.id)) {
-        let bannedMember = message.guild.member(message.mentions.users.first())
-        message.guild.member(bannedMember).unbanMember()
-        // Message réussis
-        message.channel.send(':wave: ' + bannedMember.displayName + ' à bien été **débannie** :point_right: ')
-        console.log(h + ' +unban mis par: ' + nom)
-        // Message du fail
-      } else {
-        return message.reply('Acces refusé')
-      }
-    } */
   })
 }
