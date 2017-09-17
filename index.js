@@ -20,7 +20,7 @@ const avatar = require('./module/avatar.js')
 avatar(client)
 
 /* Partie Musique */
-const music = require('discord.js-music-v11')
+const music = require('./node_modules/discord.js-music-v11')
 music(client)
 
 /* Partie Message Aux Gens */
