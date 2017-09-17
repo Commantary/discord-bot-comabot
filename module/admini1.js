@@ -12,16 +12,17 @@ module.exports = function (client) {
     var h = message.author.lastMessage.createdAt
     var nom = message.author.username
     var prefix = setting.prefix
+    var inv = setting.inv
 
-    if (message.content.startsWith(prefix + 'inv')) {
+    if (message.content.startsWith(prefix + inv)) {
       message.channel.send('https://discordapp.com/oauth2/authorize?client_id=350995776131825664&scope=bot&permissions=2146958591')
     }
 
-    if (message.content.startsWith(prefix + 'kick')) {
+   /* if (message.content.startsWith(prefix + 'kick')) {
       // Mise en place des variables
-      var member = message.guild.member(message.mentions.members.first())
+       var member = message.guild.member(message.mentions.members.first())
       let modRole = message.guild.roles.find('name', 'Mod')
-      if (member) {
+       if (member) {
         // If du modRole
         if (message.member.roles.has(modRole.id)) {
           member.kick().then((member) => {
@@ -33,14 +34,21 @@ module.exports = function (client) {
             message.channel.send('Acces refusé')
             console.log(h + ' Tentative de "+kick" de: ' + nom)
           })
+        } else {
+          message.channel.send('Acces refusé')
         }
       } else {
         message.channel.send('`+kick [@242423532523]`')
-      }
-    }
-    /* if (message.content.startsWith('+kick')) {
+      } 
+    }*/
+    if (message.content.startsWith('+kick')) {
       // Mise en place des variables
+      var member = message.guild.member(message.mentions.members.first())
       let modRole = message.guild.roles.find('name', 'Mod')
+      // Si il y a pas de mention dans la commande
+      if (!member) {
+      message.channel.send('`+kick[@24903954938]`')
+    } else {
       // If du modRole
       if (message.member.roles.has(modRole.id)) {
         let kickMember = message.guild.member(message.mentions.users.first())
@@ -52,7 +60,7 @@ module.exports = function (client) {
       } else {
         return message.reply('Acces refusé')
       }
-    } */
+    }
 
     // BAN
 
@@ -69,7 +77,7 @@ module.exports = function (client) {
           console.log(h + ' +ban mis par: ' + nom)
         // Message du fail
         } else {
-          return message.reply('Acces refusé')
+          message.channel.send('Acces refusé')
         }
       } else {
         message.channel.send('`+ban [@24903954938]`')
