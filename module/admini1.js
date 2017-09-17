@@ -72,7 +72,7 @@ module.exports = function (client) {
           return message.reply('Acces refusé')
         }
       } else {
-        message.channel.send('`+ban [@24903954938]')
+        message.channel.send('`+ban [@24903954938]`')
       }
     }
 
