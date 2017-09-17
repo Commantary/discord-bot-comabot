@@ -17,11 +17,11 @@ module.exports = function (client) {
       message.channel.send('https://discordapp.com/oauth2/authorize?client_id=350995776131825664&scope=bot&permissions=2146958591')
     }
 
-    if (message.content.startsWith('+kick')) {
+    if (message.content.startsWith(prefix + 'kick')) {
       // Mise en place des variables
       var member = message.guild.member(message.mentions.members.first())
       let modRole = message.guild.roles.find('name', 'Mod')
-      if (member) {
+      if (!member) {
         message.channel.send('`+kick [@(membre à kick)]`')
       }
       // If du modRole
@@ -55,15 +55,15 @@ module.exports = function (client) {
 
     // BAN
 
-    if (message.content.startsWith('+ban')) {
+    if (message.content.startsWith(prefix + 'ban')) {
       // Mise en place des variables
       let modRole = message.guild.roles.find('name', 'Mod')
-      if (message.content === '+ban') {
+      let banMember = message.guild.member(message.mentions.users.first())
+      if (!member) {
         message.channel.send('`+ban [@(membre à ban)]`')
       }
       // If du modRole
       if (message.member.roles.has(modRole.id)) {
-        let banMember = message.guild.member(message.mentions.users.first())
         message.guild.member(banMember).ban()
         // Message réussis
         message.channel.send(':wave: ' + banMember.displayName + ' à bien été **ban** :point_right: ')
