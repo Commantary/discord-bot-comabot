@@ -23,8 +23,8 @@ avatar(client)
 const music = require('./discord.js-music-v11')
 music(client)
 
-/* Partie Message Aux Gens */
-const message1 = require('./module/message_personne.js')
+/* Partie Liste 1 */
+const message1 = require('./module/liste_1.js')
 message1(client)
 
 /* Partie Say */
