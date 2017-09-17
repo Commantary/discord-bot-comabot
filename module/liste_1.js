@@ -8,18 +8,19 @@ module.exports = function (client) {
   client.on('message', message => {
     const setting = require('./teste.json')
     var prefix = setting.prefix
+    var version = setting.version
     var msg = message
 
     if (message.content === prefix + 'stats') {
-      const ce = require('embed-creator')
-
-      msg.channel.send(ce(
-        'hex code color', 'author object', 'title',
-        'description',
-        'fields object',
-        'footer object',
-        'image object', 'is timestamp enabled (true/false)'
-      ))
+      return msg.channel.sendMessage('', {embed: {
+        title: 'Stats:',
+        color: 0x0AD90A,
+        description: 'Version: __**' + version + '**__       Nom du bot: __**ComaBot**__',
+        footer: {
+          icon_url: 'https://cdn.discordapp.com/avatars/350995776131825664/d6348248148cb6acd73f2d391c12c9fe.png?size=2048',
+          text: 'Message par ComaBot.'
+        }
+      }}).catch(console.error)
     }
   })
 }
