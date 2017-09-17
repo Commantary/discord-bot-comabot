@@ -51,14 +51,14 @@ module.exports = function (client) {
       } else {
       // If du modRole
         if (message.member.roles.has(modRole.id)) {
-          let kickMember = message.guild.member(message.mentions.users.first())
+          var kickMember = message.guild.member(message.mentions.users.first())
           message.guild.member(kickMember).kick()
           // Message réussis
           message.channel.send(':wave: ' + kickMember.displayName + ' à bien été **KICK** :point_right: ')
           console.log(h + ' +kick mis par : ' + nom)
         // Message du fail
         } else {
-          return message.reply('Acces refusé')
+          return message.reply('Acces refusé, tu ne peux pas kick ' + kickMember.displayName)
         }
       }
     }
