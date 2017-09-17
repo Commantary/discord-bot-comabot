@@ -27,18 +27,6 @@ music(client)
 const message1 = require('./module/liste_1.js')
 message1(client)
 
-/* Partie Say */
-const say = require('./module/say.js')
-say(client)
-
-/* Partie cpasmoi 
-const cpasmoi = require('./module/cpasmoi.js')
-cpasmoi(client) */
-
-/* Partie Verif Role 
-const verifrole = require('./module/verifrole.js')
-verifrole(client) */
-
 /* Partie Help */
 const help = require('./module/help.js')
 help(client)
@@ -46,10 +34,6 @@ help(client)
 /* Partie Admini 1 */
 const Admini1 = require('./module/admini1.js')
 Admini1(client)
-
-/* Partie Teste1 
-const test1 = require('./module/test1.js')
-test1(client) */
 
 var dt = process.env.TOKEN || process.argv[2]
 

@@ -26,7 +26,7 @@ module.exports = function (client) {
         if (message.member.roles.has(modRole.id)) {
           member.kick().then((member) => {
             // Message réussis
-            message.channel.send(':wave: ' + member.displayName + ' à bien été **kick** :point_right: ')
+            message.channel.send(':wave: ' + member.displayName + ' à bien été __**kick**__ :point_right: ')
             console.log(h + ' +kick mis par: ' + nom)
           }).catch(() => {
             // Message du fail
@@ -65,7 +65,7 @@ module.exports = function (client) {
         if (message.member.roles.has(modRole.id)) {
           message.guild.member(banMember).ban()
           // Message réussis
-          message.channel.send(':wave: ' + banMember.displayName + ' à bien été **ban** :point_right: ')
+          message.channel.send(':wave: ' + banMember.displayName + ' à bien été __**ban**__ :point_right: ')
           console.log(h + ' +ban mis par: ' + nom)
         // Message du fail
         } else {
