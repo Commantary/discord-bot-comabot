@@ -47,18 +47,18 @@ module.exports = function (client) {
       let modRole = message.guild.roles.find('name', 'Mod')
       // Si il y a pas de mention dans la commande
       if (!member) {
-        message.channel.send('`+kick[@24903954938]`')
+        message.channel.send('`+kick [@(le joueur a kick)]`')
       } else {
       // If du modRole
         if (message.member.roles.has(modRole.id)) {
-          var kickMember = message.guild.member(message.mentions.users.first())
+          let kickMember = message.guild.member(message.mentions.users.first())
           message.guild.member(kickMember).kick()
           // Message réussis
           message.channel.send(':wave: ' + kickMember.displayName + ' à bien été **KICK** :point_right: ')
           console.log(h + ' +kick mis par : ' + nom)
         // Message du fail
         } else {
-          return message.reply('Acces refusé, tu ne peux pas kick ' + kickMember.displayName)
+          return message.reply('Acces refusé')
         }
       }
     }
@@ -69,7 +69,10 @@ module.exports = function (client) {
       // Mise en place des variables
       let modRole = message.guild.roles.find('name', 'Mod')
       let banMember = message.guild.member(message.mentions.users.first())
-      if (member) {
+      // Si il y a pas de mention dans la commande
+      if (!member) {
+        message.channel.send('`+ban [@(le joueur a kick)]`')
+      } else {
         // If du modRole
         if (message.member.roles.has(modRole.id)) {
           message.guild.member(banMember).ban()
@@ -80,8 +83,6 @@ module.exports = function (client) {
         } else {
           message.channel.send('Acces refusé')
         }
-      } else {
-        message.channel.send('`+ban [@24903954938]`')
       }
     }
   })
