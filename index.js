@@ -1,12 +1,14 @@
 // Mise en place des en tetes
 const discord = require('discord.js')
 const client = new discord.Client()
+const setting = require('./module/teste.json')
 // On start le bot
 client.on('ready', () => {
   client.user.setGame('+inv | +help | ' + client.guilds.size + ' serveurs', 'https://www.twitch.tv/the_commentary', 0)
   console.log('-------------------------------------')
   console.log('    [!] ComaBot connecté [!]')
   console.log('-------------------------------------')
+  console.log('le prefix est: ' + setting.prefix)
 })
 
 /* Partie Ping */
@@ -18,7 +20,7 @@ const avatar = require('./module/avatar.js')
 avatar(client)
 
 /* Partie Musique */
-const music = require('./discord.js-music-v11')
+const music = require('discord.js-music-v11')
 music(client)
 
 /* Partie Message Aux Gens */
