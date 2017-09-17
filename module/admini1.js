@@ -60,18 +60,19 @@ module.exports = function (client) {
       // Mise en place des variables
       let modRole = message.guild.roles.find('name', 'Mod')
       let banMember = message.guild.member(message.mentions.users.first())
-      if (!member) {
-        message.channel.send('`+ban [@(membre à ban)]`')
-      }
-      // If du modRole
-      if (message.member.roles.has(modRole.id)) {
-        message.guild.member(banMember).ban()
-        // Message réussis
-        message.channel.send(':wave: ' + banMember.displayName + ' à bien été **ban** :point_right: ')
-        console.log(h + ' +ban mis par: ' + nom)
+      if (member) {
+        // If du modRole
+        if (message.member.roles.has(modRole.id)) {
+          message.guild.member(banMember).ban()
+          // Message réussis
+          message.channel.send(':wave: ' + banMember.displayName + ' à bien été **ban** :point_right: ')
+          console.log(h + ' +ban mis par: ' + nom)
         // Message du fail
+        } else {
+          return message.reply('Acces refusé')
+        }
       } else {
-        return message.reply('Acces refusé')
+        message.channel.send('`+ban [@24903954938]')
       }
     }
 
