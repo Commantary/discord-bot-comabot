@@ -18,7 +18,7 @@ module.exports = function (client) {
         icon_url: 'https://cdn.discordapp.com/avatars/350995776131825664/d6348248148cb6acd73f2d391c12c9fe.png?size=2048',
         title: 'ComaBot',
         color: 0x0AD90A,
-        description: '\n\nVersion: __**' + version + '**__       Nom du bot: __**' + name + '**__\n\nServeurs connecté: ' + client.guilds.size + '   ',
+        description: '\n\nVersion: __**' + version + '**__       Nom du bot: __**' + name + '**__\n\nServeurs connecté: **__' + client.guilds.size + '__**   ',
         footer: {
           icon_url: icone,
           text: 'Commande crée par Commentary'
