@@ -14,8 +14,8 @@ module.exports = function (client) {
     var prefix = setting.prefix
     var inv = setting.inv
 
-    if (message.content.startsWith(prefix + inv)) {
-      message.channel.send('https://discordapp.com/oauth2/authorize?client_id=350995776131825664&scope=bot&permissions=2146958591')
+    if (message.content.startsWith(prefix + 'inv')) {
+      message.channel.send(inv)
     }
 
     /* if (message.content.startsWith(prefix + 'kick')) {
