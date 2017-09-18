@@ -24,7 +24,7 @@ module.exports = function (client) {
       // Fais rien si le channel existe pas
       if (!channel) return
       // Envoie le message, en mentionnant le membre
-      channel.send(`Bienvenue sur le serveur ${member}`)
+      channel.send(`----------------------\nBienvenue sur le serveur ${member}\n----------------------`)
     })
     client.on('guildMemberRemove', member => {
     // Envoie un message au channel designer: 
@@ -50,7 +50,7 @@ module.exports = function (client) {
     // Fais rien si le channel existe pas
     if (!channel) return
     // Envoie le message, en mentionnant le membre
-    channel.send(`Bienvenue sur le serveur ${member}`)
+    channel.send(`----------------------\nBienvenue sur le serveur ${member}\n----------------------`)
   })
   client.on('guildMemberRemove', member => {
   // Envoie un message au channel designer: 

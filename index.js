@@ -15,9 +15,9 @@ client.on('ready', () => {
 const ping = require('./module/ping.js')
 ping(client)
 
-/* Partie Avatar */
-const avatar = require('./module/avatar.js')
-avatar(client)
+/* Partie Liste 2 */
+const liste2 = require('./module/liste_2.js')
+liste2(client)
 
 /* Partie Musique */
 const music = require('./discord.js-music-v11')
