@@ -14,33 +14,12 @@ module.exports = function (client) {
     var prefix = setting.prefix
     var inv = setting.inv
 
+    // COMMANDE INVITATION DU BOT
     if (message.content.startsWith(prefix + 'inv')) {
       message.channel.send(inv)
     }
 
-    /* if (message.content.startsWith(prefix + 'kick')) {
-      // Mise en place des variables
-       var member = message.guild.member(message.mentions.members.first())
-      let modRole = message.guild.roles.find('name', 'Mod')
-       if (member) {
-        // If du modRole
-        if (message.member.roles.has(modRole.id)) {
-          member.kick().then((member) => {
-            // Message réussis
-            message.channel.send(':wave: ' + member.displayName + ' à bien été __**kick**__ :point_right: ')
-            console.log(h + ' +kick mis par: ' + nom)
-          }).catch(() => {
-            // Message du fail
-            message.channel.send('Acces refusé')
-            console.log(h + ' Tentative de "+kick" de: ' + nom)
-          })
-        } else {
-          message.channel.send('Acces refusé')
-        }
-      } else {
-        message.channel.send('`+kick [@242423532523]`')
-      } 
-    } */
+    // COMMANDE POUR KICK UN MEMBRE DU SERVEUR
     if (message.content.startsWith('+kick')) {
       // Mise en place des variables
       var member = message.guild.member(message.mentions.members.first())
@@ -63,8 +42,7 @@ module.exports = function (client) {
       }
     }
 
-    // BAN
-
+    // COMMANDE POUR BAN UN MEMBRE DU SERVEUR
     if (message.content.startsWith(prefix + 'ban')) {
       // Mise en place des variables
       let modRole = message.guild.roles.find('name', 'Mod')
