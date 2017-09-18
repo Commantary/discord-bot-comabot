@@ -25,7 +25,7 @@ module.exports = function (client) {
     // Fais rien si le channel existe pas
     if (!channel) return
     // Envoie le message, en mentionnant le membre
-    channel.send(`----------------------\nBienvenue sur le serveur ${member}\n----------------------`)
+    channel.send(`-----------------------------------\nBienvenue sur le serveur ${member}\n-----------------------------------`)
   })
 
   // DEPART
@@ -35,6 +35,6 @@ module.exports = function (client) {
     // Fais rien si le channel existe pas
     if (!channel) return
     // Envoie le message, en mentionnant le membre
-    channel.send(`----------------------\n${member} est parti du serveur  \n----------------------`)
+    channel.send(`-----------------------------------\n${member} est parti du serveur  \n-----------------------------------`)
   })
 }
