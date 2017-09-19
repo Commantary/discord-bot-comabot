@@ -29,7 +29,7 @@ module.exports = function (client) {
         message.channel.send('`+mute [@(le joueur a mute)]`')
       } else {
         if (message.member.roles.has(modRole.id)) {
-          client.addMemberToRole(muted)
+          client.addRole(muted)
           message.channel.send(member.displayName + ' a été muté !')
         } else {
           return message.reply('Acces refusé')
