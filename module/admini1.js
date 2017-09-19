@@ -42,6 +42,45 @@ module.exports = function (client) {
       }
     }
 
+    // COMMANDE MUTE VOCAL
+    if (message.content.startsWith(prefix + 'mutev')) {
+      let modRole = message.guild.roles.find('name', 'Mod')
+      // SI IL A PAS DE MENTION
+      if (!member) {
+        // MESSAGE SI IL A PAS DE MENTION
+        message.channel.send('`+mutevocal [@(le joueur a mute)]`')
+      } else {
+        // ON VERIFIE SI IL A LE ROLE MOD
+        if (message.member.roles.has(modRole.id)) {
+          // VARIABLE POUR LA PERSONNE A MUTE
+          let mutedMember = message.guild.member(message.mentions.users.first())
+          // COMMANDE DU MUTE
+          message.guild.member(mutedMember).setMute(true)
+        }
+      }
+    }
+
+    // COMMANDE UNMUTE VOCAL
+    if (message.content.startsWith(prefix + 'unmutev')) {
+      let modRole = message.guild.roles.find('name', 'Mod')
+      // SI IL A PAS DE MENTION
+      if (!member) {
+        // MESSAGE SI IL A PAS DE MENTION
+        message.channel.send('`+unmutev [@(le joueur a unmute)]`')
+      } else {
+        // ON VERIFIE SI IL A LE ROLE MOD
+        if (message.member.roles.has(modRole.id)) {
+          // VARIABLE POUR LA PERSONNE A UNMUTE
+          let mutedMember = message.guild.member(message.mentions.users.first())
+          // COMMANDE DU MUTE
+          message.guild.member(mutedMember).setMute(false)
+        } else {
+          // SI IL A PAS LE ROLE MOD
+          return message.reply('Acces refusé')
+        }
+      }
+    }
+
     // COMMANDE DU UNMUTE
     if (message.content.startsWith(prefix + 'unmute')) {
       let modRole = message.guild.roles.find('name', 'Mod')
