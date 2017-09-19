@@ -4,7 +4,7 @@ const client = new discord.Client()
 const setting = require('./module/teste.json')
 // On start le bot
 client.on('ready', () => {
-  client.user.setGame('+inv | +help | +stats | On ' + client.guilds.size + ' servers', 'https://www.twitch.tv/the_commentary', 0)
+  client.user.setGame('+inv | +help | +stats | Sur ' + client.guilds.size + ' serveurs', 'https://www.twitch.tv/the_commentary', 0)
   console.log('-------------------------------------')
   console.log('    [!] ComaBot connecté [!]')
   console.log('-------------------------------------')
