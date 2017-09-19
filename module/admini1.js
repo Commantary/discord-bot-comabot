@@ -19,10 +19,22 @@ module.exports = function (client) {
       message.channel.send(inv)
     }
 
+    // COMMANDE DU MUTE
+    if (message.content.startsWith(prefix + 'mute')) {
+      var member = message.guild.member(message.mentions.members.first())
+      let modRole = message.guild.roles.find('name', 'Mod')
+      // SI IL Y A PAS DE MENTION
+      if (!member) {
+        message.channel.send('`+mute [@(le joueur a mute)]`')
+      }
+
+
+    }
+
     // COMMANDE POUR KICK UN MEMBRE DU SERVEUR
     if (message.content.startsWith('+kick')) {
       // Mise en place des variables
-      var member = message.guild.member(message.mentions.members.first())
+      // var member = message.guild.member(message.mentions.members.first())
       let modRole = message.guild.roles.find('name', 'Mod')
       // Si il y a pas de mention dans la commande
       if (!member) {
