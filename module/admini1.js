@@ -49,7 +49,7 @@ module.exports = function (client) {
       } else {
         if (message.member.roles.has(modRole.id)) {
           let mutedMember = message.guild.member(message.mentions.users.first())
-          message.guild.member(mutedMember).removeRole(muted.id, 'mute par ' + message.author.id())
+          message.guild.member(mutedMember).removeRole(muted.id, 'muté')
           message.channel.send(member.displayName + ' a été muté !')
         } else {
           return message.reply('Acces refusé')
