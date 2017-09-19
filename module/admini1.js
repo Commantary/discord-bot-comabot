@@ -50,7 +50,7 @@ module.exports = function (client) {
         if (message.member.roles.has(modRole.id)) {
           let mutedMember = message.guild.member(message.mentions.users.first())
           message.guild.member(mutedMember).removeRole(muted.id, 'muté')
-          message.channel.send(member.displayName + ' a été demuté par ' + message.lastMessage.author.id.displayName)
+          message.channel.send(member.displayName + ' a été demuté par ' + message.lastMessage.authorId().displayName)
         } else {
           return message.reply('Acces refusé')
         }
