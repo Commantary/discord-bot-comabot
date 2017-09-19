@@ -22,7 +22,7 @@ module.exports = function (client) {
       return message.channel.sendMessage('', {embed: {
         title: 'Commandes:',
         color: 0xff0000,
-        description: ':tools: Liste des commandes :tools: \n\n+ban [@(*343535365363*) | Pour ban un membre en ayant le rôle **Mod**\n\n+kick [@(*343535365363*) | Pour kick un membre en ayant le rôle **Mod**\n\nD\'autre commandes sont en dévelopement...',
+        description: ':tools: Liste des commandes :tools: \n\n+ban [@(*343535365363*) | Pour ban un membre en ayant le rôle **Mod**\n\n+kick [@(*343535365363*) | Pour kick un membre en ayant le rôle **Mod**\n\n+muteT @jeanKevin | Pour mute une personne en texte\n\n+unmuteT @jeanKevin | Pour unmute une personne en texte\n\nD\'autre commandes sont en dévelopement...',
         footer: {
           text: 'Message par ComaBot.'
         }

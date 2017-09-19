@@ -20,7 +20,7 @@ module.exports = function (client) {
     }
 
     // COMMANDE DU MUTE
-    if (message.content.startsWith(prefix + 'mute')) {
+    if (message.content.startsWith(prefix + 'muteT')) {
       var member = message.guild.member(message.mentions.members.first())
       let modRole = message.guild.roles.find('name', 'Mod')
       let muted = message.guild.roles.find('name', 'Muted')
@@ -39,7 +39,7 @@ module.exports = function (client) {
     }
 
     // COMMANDE DU UNMUTE
-    if (message.content.startsWith(prefix + 'unmute')) {
+    if (message.content.startsWith(prefix + 'unmuteT')) {
       let modRole = message.guild.roles.find('name', 'Mod')
       let muted = message.guild.roles.find('name', 'Muted')
       // SI IL Y A PAS DE MENTION
