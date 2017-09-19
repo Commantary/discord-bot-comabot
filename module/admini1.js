@@ -45,12 +45,12 @@ module.exports = function (client) {
       let muted = message.guild.roles.find('name', 'Muted')
       // SI IL Y A PAS DE MENTION
       if (!member) {
-        message.channel.send('`+mute [@(le joueur a mute)]`')
+        message.channel.send('`+unmute [@(le joueur a unmute)]`')
       } else {
         if (message.member.roles.has(modRole.id)) {
           let mutedMember = message.guild.member(message.mentions.users.first())
           message.guild.member(mutedMember).removeRole(muted.id, 'muté')
-          message.channel.send(member.displayName + ' a été muté !')
+          message.channel.send(member.displayName + ' a été demuté !')
         } else {
           return message.reply('Acces refusé')
         }
