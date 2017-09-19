@@ -31,7 +31,7 @@ module.exports = function (client) {
         if (message.member.roles.has(modRole.id)) {
           let mutedMember = message.guild.member(message.mentions.users.first())
           message.guild.member(mutedMember).addRole(muted.id)
-          message.channel.send(member.displayName + ' a été muté par ' + message.author.username)
+          message.channel.send('**' + member.displayName + '** a été muté par **' + message.author.username + '**')
         } else {
           return message.reply('Acces refusé')
         }
@@ -40,7 +40,6 @@ module.exports = function (client) {
 
     // COMMANDE DU UNMUTE
     if (message.content.startsWith(prefix + 'unmute')) {
-      var member = message.guild.member(message.mentions.members.first())
       let modRole = message.guild.roles.find('name', 'Mod')
       let muted = message.guild.roles.find('name', 'Muted')
       // SI IL Y A PAS DE MENTION
@@ -50,12 +49,13 @@ module.exports = function (client) {
         if (message.member.roles.has(modRole.id)) {
           let mutedMember = message.guild.member(message.mentions.users.first())
           message.guild.member(mutedMember).removeRole(muted.id, 'muté')
-          message.channel.send(member.displayName + ' a été demuté par ' + message.author.username)
+          message.channel.send('**' + member.displayName + '** a été demuté par **' + message.author.username + '**')
         } else {
           return message.reply('Acces refusé')
         }
       }
     }
+
     // COMMANDE POUR KICK UN MEMBRE DU SERVEUR
     if (message.content.startsWith('+kick')) {
       // Mise en place des variables
