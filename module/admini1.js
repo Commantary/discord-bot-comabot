@@ -56,6 +56,7 @@ module.exports = function (client) {
           let mutedMember = message.guild.member(message.mentions.users.first())
           // COMMANDE DU MUTE
           message.guild.member(mutedMember).setMute(true)
+          message.channel.send('**' + member.displayName + '** a été serveur mute par **' + message.author.username + '**')
         }
       }
     }
@@ -74,6 +75,7 @@ module.exports = function (client) {
           let mutedMember = message.guild.member(message.mentions.users.first())
           // COMMANDE DU MUTE
           message.guild.member(mutedMember).setMute(false)
+          message.channel.send('**' + member.displayName + '** a été deserveur mute par **' + message.author.username + '**')
         } else {
           // SI IL A PAS LE ROLE MOD
           return message.reply('Acces refusé')
