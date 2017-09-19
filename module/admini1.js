@@ -9,10 +9,11 @@ module.exports = function (client) {
   const setting = require('./teste.json')
   client.on('message', message => {
     // Mise en place des variables
-    var h = message.author.lastMessage.createdAt
-    var nom = message.author.username
-    var prefix = setting.prefix
-    var inv = setting.inv
+    const h = message.author.lastMessage.createdAt
+    const nom = message.author.username
+    const prefix = setting.prefix
+    const inv = setting.inv
+    var member = message.guild.member(message.mentions.members.first())
 
     // COMMANDE INVITATION DU BOT
     if (message.content.startsWith(prefix + 'inv')) {
@@ -20,8 +21,7 @@ module.exports = function (client) {
     }
 
     // COMMANDE DU MUTE
-    if (message.content.startsWith(prefix + 'muteT')) {
-      var member = message.guild.member(message.mentions.members.first())
+    if (message.content.startsWith(prefix + 'mute')) {
       let modRole = message.guild.roles.find('name', 'Mod')
       let muted = message.guild.roles.find('name', 'Muted')
       // SI IL Y A PAS DE MENTION
@@ -39,7 +39,7 @@ module.exports = function (client) {
     }
 
     // COMMANDE DU UNMUTE
-    if (message.content.startsWith(prefix + 'unmuteT')) {
+    if (message.content.startsWith(prefix + 'unmute')) {
       let modRole = message.guild.roles.find('name', 'Mod')
       let muted = message.guild.roles.find('name', 'Muted')
       // SI IL Y A PAS DE MENTION
@@ -48,7 +48,7 @@ module.exports = function (client) {
       } else {
         if (message.member.roles.has(modRole.id)) {
           let mutedMember = message.guild.member(message.mentions.users.first())
-          message.guild.member(mutedMember).removeRole(muted.id)
+          message.guild.member(mutedMember).removeRole(muted.id, message.author.username + ' à unmute ' + member)
           message.channel.send('**' + member.displayName + '** a été demuté par **' + message.author.username + '**')
         } else {
           return message.reply('Acces refusé')
