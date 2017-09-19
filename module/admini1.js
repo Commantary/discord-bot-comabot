@@ -79,7 +79,7 @@ module.exports = function (client) {
           let kickMember = message.guild.member(message.mentions.users.first())
           message.guild.member(kickMember).kick()
           // Message réussis
-          message.channel.send(':wave: ' + kickMember.displayName + ' à bien été **KICK** :point_right: ')
+          message.channel.send(':wave: **' + kickMember.displayName + '** à été __**kick**__ par: **' + message.author.username + '**')
           console.log(h + ' +kick mis par : ' + nom)
         // Message du fail
         } else {
@@ -95,13 +95,13 @@ module.exports = function (client) {
       let banMember = message.guild.member(message.mentions.users.first())
       // Si il y a pas de mention dans la commande
       if (!member) {
-        message.channel.send('`+ban [@(le joueur a kick)]`')
+        message.channel.send('`+ban [@(le joueur a ban)]`')
       } else {
         // If du modRole
         if (message.member.roles.has(modRole.id)) {
           message.guild.member(banMember).ban()
           // Message réussis
-          message.channel.send(':wave: ' + banMember.displayName + ' à bien été __**ban**__ :point_right: ')
+          message.channel.send(':wave: **' + banMember.displayName + '** à été __**ban**__ par: **' + message.author.username + '**')
           console.log(h + ' +ban mis par: ' + nom)
         // Message du fail
         } else {
