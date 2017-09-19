@@ -31,7 +31,7 @@ module.exports = function (client) {
         if (message.member.roles.has(modRole.id)) {
           let mutedMember = message.guild.member(message.mentions.users.first())
           message.guild.member(mutedMember).addRole(muted.id)
-          message.channel.send(member.displayName + ' a été muté par ' + message.lastMessage.author.id.displayName)
+          message.channel.send(member.displayName + ' a été muté par ' + message.author.username)
         } else {
           return message.reply('Acces refusé')
         }
@@ -50,7 +50,7 @@ module.exports = function (client) {
         if (message.member.roles.has(modRole.id)) {
           let mutedMember = message.guild.member(message.mentions.users.first())
           message.guild.member(mutedMember).removeRole(muted.id, 'muté')
-          message.channel.send(member.displayName + ' a été demuté par ' + message.lastMessage.authorId().displayName)
+          message.channel.send(member.displayName + ' a été demuté par ' + message.author.username)
         } else {
           return message.reply('Acces refusé')
         }
