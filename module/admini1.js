@@ -26,13 +26,17 @@ module.exports = function (client) {
       let muted = message.guild.roles.find('name', 'Muted')
       // SI IL Y A PAS DE MENTION
       if (!member) {
+        // MESSAGE SI IL A PAS DE MENTION
         message.channel.send('`+mute [@(le joueur a mute)]`')
       } else {
         if (message.member.roles.has(modRole.id)) {
+          // VARIABLE DU MEMBRE A MUTE
           let mutedMember = message.guild.member(message.mentions.users.first())
+          // COMMANDE DU MUTE
           message.guild.member(mutedMember).addRole(muted.id)
           message.channel.send('**' + member.displayName + '** a été muté par **' + message.author.username + '**')
         } else {
+          // SI IL A PAS LE ROLE MOD
           return message.reply('Acces refusé')
         }
       }
@@ -44,13 +48,18 @@ module.exports = function (client) {
       let muted = message.guild.roles.find('name', 'Muted')
       // SI IL Y A PAS DE MENTION
       if (!member) {
-        message.channel.send('`+unmuteT [@(le joueur a unmute)]`')
+        // MESSAGE SI IL A PAS DE MENTION
+        message.channel.send('`+unmute [@(le joueur a unmute)]`')
       } else {
+        // ON VERIFIE SI IL A LE ROLE MOD
         if (message.member.roles.has(modRole.id)) {
+          // VARIABLE POUR LA PERSONNE A UNMUTE
           let mutedMember = message.guild.member(message.mentions.users.first())
+          // COMMANDE DU UNMUTE
           message.guild.member(mutedMember).removeRole(muted.id, message.author.username + ' à unmute ' + member)
           message.channel.send('**' + member.displayName + '** a été demuté par **' + message.author.username + '**')
         } else {
+          // SI IL A PAS LE ROLE MOD
           return message.reply('Acces refusé')
         }
       }
