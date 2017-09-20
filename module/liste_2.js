@@ -16,11 +16,10 @@ module.exports = function (client) {
     if (message.content === 'Avatar ComaBot') {
       message.channel.send('C\'est quoi mon avatar')
     }
-  })
 
-  // ARRIVE
-  client.on('guildMemberAdd', member => {
-    client.on('message', message => {
+
+    // ARRIVE
+    client.on('guildMemberAdd', member => {
     // Envoie un message au channel designer :
       const channel = member.guild.channels.find('name', 'bonjour-bye')
       // Fais rien si le channel existe pas
@@ -30,14 +29,14 @@ module.exports = function (client) {
       channel.send(`-----------------------------------\n   Bienvenue sur le serveur ${member}\n-----------------------------------`)
       message.guild.member({member}).addRole(role.id)
     })
-  })
-  // DEPART
-  client.on('guildMemberRemove', member => {
+    // DEPART
+    client.on('guildMemberRemove', member => {
     // Envoie un message au channel designer: 
-    const channel = member.guild.channels.find('name', 'bonjour-bye')
-    // Fais rien si le channel existe pas
-    if (!channel) return
-    // Envoie le message, en mentionnant le membre
-    channel.send(`-----------------------------------\n   ${member} est parti du serveur  \n-----------------------------------`)
+      const channel = member.guild.channels.find('name', 'bonjour-bye')
+      // Fais rien si le channel existe pas
+      if (!channel) return
+      // Envoie le message, en mentionnant le membre
+      channel.send(`-----------------------------------\n   ${member} est parti du serveur  \n-----------------------------------`)
+    })
   })
 }
