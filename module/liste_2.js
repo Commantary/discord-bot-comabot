@@ -24,9 +24,7 @@ module.exports = function (client) {
     // Fais rien si le channel existe pas
     if (!channel) return
     // Envoie le message, en mentionnant le membre
-    let role = message.guild.roles.find('name', 'Nouveaux retard')
     channel.send(`-----------------------------------\n   Bienvenue sur le serveur ${member}\n-----------------------------------`)
-    message.guild.member({member}).addRole(role.id)
   })
   // DEPART
   client.on('guildMemberRemove', member => {
