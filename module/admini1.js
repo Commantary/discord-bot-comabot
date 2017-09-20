@@ -150,5 +150,26 @@ module.exports = function (client) {
         }
       }
     }
+
+    // COMMANDE POUR PUNIR
+    if (message.content.startsWith(prefix + 'punir')) {
+      // MISE EN PLACE DES VARIABLES
+      let modRole = message.guild.roles.find('name', 'Mod')
+      let punie = message.guild.member(message.mentions.users.first())
+      // SI IL Y A PAS DE MENTION DANS LA COMMANDE
+      if (!member) {
+        message.channel.send('`+punir [@(le joueur a punir)]`')
+      } else {
+        // IF DU MODROLE
+        if (message.member.roles.has(modRole.id)) {
+          message.guild.member(punie).setVoiceChannel('Les gens méchants')
+          // MESSAGE REUSSIS
+          message.channel.send(':wave: **' + punie.displayName + '** à été __**punit**__ par: **' + message.author.username + '**')
+          // MESSAGE DU FAIL
+        } else {
+          message.channel.send('Acces refusé')
+        }
+      }
+    }
   })
 }
