@@ -33,7 +33,7 @@ module.exports = function (client) {
           // VARIABLE DU MEMBRE A MUTE
           let mutedMember = message.guild.member(message.mentions.users.first())
           // COMMANDE DU MUTE
-          message.guild.member(mutedMember).addRole(muted.id)
+          message.guild.member(mutedMember).addRole(muted.id, member.displayName + ' a été muté par ' + message.author.username)
           message.channel.send('**' + member.displayName + '** a été muté par **' + message.author.username + '**')
         } else {
           // SI IL A PAS LE ROLE MOD
@@ -97,7 +97,7 @@ module.exports = function (client) {
           // VARIABLE POUR LA PERSONNE A UNMUTE
           let mutedMember = message.guild.member(message.mentions.users.first())
           // COMMANDE DU UNMUTE
-          message.guild.member(mutedMember).removeRole(muted.id, message.author.username + ' à unmute ' + member)
+          message.guild.member(mutedMember).removeRole(muted.id, member.displayName + ' a été demuté par ' + message.author.username)
           message.channel.send('**' + member.displayName + '** a été demuté par **' + message.author.username + '**')
         } else {
           // SI IL A PAS LE ROLE MOD

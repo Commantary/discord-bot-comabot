@@ -17,7 +17,6 @@ module.exports = function (client) {
       message.channel.send('C\'est quoi mon avatar')
     }
 
-
     // ARRIVE
     client.on('guildMemberAdd', member => {
     // Envoie un message au channel designer :
