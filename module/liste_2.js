@@ -20,14 +20,17 @@ module.exports = function (client) {
 
   // ARRIVE
   client.on('guildMemberAdd', member => {
+    client.on('message', message => {
     // Envoie un message au channel designer :
-    const channel = member.guild.channels.find('name', 'bonjour-bye')
-    // Fais rien si le channel existe pas
-    if (!channel) return
-    // Envoie le message, en mentionnant le membre
-    channel.send(`-----------------------------------\n   Bienvenue sur le serveur ${member}\n-----------------------------------`)
+      const channel = member.guild.channels.find('name', 'bonjour-bye')
+      // Fais rien si le channel existe pas
+      if (!channel) return
+      // Envoie le message, en mentionnant le membre
+      let role = message.guild.roles.find('name', 'Nouveaux retard')
+      channel.send(`-----------------------------------\n   Bienvenue sur le serveur ${member}\n-----------------------------------`)
+      message.guild.member({member}).addRole(role.id)
+    })
   })
-
   // DEPART
   client.on('guildMemberRemove', member => {
     // Envoie un message au channel designer: 
