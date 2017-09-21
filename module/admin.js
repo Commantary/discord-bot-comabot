@@ -21,30 +21,8 @@ module.exports = function (client) {
       message.channel.send(inv)
     }
 
-    // COMMANDE DU MUTE
-    if (message.content.startsWith(prefix + 'mute')) {
-      let modRole = message.guild.roles.find('name', 'Mod')
-      let muted = message.guild.roles.find('name', 'Muted')
-      // SI IL Y A PAS DE MENTION
-      if (!member) {
-        // MESSAGE SI IL A PAS DE MENTION
-        message.channel.send('`+mute [@(le joueur a mute)]`')
-      } else {
-        if (message.member.roles.has(modRole.id)) {
-          // VARIABLE DU MEMBRE A MUTE
-          let mutedMember = message.guild.member(message.mentions.users.first())
-          // COMMANDE DU MUTE
-          message.guild.member(mutedMember).addRole(muted.id, member.displayName + ' a été muté par ' + message.author.username)
-          message.channel.send('**' + member.displayName + '** a été muté par **' + message.author.username + '**')
-        } else {
-          // SI IL A PAS LE ROLE MOD
-          return message.reply('Acces refusé')
-        }
-      }
-    }
-
     // COMMANDE MUTE VOCAL
-    if (message.content.startsWith(prefix + 'vmute')) {
+    if (command === 'vmute') {
       let modRole = message.guild.roles.find('name', 'Mod')
       // SI IL A PAS DE MENTION
       if (!member) {
@@ -63,7 +41,7 @@ module.exports = function (client) {
     }
 
     // COMMANDE UNMUTE VOCAL
-    if (message.content.startsWith(prefix + 'vunmute')) {
+    if (command === 'vunmute') {
       let modRole = message.guild.roles.find('name', 'Mod')
       // SI IL A PAS DE MENTION
       if (!member) {
@@ -84,8 +62,30 @@ module.exports = function (client) {
       }
     }
 
+    // COMMANDE DU MUTE
+    if (command === 'mute') {
+      let modRole = message.guild.roles.find('name', 'Mod')
+      let muted = message.guild.roles.find('name', 'Muted')
+      // SI IL Y A PAS DE MENTION
+      if (!member) {
+        // MESSAGE SI IL A PAS DE MENTION
+        message.channel.send('`+mute [@(le joueur a mute)]`')
+      } else {
+        if (message.member.roles.has(modRole.id)) {
+          // VARIABLE DU MEMBRE A MUTE
+          let mutedMember = message.guild.member(message.mentions.users.first())
+          // COMMANDE DU MUTE
+          message.guild.member(mutedMember).addRole(muted.id, member.displayName + ' a été muté par ' + message.author.username)
+          message.channel.send('**' + member.displayName + '** a été muté par **' + message.author.username + '**')
+        } else {
+          // SI IL A PAS LE ROLE MOD
+          return message.reply('Acces refusé')
+        }
+      }
+    }
+
     // COMMANDE DU UNMUTE
-    if (message.content.startsWith(prefix + 'unmute')) {
+    if (command === 'unmute') {
       let modRole = message.guild.roles.find('name', 'Mod')
       let muted = message.guild.roles.find('name', 'Muted')
       // SI IL Y A PAS DE MENTION
@@ -108,7 +108,7 @@ module.exports = function (client) {
     }
 
     // COMMANDE POUR KICK UN MEMBRE DU SERVEUR
-    if (message.content.startsWith('+kick')) {
+    if (command === '+kick') {
       // Mise en place des variables
       // var member = message.guild.member(message.mentions.members.first())
       let modRole = message.guild.roles.find('name', 'Mod')
@@ -119,7 +119,8 @@ module.exports = function (client) {
       // If du modRole
         if (message.member.roles.has(modRole.id)) {
           let kickMember = message.guild.member(message.mentions.users.first())
-          message.guild.member(kickMember).kick()
+          let reason = args.slice(1).join(' ')
+          message.guild.member(kickMember).kick(reason)
           // Message réussis
           message.channel.send(':wave: **' + kickMember.displayName + '** à été __**kick**__ par: **' + message.author.username + '**')
           console.log(h + ' +kick mis par : ' + nom)
@@ -131,7 +132,7 @@ module.exports = function (client) {
     }
 
     // COMMANDE POUR BAN UN MEMBRE DU SERVEUR
-    if (message.content.startsWith(prefix + 'ban')) {
+    if (command === 'ban') {
       // Mise en place des variables
       let modRole = message.guild.roles.find('name', 'Mod')
       let banMember = message.guild.member(message.mentions.users.first())
