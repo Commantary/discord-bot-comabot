@@ -31,9 +31,9 @@ message1(client)
 const help = require('./module/help.js')
 help(client)
 
-/* Partie Admini 1 */
-const Admini1 = require('./module/admini1.js')
-Admini1(client)
+/* Partie Admin */
+const admin = require('./module/admin.js')
+admin(client)
 
 var dt = process.env.TOKEN || process.argv[2]
 
