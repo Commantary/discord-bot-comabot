@@ -8,8 +8,6 @@ module.exports = function (client) {
   client.on('message', message => {
     // MISE EN PLACE DES VARIABLES
     var nom = message.author.username
-    const setting = require('./config.json')
-    const prefix = setting.prefix
     const args = message.content.trim().split(/ +/g)
     const command = args.shift().toLowerCase()
 
