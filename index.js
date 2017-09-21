@@ -35,6 +35,10 @@ help(client)
 const admin = require('./module/admin.js')
 admin(client)
 
+/* Partie Arriver Departs */
+const arde = require('./events/arriverDeparts.js')
+arde(client)
+
 var dt = process.env.TOKEN || process.argv[2]
 
 if (!dt) {

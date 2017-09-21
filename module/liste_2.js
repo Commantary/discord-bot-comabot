@@ -12,16 +12,7 @@ module.exports = function (client) {
     const args = message.content.slice(prefix.length).trim().split(/ +/g)
     const command = args.shift().toLowerCase()
 
-
     if (command === 'avatar') {
-      const modRole = message.guild.roles.find('name', 'Mods')
-      if (!modRole) {
-        message.channel.send('Le rôle Mod n\'existe pas')
-      }
-
-      if (!message.member.roles.has(modRole.id)) {
-        message.reply('Acces refusé')
-      } else {
         if (message.mentions.users.size === 0) {
           message.reply('Mentionne une personne !')
         } else {
