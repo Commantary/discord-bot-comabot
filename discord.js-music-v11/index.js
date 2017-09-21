@@ -18,7 +18,7 @@ module.exports = function (client, options) {
   // Get all options.
   let PREFIX = (options && options.prefix) || '+'
   let GLOBAL = (options && options.global) || true
-  let MAX_QUEUE_SIZE = (options && options.maxQueueSize) || 20
+  let MAX_QUEUE_SIZE = (options && options.maxQueueSize) || 10
   let DEFAULT_VOLUME = (options && options.volume) || 50
   let ALLOW_ALL_SKIP = (options && options.anyoneCanSkip) || true
   let CLEAR_INVOKER = (options && options.clearInvoker) || true
@@ -123,7 +123,7 @@ module.exports = function (client, options) {
     }
 
     // Get the video information.
-    msg.channel.sendMessage(wrap('Recherche...')).then(response => {
+    /* msg.channel.sendMessage(wrap('Recherche...')).then(response => {
       var searchstring = suffix
       if (!suffix.toLowerCase().startsWith('http')) {
         searchstring = 'gvsearch1:' + suffix
@@ -144,7 +144,7 @@ module.exports = function (client, options) {
           if (queue.length === 1) executeQueue(msg, queue)
         }).catch(console.log)
       })
-    }).catch(console.log)
+    }).catch(console.log) */
   }
 
   /**
