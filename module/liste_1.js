@@ -6,7 +6,7 @@
 
 module.exports = function (client) {
   client.on('message', message => {
-    const setting = require('./teste.json')
+    const setting = require('./config.json')
     var prefix = setting.prefix
     var version = setting.version
     var name = setting.name

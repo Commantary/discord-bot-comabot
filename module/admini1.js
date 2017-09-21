@@ -6,7 +6,7 @@
 
 module.exports = function (client) {
   // Mise en place des constantes
-  const setting = require('./teste.json')
+  const setting = require('./config.json')
   client.on('message', message => {
     // Mise en place des variables
     const h = message.author.lastMessage.createdAt
