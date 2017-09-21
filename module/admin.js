@@ -14,9 +14,11 @@ module.exports = function (client) {
     const prefix = setting.prefix
     const inv = setting.inv
     var member = message.guild.member(message.mentions.members.first())
+    const args = message.content.slice(prefix.length).trim().split(/ +/g)
+    const command = args.shift().toLowerCase()
 
     // COMMANDE INVITATION DU BOT
-    if (message.content.startsWith(prefix + 'inv')) {
+    if (command === 'inv') {
       message.channel.send(inv)
     }
 
