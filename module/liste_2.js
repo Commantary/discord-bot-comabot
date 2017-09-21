@@ -17,7 +17,7 @@ module.exports = function (client) {
         message.reply('Mentionne une personne !')
       } else {
         let member = message.mentions.members.first()
-        message.channel.send(message.member(member).avatarURL)
+        message.channel.send(message.mentions.member.first().avatarURL)
       }
     }
 
