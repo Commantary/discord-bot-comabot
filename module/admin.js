@@ -153,7 +153,7 @@ module.exports = function (client) {
       }
     }
 
-  /*  // COMMANDE POUR PUNIR
+    // COMMANDE POUR PUNIR
     if (message.content.startsWith(prefix + 'punir')) {
       // MISE EN PLACE DES VARIABLES
       let modRole = message.guild.roles.find('name', 'Mod')
@@ -173,6 +173,6 @@ module.exports = function (client) {
           message.channel.send('Acces refusé')
         }
       }
-    } */
+    }
   })
 }

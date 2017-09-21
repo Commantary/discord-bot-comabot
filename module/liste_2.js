@@ -6,33 +6,45 @@
 
 module.exports = function (client) {
   client.on('message', message => {
-    var h = message.author.lastMessage.createdAt
+    // MISE EN PLACE DES VARIABLES
+    const setting = require('./config.json')
+    const prefix = setting.prefix
+    const args = message.content.slice(prefix.length).trim().split(/ +/g)
+    const command = args.shift().toLowerCase()
 
-    if (message.content.startsWith('C\'est quoi mon avatar')) {
-      // On envoie son avatar
-      message.reply(message.author.avatarURL)
-      console.log(h + ' Nom du proprio de l\'avatar: ' + message.author.username)
+
+    if (command === 'avatar') {
+      const modRole = message.guild.roles.find('name', 'Mods')
+      if (!modRole) {
+        message.channel.send('Le rôle Mod n\'existe pas')
+      }
+
+      if (!message.member.roles.has(modRole.id)) {
+        message.reply('Acces refusé')
+      } else {
+        if (message.mentions.users.size === 0) {
+          message.reply('Mentionne une personne !')
+        } else {
+          let member = message.mentions.members.first()
+          message.reply(message.author(member).avatarURL)
+        }
+      }
     }
-    if (message.content === 'Avatar ComaBot') {
-      message.channel.send('C\'est quoi mon avatar')
-    }
-  })
-  // ARRIVE
-  client.on('guildMemberAdd', member => {
-    // Envoie un message au channel designer :
-    const channel = member.guild.channels.find('name', 'bonjour-bye')
-    // Fais rien si le channel existe pas
-    if (!channel) return
-    // Envoie le message, en mentionnant le membre
-    channel.send(`-----------------------------------\n   Bienvenue sur le serveur ${member}\n-----------------------------------`)
-  })
-  // DEPART
-  client.on('guildMemberRemove', member => {
-    // Envoie un message au channel designer: 
-    const channel = member.guild.channels.find('name', 'bonjour-bye')
-    // Fais rien si le channel existe pas
-    if (!channel) return
-    // Envoie le message, en mentionnant le membre
-    channel.send(`-----------------------------------\n   ${member} est parti du serveur  \n-----------------------------------`)
+
+  /*  if (command === 'avatar') {
+      const modRole = message.guild.roles.find('name', 'Mods')
+      if (!modRole) {
+        message.channel.send('Le rôle Mod n\'existe pas')
+      }
+      if (!message.member.roles.has(modRole.id)) {
+        message.reply('Acces refusé')
+      } else {
+        let member = message.mentions.members.first()
+        message.reply(message.author(member).avatarURL)
+      }
+      if (message.mentions.users.size === 0) {
+        message.reply('Mentionne une personne à kick')
+      }
+    } */
   })
 }
