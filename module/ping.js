@@ -10,7 +10,7 @@ module.exports = function (client) {
     var nom = message.author.username
     const setting = require('./config.json')
     const prefix = setting.prefix
-    const args = message.content.slice(prefix.length).trim().split(/ +/g)
+    const args = message.content.trim().split(/ +/g)
     const command = args.shift().toLowerCase()
 
     if (command === 'ping') {
