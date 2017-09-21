@@ -36,6 +36,6 @@
     "forever": "^0.15.3",
     "opusscript": "0.0.3",
     "youtube-dl": "^1.11.1",
-    "ytdl": "0.7.0"
+    "ytdl": "^0.7.0"
   }
 }
