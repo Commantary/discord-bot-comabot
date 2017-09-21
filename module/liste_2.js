@@ -13,16 +13,15 @@ module.exports = function (client) {
     const command = args.shift().toLowerCase()
 
     if (command === 'avatar') {
-        if (message.mentions.users.size === 0) {
-          message.reply('Mentionne une personne !')
-        } else {
-          let member = message.mentions.members.first()
-          message.reply(message.author(member).avatarURL)
-        }
+      if (message.mentions.users.size === 0) {
+        message.reply('Mentionne une personne !')
+      } else {
+        let member = message.mentions.members.first()
+        message.reply(message.author(member).avatarURL)
       }
     }
 
-  /*  if (command === 'avatar') {
+    /*  if (command === 'avatar') {
       const modRole = message.guild.roles.find('name', 'Mods')
       if (!modRole) {
         message.channel.send('Le rôle Mod n\'existe pas')
