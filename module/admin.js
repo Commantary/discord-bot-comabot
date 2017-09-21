@@ -5,15 +5,14 @@
  */
 
 module.exports = function (client) {
-  // Mise en place des constantes
-  const setting = require('./config.json')
   client.on('message', message => {
     // Mise en place des variables
     const h = message.author.lastMessage.createdAt
     const nom = message.author.username
-    const prefix = setting.prefix
-    const inv = setting.inv
     var member = message.guild.member(message.mentions.members.first())
+    const setting = require('./config.json')
+    const inv = setting.inv
+    const prefix = setting.prefix
     const args = message.content.slice(prefix.length).trim().split(/ +/g)
     const command = args.shift().toLowerCase()
 

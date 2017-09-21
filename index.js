@@ -11,9 +11,9 @@ client.on('ready', () => {
   console.log('le prefix est: ' + setting.prefix)
 })
 
-/* Partie Ping */
+/* Partie Ping 
 const ping = require('./module/ping.js')
-ping(client)
+ping(client) */
 
 /* Partie Liste 2 */
 const liste2 = require('./module/liste_2.js')
