@@ -40,7 +40,7 @@ module.exports = function (client) {
       return message.channel.sendMessage('', {embed: {
         title: 'Commandes:',
         color: 0xff0000,
-        description: ':tools: Liste des commandes :tools: \n\n**C\'est quoi mon avatar** : Cela te permet d\'avoir l\'url de ton avatar discord\n\n**ping/PING/Ping/PONG** : <mystere> \n\n**Mentionne moi** : Le bot te mentionneras comme sa tu auras un ami :heart:\n\nD\'autre commandes sont en dévelopement...',
+        description: ':tools: Liste des commandes :tools: \n\n**+avatar** : Cela te permet d\'avoir l\'url d\'un avatar discord\n\n**ping/PING/Ping/PONG** : <mystere> \n\n**Mentionne moi** : Le bot te mentionneras comme sa tu auras un ami :heart:\n\nD\'autre commandes sont en dévelopement...',
         footer: {
           icon_url: 'https://cdn.discordapp.com/avatars/350995776131825664/d6348248148cb6acd73f2d391c12c9fe.png?size=2048',
           text: 'Message par ComaBot.'

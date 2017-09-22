@@ -22,6 +22,7 @@ module.exports = function (client) {
         let member = message.mentions.members.first()
         // ON APPELLER LA VARIABLE MEMBER ET ON CREER L'ARRAY USER POUR MEMBER ET ON RECUPERE L'AVATAR URL
         message.channel.send('Voici son avatar: ' + member.user.avatarURL + '')
+        console.log(member)
       }
     }
   })

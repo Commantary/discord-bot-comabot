@@ -14,11 +14,15 @@ module.exports = function (client) {
     var icone = setting.icon_creator
     const args = message.content.trim().split(/ +/g)
     const command = args.shift().toLowerCase()
+    var owner = setting.owner_id
 
+    // COMMANDE DE STATS
     if (command === prefix + 'stats') {
       return msg.channel.sendMessage('', {embed: {
-        icon_url: 'https://cdn.discordapp.com/avatars/350995776131825664/d6348248148cb6acd73f2d391c12c9fe.png?size=2048',
-        title: 'ComaBot',
+        author: {
+          name: client.user.username,
+          icon_url: client.user.avatarURL
+        },
         color: 0x0AD90A,
         description: '\n\nVersion: __**' + version + '**__            Nom du bot: __**' + name + '**__\n\nServeurs connecté: **__' + client.guilds.size + '__**            Utilisateurs: __**' + client.guilds.users + '**__  ',
         footer: {
@@ -26,6 +30,76 @@ module.exports = function (client) {
           text: 'Commande crée par Commentary'
         }
       }}).catch(console.error)
+    }
+
+    // COMMANDE TESTE POUR EMBED
+    if (command === prefix + 'embed') {
+      message.channel.send({embed: {
+        color: 3447003,
+        author: {
+          name: client.user.username,
+          icon_url: client.user.avatarURL
+        },
+        title: 'This is an embed',
+        url: 'http://google.com',
+        description: 'This is a test embed to showcase what they look like and what they can do.',
+        fields: [{
+          name: 'Fields',
+          value: 'They can have different fields with small headlines.'
+        },
+        {
+          name: 'Masked links',
+          value: 'You can put [masked links](http://google.com) inside of rich embeds.'
+        },
+        {
+          name: 'Markdown',
+          value: 'You can put all the *usual* **__Markdown__** inside of them.'
+        }
+        ],
+        timestamp: new Date(),
+        footer: {
+          icon_url: owner.user.avatarURL,
+          text: 'Par Commentary'
+        }
+      }
+      })
+    }
+
+    // COMMANDE USER INFO
+    if (command === prefix + 'userinfo') {
+      if (message.mentions.users.size === 0) {
+        message.channel.send('Mentionne une personne !')
+      } else {
+        let member = message.mentions.members.first()
+        message.channel.send({embed: {
+          color: 0x848407,
+          author: {
+            name: 'INFO DE: ' + member.user.username,
+            icon_url: member.user.avatarURL
+          },
+          title: 'This is an embed',
+          url: 'http://google.com',
+          description: 'This is a test embed to showcase what they look like and what they can do.',
+          fields: [{
+            name: 'Fields',
+            value: 'They can have different fields with small headlines.'
+          },
+          {
+            name: 'Masked links',
+            value: 'You can put [masked links](http://google.com) inside of rich embeds.'
+          },
+          {
+            name: 'Markdown',
+            value: 'You can put all the *usual* **__Markdown__** inside of them.'
+          }
+          ],
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: 'Crée par Commentary'
+          }
+        }
+        })
+      }
     }
   })
 }
