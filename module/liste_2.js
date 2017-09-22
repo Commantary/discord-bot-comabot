@@ -16,8 +16,9 @@ module.exports = function (client) {
       if (message.mentions.users.size === 0) {
         message.reply('Mentionne une personne !')
       } else {
-        let membre = message.mentions.members.first()
-        message.channel.send(membre.avatarURL)
+        let member = message.mentions.members.first()
+        var memberAvatar = member.id
+        message.channel.send('Voila: ' + memberAvatar.avatarURL)
       }
     }
 
