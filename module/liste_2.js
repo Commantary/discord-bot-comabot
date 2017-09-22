@@ -12,30 +12,17 @@ module.exports = function (client) {
     const args = message.content.trim().split(/ +/g)
     const command = args.shift().toLowerCase()
 
+    // COMMANDE POUR AVOIR L'AVATAR D'UN MEMBER
     if (command === prefix + 'avatar') {
+      // SI IL MENTIONNE PERSONNE
       if (message.mentions.users.size === 0) {
         message.reply('Mentionne une personne !')
       } else {
+        // ON CREER LA VARIABLE MEMBER
         let member = message.mentions.members.first()
-        var memberAvatar = member.id
-        message.channel.send('Voila: ' + memberAvatar.avatarURL)
+        // ON APPELLER LA VARIABLE MEMBER ET ON CREER L'ARRAY USER POUR MEMBER ET ON RECUPERE L'AVATAR URL
+        message.channel.send('Voici son avatar: ' + member.user.avatarURL + '')
       }
     }
-
-    /*  if (command === 'avatar') {
-      const modRole = message.guild.roles.find('name', 'Mods')
-      if (!modRole) {
-        message.channel.send('Le rôle Mod n\'existe pas')
-      }
-      if (!message.member.roles.has(modRole.id)) {
-        message.reply('Acces refusé')
-      } else {
-        let member = message.mentions.members.first()
-        message.reply(message.author(member).avatarURL)
-      }
-      if (message.mentions.users.size === 0) {
-        message.reply('Mentionne une personne à kick')
-      }
-    } */
   })
 }
