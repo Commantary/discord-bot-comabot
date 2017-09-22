@@ -13,16 +13,16 @@ module.exports = function (client) {
     const setting = require('./config.json')
     const inv = setting.inv
     const prefix = setting.prefix
-    const args = message.content.slice(prefix.length).trim().split(/ +/g)
+    const args = message.content.trim().split(/ +/g)
     const command = args.shift().toLowerCase()
 
     // COMMANDE INVITATION DU BOT
-    if (command === 'inv') {
+    if (command === prefix + 'inv') {
       message.channel.send(inv)
     }
 
     // COMMANDE MUTE VOCAL
-    if (command === 'vmute') {
+    if (command === prefix + 'vmute') {
       let modRole = message.guild.roles.find('name', 'Mod')
       // SI IL A PAS DE MENTION
       if (!member) {
@@ -41,7 +41,7 @@ module.exports = function (client) {
     }
 
     // COMMANDE UNMUTE VOCAL
-    if (command === 'vunmute') {
+    if (command === prefix + 'vunmute') {
       let modRole = message.guild.roles.find('name', 'Mod')
       // SI IL A PAS DE MENTION
       if (!member) {
@@ -63,7 +63,7 @@ module.exports = function (client) {
     }
 
     // COMMANDE DU MUTE
-    if (command === 'mute') {
+    if (command === prefix + 'mute') {
       let modRole = message.guild.roles.find('name', 'Mod')
       let muted = message.guild.roles.find('name', 'Muted')
       // SI IL Y A PAS DE MENTION
@@ -85,7 +85,7 @@ module.exports = function (client) {
     }
 
     // COMMANDE DU UNMUTE
-    if (command === 'unmute') {
+    if (command === prefix + 'unmute') {
       let modRole = message.guild.roles.find('name', 'Mod')
       let muted = message.guild.roles.find('name', 'Muted')
       // SI IL Y A PAS DE MENTION
@@ -108,7 +108,7 @@ module.exports = function (client) {
     }
 
     // COMMANDE POUR KICK UN MEMBRE DU SERVEUR
-    if (command === '+kick') {
+    if (command === prefix + '+kick') {
       // Mise en place des variables
       // var member = message.guild.member(message.mentions.members.first())
       let modRole = message.guild.roles.find('name', 'Mod')
@@ -132,7 +132,7 @@ module.exports = function (client) {
     }
 
     // COMMANDE POUR BAN UN MEMBRE DU SERVEUR
-    if (command === 'ban') {
+    if (command === prefix + 'ban') {
       // Mise en place des variables
       let modRole = message.guild.roles.find('name', 'Mod')
       let banMember = message.guild.member(message.mentions.users.first())
@@ -154,7 +154,7 @@ module.exports = function (client) {
     }
 
     // COMMANDE POUR PUNIR
-    if (message.content.startsWith(prefix + 'punir')) {
+    if (command === prefix + 'punir') {
       // MISE EN PLACE DES VARIABLES
       let modRole = message.guild.roles.find('name', 'Mod')
       let channelMechant = message.guild.channel.find('name', 'Les gens méchants')

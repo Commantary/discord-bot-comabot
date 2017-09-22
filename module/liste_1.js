@@ -12,8 +12,10 @@ module.exports = function (client) {
     var name = setting.name
     var msg = message
     var icone = setting.icon_creator
+    const args = message.content.trim().split(/ +/g)
+    const command = args.shift().toLowerCase()
 
-    if (message.content === prefix + 'stats') {
+    if (command === prefix + 'stats') {
       return msg.channel.sendMessage('', {embed: {
         icon_url: 'https://cdn.discordapp.com/avatars/350995776131825664/d6348248148cb6acd73f2d391c12c9fe.png?size=2048',
         title: 'ComaBot',

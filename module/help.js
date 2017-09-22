@@ -6,9 +6,15 @@
 
 module.exports = function (client) {
   client.on('message', message => {
+    // MISE EN PLACE DES VARIABLES
     var h = message.author.lastMessage.createdAt
     var nom = message.author.username
-    if (message.content === '+help') {
+    const setting = require('./config.json')
+    const prefix = setting.prefix
+    const args = message.content.trim().split(/ +/g)
+    const command = args.shift().toLowerCase()
+
+    if (command === prefix + 'help') {
       return message.channel.sendMessage('', {embed: {
         title: 'Commandes:',
         color: 0xff0000,
@@ -19,7 +25,7 @@ module.exports = function (client) {
         }
       }}).catch(console.error)
     }
-    if (message.content === '+help admin') {
+    if (command === prefix + 'help admin') {
       return message.channel.sendMessage('', {embed: {
         title: 'Commandes:',
         color: 0xff0000,
@@ -30,7 +36,7 @@ module.exports = function (client) {
         }
       }}).catch(console.log(h + ' "help admin" mis par: ' + nom))
     }
-    if (message.content === '+help fun') {
+    if (command === prefix + 'help fun') {
       return message.channel.sendMessage('', {embed: {
         title: 'Commandes:',
         color: 0xff0000,
@@ -41,7 +47,7 @@ module.exports = function (client) {
         }
       }}).catch(console.log(h + ' "help fun" mis par: ' + nom))
     }
-    if (message.content === '+help rdm') {
+    if (command === prefix + 'help rdm') {
       return message.channel.sendMessage('', {embed: {
         title: 'Commandes:',
         color: 0xff0000,

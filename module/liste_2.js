@@ -9,10 +9,10 @@ module.exports = function (client) {
     // MISE EN PLACE DES VARIABLES
     const setting = require('./config.json')
     const prefix = setting.prefix
-    const args = message.content.slice(prefix.length).trim().split(/ +/g)
+    const args = message.content.trim().split(/ +/g)
     const command = args.shift().toLowerCase()
 
-    if (command === 'avatar') {
+    if (command === prefix + 'avatar') {
       if (message.mentions.users.size === 0) {
         message.reply('Mentionne une personne !')
       } else {
