@@ -123,7 +123,7 @@ module.exports = function (client, options) {
     }
 
     // Get the video information.
-    /* msg.channel.sendMessage(wrap('Recherche...')).then(response => {
+    msg.channel.sendMessage(wrap('Recherche...')).then(response => {
       var searchstring = suffix
       if (!suffix.toLowerCase().startsWith('http')) {
         searchstring = 'gvsearch1:' + suffix
@@ -144,7 +144,7 @@ module.exports = function (client, options) {
           if (queue.length === 1) executeQueue(msg, queue)
         }).catch(console.log)
       })
-    }).catch(console.log) */
+    }).catch(console.log)
   }
 
   /**

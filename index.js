@@ -21,8 +21,12 @@ liste2(client)
 
 /* Partie Musique */
 const music = require('./discord.js-music-v11')
-music(client)
-
+music(client, {
+  prefix: '+', // Prefix of '-'.
+  global: true, // Server-specific queues.
+  maxQueueSize: 10, // Maximum queue size of 10.
+  clearInvoker: true // If permissions applicable, allow the bot to delete the messages that invoke it (start with prefix)
+})
 /* Partie Liste 1 */
 const message1 = require('./module/liste_1.js')
 message1(client)
