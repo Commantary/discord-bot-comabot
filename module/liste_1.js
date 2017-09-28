@@ -71,6 +71,7 @@ module.exports = function (client) {
         message.channel.send('Mentionne une personne !')
       } else {
         let member = message.mentions.members.first()
+        message.channel.send('UserInfo de ' + member.displayName + ' mis par: ' + message.author.username)
         message.channel.send({embed: {
           color: 0x848407,
           author: {
