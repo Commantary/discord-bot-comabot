@@ -74,14 +74,14 @@ module.exports = function (client) {
         message.channel.send({embed: {
           color: 0x848407,
           author: {
-            name: 'Info de : ' + member.user.username,
+            name: member.user.username + '#' + member.user.discriminator,
             icon_url: member.user.avatarURL
           },
           thumbnail: {
             url: member.user.avatarURL
           },
           title: 'Avatar',
-          description: '**ID**: ' + member.user.avatar + '     **URL**: [lien](' + member.user.avatarURL + ')',
+          description: '**URL**: [lien](' + member.user.avatarURL + ')',
 
           fields: [{
             name: 'Création',
