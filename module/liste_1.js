@@ -14,7 +14,7 @@ module.exports = function (client) {
     var icone = setting.icon_creator
     const args = message.content.trim().split(/ +/g)
     const command = args.shift().toLowerCase()
-    var owner = setting.owner_id
+    var owner = setting.owner_tag
 
     // COMMANDE DE STATS
     if (command === prefix + 'stats') {
@@ -24,7 +24,7 @@ module.exports = function (client) {
           icon_url: client.user.avatarURL
         },
         color: 0x0AD90A,
-        description: '\n\nVersion: __**' + version + '**__            Nom du bot: __**' + name + '**__\n\nServeurs connecté: **__' + client.guilds.size + '__**            Utilisateurs: __**' + client.guilds.users + '**__  ',
+        description: '\n\nVersion: __**' + version + '**__                 Nom du bot: __**' + name + '**__\n\nServeurs connecté: **__' + client.guilds.size + '__**            Utilisateurs: __**' + client.guilds.users + '**__ \n\nCréateur: ' + owner,
         footer: {
           icon_url: icone,
           text: 'Commande crée par Commentary'
@@ -33,7 +33,7 @@ module.exports = function (client) {
     }
 
     // COMMANDE TESTE POUR EMBED
-    if (command === prefix + 'embed') {
+    if (command === prefix + 'embed' || owner) {
       message.channel.send({embed: {
         color: 3447003,
         author: {
