@@ -58,7 +58,7 @@ module.exports = function (client) {
         ],
         timestamp: new Date(),
         footer: {
-          icon_url: owner.user.avatarURL,
+          icon_url: client.user.avatarURL,
           text: 'Par Commentary'
         }
       }
