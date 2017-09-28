@@ -74,29 +74,29 @@ module.exports = function (client) {
         message.channel.send({embed: {
           color: 0x848407,
           author: {
-            name: 'INFO DE: ' + member.user.username,
+            name: 'Info de : ' + member.user.username,
             icon_url: member.user.avatarURL
           },
-          title: 'This is an embed',
-          url: 'http://google.com',
-          description: 'This is a test embed to showcase what they look like and what they can do.',
+          thumbnail: {
+            url: member.user.avatarURL
+          },
+          title: 'Avatar',
+          description: '**ID**: ' + member.user.avatar + '     **URL**: [lien](' + member.user.avatarURL + ')',
+
           fields: [{
-            name: 'Fields',
-            value: 'They can have different fields with small headlines.'
+            name: 'Création',
+            value: member.user.createdAt
           },
           {
-            name: 'Masked links',
-            value: 'You can put [masked links](http://google.com) inside of rich embeds.'
-          },
-          {
-            name: 'Markdown',
-            value: 'You can put all the *usual* **__Markdown__** inside of them.'
+            name: 'Divers infos',
+            value: '**DISCRIMINATEUR**: ' + member.user.discriminator + '     **PSEUDO**: ' + member.user.username
           }
           ],
           footer: {
             icon_url: client.user.avatarURL,
             text: 'Crée par Commentary'
           }
+
         }
         })
       }
