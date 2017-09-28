@@ -14,7 +14,7 @@ module.exports = function (client) {
     var icone = setting.icon_creator
     const args = message.content.trim().split(/ +/g)
     const command = args.shift().toLowerCase()
-    var owner = setting.owner_tag
+    var owner = setting.owner_id
 
     // COMMANDE DE STATS
     if (command === prefix + 'stats') {
@@ -24,7 +24,7 @@ module.exports = function (client) {
           icon_url: client.user.avatarURL
         },
         color: 0x0AD90A,
-        description: '\n\nVersion: __**' + version + '**__                 Nom du bot: __**' + name + '**__\n\nServeurs connecté: **__' + client.guilds.size + '__**            Utilisateurs: __**' + client.guilds.users + '**__ \n\nCréateur: ' + owner,
+        description: '\n\nVersion: __**' + version + '**__            Nom du bot: __**' + name + '**__\n\nServeurs connecté: **__' + client.guilds.size + '__**            Utilisateurs: __**' + client.guilds.users + '**__  ',
         footer: {
           icon_url: icone,
           text: 'Commande crée par Commentary'
@@ -33,12 +33,12 @@ module.exports = function (client) {
     }
 
     // COMMANDE TESTE POUR EMBED
-    if (command === prefix + 'embed' || owner) {
+    if (command === prefix + 'embed') {
       message.channel.send({embed: {
         color: 3447003,
         author: {
           name: client.user.username,
-          icon_url: client.user.avatarURL
+          icon_url: client.user.username
         },
         title: 'This is an embed',
         url: 'http://google.com',
@@ -98,7 +98,10 @@ module.exports = function (client) {
           }
 
         }
-        })
+
+        }
+
+        )
       }
     }
 
