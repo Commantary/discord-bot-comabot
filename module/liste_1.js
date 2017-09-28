@@ -33,7 +33,7 @@ module.exports = function (client) {
     }
 
     // COMMANDE TESTE POUR EMBED
-    if (command === prefix + 'embed') {
+ /*   if (command === prefix + 'embed') {
       message.channel.send({embed: {
         color: 3447003,
         author: {
@@ -63,7 +63,7 @@ module.exports = function (client) {
         }
       }
       })
-    }
+    } */
 
     // COMMANDE USER INFO
     if (command === prefix + 'userinfo') {
