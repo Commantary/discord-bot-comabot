@@ -14,7 +14,7 @@ module.exports = function (client) {
     const args = message.content.trim().split(/ +/g)
     const command = args.shift().toLowerCase()
 
-    if (command === prefix + 'help') {
+    if (message.content === prefix + 'help') {
       return message.channel.sendMessage('', {embed: {
         title: 'Commandes:',
         color: 0xff0000,
