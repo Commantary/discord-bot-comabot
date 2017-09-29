@@ -25,7 +25,7 @@ module.exports = function (client) {
         }
       }}).catch(console.error)
     }
-    if (command === prefix + 'help admin') {
+    if (message.content === prefix + 'help admin') {
       return message.channel.sendMessage('', {embed: {
         title: 'Commandes:',
         color: 0xff0000,
@@ -36,7 +36,7 @@ module.exports = function (client) {
         }
       }}).catch(console.log(h + ' "help admin" mis par: ' + nom))
     }
-    if (command === prefix + 'help fun') {
+    if (message.content === prefix + 'help fun') {
       return message.channel.sendMessage('', {embed: {
         title: 'Commandes:',
         color: 0xff0000,
@@ -47,7 +47,7 @@ module.exports = function (client) {
         }
       }}).catch(console.log(h + ' "help fun" mis par: ' + nom))
     }
-    if (command === prefix + 'help rdm') {
+    if (message.content === prefix + 'help rdm') {
       return message.channel.sendMessage('', {embed: {
         title: 'Commandes:',
         color: 0xff0000,
