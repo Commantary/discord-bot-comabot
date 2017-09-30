@@ -24,6 +24,11 @@ module.exports = function (client) {
           text: 'Message par ComaBot.'
         }
       }}).catch(console.error)
+        .then(function (message) {
+          message.react('😊')
+        }).catch(function () {
+          console.error()
+        })
     }
     if (message.content === prefix + 'help admin') {
       return message.channel.sendMessage('', {embed: {
@@ -35,6 +40,11 @@ module.exports = function (client) {
           text: 'Message par ComaBot.'
         }
       }}).catch(console.log(h + ' "help admin" mis par: ' + nom))
+        .then(function (message) {
+          message.react('😊')
+        }).catch(function () {
+          console.error()
+        })
     }
     if (message.content === prefix + 'help fun') {
       return message.channel.sendMessage('', {embed: {
@@ -46,6 +56,11 @@ module.exports = function (client) {
           text: 'Message par ComaBot.'
         }
       }}).catch(console.log(h + ' "help fun" mis par: ' + nom))
+        .then(function (message) {
+          message.react('😊')
+        }).catch(function () {
+          console.error()
+        })
     }
     if (message.content === prefix + 'help rdm') {
       return message.channel.sendMessage('', {embed: {
@@ -57,6 +72,11 @@ module.exports = function (client) {
           text: 'Message par ComaBot.'
         }
       }}).catch(console.log(h + ' "help rdm" mis par: ' + nom))
+        .then(function (message) {
+          message.react('😊')
+        }).catch(function () {
+          console.error()
+        })
     }
   })
 }

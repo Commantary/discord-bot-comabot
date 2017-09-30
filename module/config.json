@@ -1,6 +1,6 @@
 {
     "prefix": "+",
-    "version": "1.8.8",
+    "version": "1.8.9",
     "name": "ComaBot",
     "inv": "https://discordapp.com/oauth2/authorize?client_id=350995776131825664&scope=bot&permissions=2146958591",
     "icon_creator": "https://cdn.discordapp.com/avatars/214846601066315776/5e348e8f4484192ba1df38ecd33c88ce.png?size=2048",
