@@ -55,10 +55,6 @@ tFs(client)
 const pointLevel = require('./module/points.js')
 pointLevel(client)
 
-/* Partie pour les levels 2 */
-const pointLevel2 = require('./module/points.js')
-pointLevel2(client)
-
 var dt = process.env.TOKEN || process.argv[2]
 if (!dt) {
   console.log('')
