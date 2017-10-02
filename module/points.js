@@ -27,7 +27,7 @@ module.exports = function (client, message) {
       }
       if (!logs) {
         message.guild.createChannel('logs', 'text', 'ADMINISTRATOR')
-        console.lgo('Le channel logs a été creer')
+        console.log('Le channel logs a été creer')
         logs.send({embed: {
           color: 8453888,
           description: '<@' + message.author.id + `> a été rajouter à la BDD de level`
