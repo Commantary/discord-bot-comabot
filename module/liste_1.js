@@ -6,7 +6,8 @@
 
 module.exports = function (client) {
   client.on('message', message => {
-    const setting = require('./config.json')
+    const fs = require('fs')
+    const setting = JSON.parse(fs.readFileSync('./module/config.json', 'utf8'))
     var prefix = setting.prefix
     var version = setting.version
     var name = setting.name
@@ -27,13 +28,13 @@ module.exports = function (client) {
         description: '\n\nVersion: __**' + version + '**__            Nom du bot: __**' + name + '**__\n\nServeurs connecté: **__' + client.guilds.size + '__**            Utilisateurs: __**' + client.guilds.users + '**__  ',
         footer: {
           icon_url: icone,
-          text: 'Commande crée par Commentary'
+          text: 'Crée par Commentary'
         }
       }}).catch(console.error)
     }
 
     // COMMANDE TESTE POUR EMBED
- /*   if (command === prefix + 'embed') {
+    if (command === prefix + 'embed') {
       message.channel.send({embed: {
         color: 3447003,
         author: {
@@ -58,12 +59,12 @@ module.exports = function (client) {
         ],
         timestamp: new Date(),
         footer: {
-          icon_url: client.user.avatarURL,
+          icon_url: owner.user.avatarURL,
           text: 'Par Commentary'
         }
       }
       })
-    } */
+    }
 
     // COMMANDE USER INFO
     if (command === prefix + 'userinfo') {
@@ -71,18 +72,17 @@ module.exports = function (client) {
         message.channel.send('Mentionne une personne !')
       } else {
         let member = message.mentions.members.first()
-        message.channel.send('UserInfo de **' + member.displayName + '** mis par: **' + message.author.username + '**')
         message.channel.send({embed: {
           color: 0x848407,
           author: {
-            name: member.user.username + '#' + member.user.discriminator,
+            name: 'Info de : ' + member.user.username,
             icon_url: member.user.avatarURL
           },
           thumbnail: {
             url: member.user.avatarURL
           },
           title: 'Avatar',
-          description: '**URL**: [lien](' + member.user.avatarURL + ')',
+          description: '**ID**: ' + member.user.avatar + '     **URL**: [lien](' + member.user.avatarURL + ')',
 
           fields: [{
             name: 'Création',

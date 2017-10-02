@@ -7,7 +7,8 @@
 module.exports = function (client) {
   client.on('message', message => {
     // MISE EN PLACE DES VARIABLES
-    const setting = require('./config.json')
+    const fs = require('fs')
+    const setting = JSON.parse(fs.readFileSync('./module/config.json', 'utf8'))
     const prefix = setting.prefix
     const args = message.content.trim().split(/ +/g)
     const command = args.shift().toLowerCase()

@@ -8,11 +8,12 @@ module.exports = function (client) {
   client.on('message', message => {
     // Mise en place des variables
     const h = message.author.lastMessage.createdAt
+    const fs = require('fs')
     const nom = message.author.username
     var member = message.guild.member(message.mentions.members.first())
-    const setting = require('./config.json')
-    const inv = setting.inv
-    const prefix = setting.prefix
+    const config = JSON.parse(fs.readFileSync('./module/config.json', 'utf8'))
+    const inv = config.inv
+    const prefix = config.prefix
     const args = message.content.trim().split(/ +/g)
     const command = args.shift().toLowerCase()
 
@@ -108,7 +109,7 @@ module.exports = function (client) {
     }
 
     // COMMANDE POUR KICK UN MEMBRE DU SERVEUR
-    if (command === prefix + '+kick') {
+    if (command === prefix + 'kick') {
       // Mise en place des variables
       // var member = message.guild.member(message.mentions.members.first())
       let modRole = message.guild.roles.find('name', 'Mod')
@@ -123,7 +124,7 @@ module.exports = function (client) {
           message.guild.member(kickMember).kick(reason)
           // Message réussis
           message.channel.send(':wave: **' + kickMember.displayName + '** à été __**kick**__ par: **' + message.author.username + '**')
-          console.log(h + ' +kick mis par : ' + nom)
+          console.log(h + ' ' + prefix + 'kick mis par : ' + nom)
         // Message du fail
         } else {
           return message.reply('Acces refusé')
@@ -146,14 +147,22 @@ module.exports = function (client) {
           // Message réussis
           message.channel.send(':wave: **' + banMember.displayName + '** à été __**ban**__ par: **' + message.author.username + '**')
           console.log(h + ' +ban mis par: ' + nom)
+          // ON RAJOUTE LA PERSONNE DANS LE JSON
+          let banlist = JSON.parse(fs.readFileSync('./banlist.json', 'UTF-8'))
+          var banned = {}
+          banned.banlist[message.author.username] = message.author.id
+          // And then, we save the edited file.
+          fs.writeFile('./banlist.json', JSON.stringify(banlist), (err) => {
+            if (err) console.error(err)
+          })
+
         // Message du fail
         } else {
           message.channel.send('Acces refusé')
         }
       }
-    }
 
-    // COMMANDE POUR PUNIR
+      /*  // COMMANDE POUR PUNIR
     if (command === prefix + 'punir') {
       // MISE EN PLACE DES VARIABLES
       let modRole = message.guild.roles.find('name', 'Mod')
@@ -169,6 +178,29 @@ module.exports = function (client) {
           // MESSAGE REUSSIS
           message.channel.send(':wave: **' + punie.displayName + '** à été __**punit**__ par: **' + message.author.username + '**')
           // MESSAGE DU FAIL
+        } else {
+          message.channel.send('Acces refusé')
+        }
+      }
+    } */
+
+      // COMMANDE UNBAN 
+      if (command === prefix + 'unban') {
+      // Mise en place des variables
+        let modRole = message.guild.roles.find('name', 'Mod')
+        let unbanMember = message.guild.member(message.mentions.users.first())
+        // Si il y a pas de mention dans la commande
+        if (!member) {
+          message.channel.send('Mentionne une personne à unban !')
+        }
+        // If du modRole
+        if (message.member.roles.has(modRole.id)) {
+          let reason = args.slice(1).join(' ')
+          message.guild.unban(unbanMember)
+          // Message réussis
+          message.channel.send(':wave: **** à été __**unban**__ par: **' + message.author.username + '**')
+          console.log(h + ' +unban mis par: ' + nom)
+        // Message du fail
         } else {
           message.channel.send('Acces refusé')
         }
