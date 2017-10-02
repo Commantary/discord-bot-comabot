@@ -8,7 +8,6 @@ module.exports = function (client) {
   client.on('message', message => {
     // MISE EN PLACE DES VARIABLES
     var fs = require('fs')
-    const json = require('json-update')
     const setting = JSON.parse(fs.readFileSync('./module/config.json', 'utf8'))
     const prefixSetting = setting.prefix
     const teste = require('./teste.json')
