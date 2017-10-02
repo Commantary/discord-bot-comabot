@@ -27,24 +27,12 @@ module.exports = function (client, message) {
       }
       if (!logs) {
         return
-        /* message.guild.createChannel('logs', 'text', 'ADMINISTRATOR')
-        console.log('Le channel logs a été creer')
-        logs.send({embed: {
-          color: 8453888,
-          description: '<@' + message.author.id + `> a été rajouter à la BDD de level`
-        }}) */
       } else {
         logs.send({embed: {
           color: 8453888,
           description: '<@' + message.author.id + `> a été rajouter à la BDD de level`
         }})
       }
-
-      /* message.channel.send({embed: {
-        color: 8453888,
-        description: '<@' + message.author.id + `> a été rajouter à la BDD de level`
-      }}) */
-      // message.channel.send('<@' + message.author.id + `> a été rajouter à la BDD de level`)
     }
     let userData = points[message.author.id]
     userData.points++
@@ -55,7 +43,7 @@ module.exports = function (client, message) {
       userData.level = curLevel
       message.channel.send({embed: {
         color: 8453888,
-        description: `level up ! Tu es niveau **${curLevel}** maintenant !`
+        description: `:sunny: **level up!** \n ` + message.author.username + `est niveau **${curLevel}** !`
       }})
       // message.reply(`Tu as level up ! Tu es niveau **${curLevel}** maintenant !`)
     }
