@@ -59,4 +59,8 @@ pointLevel(client)
 const pointLevel2 = require('./module/points.js')
 pointLevel2(client)
 
-client.login(token)
+var dt = process.env.TOKEN || process.argv[2]
+if (!dt) {
+  console.log('')
+}
+client.login(dt)
