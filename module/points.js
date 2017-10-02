@@ -29,7 +29,7 @@ module.exports = function (client) {
         return
       } else {
         logs.send({embed: {
-          color: 16241496,
+          color: 8453888,
           description: '<@' + message.author.id + `> a été rajouter à la BDD de level`
         }})
       }
@@ -42,7 +42,7 @@ module.exports = function (client) {
       // Level up!
       userData.level = curLevel
       message.channel.send({embed: {
-        color: 8453888,
+        color: 16241496,
         description: `:sunny: **level up!** \n **` + message.author.username + `** est niveau :small_orange_diamond: **${curLevel}** !`
       }})
       // message.reply(`Tu as level up ! Tu es niveau **${curLevel}** maintenant !`)
