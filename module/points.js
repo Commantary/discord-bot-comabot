@@ -4,7 +4,7 @@
  * 
  */
 
-module.exports = function (client, message) {
+module.exports = function (client) {
   // MISE EN PLACE DE CERTAINES VARIABLE
   const fs = require('fs')
   const config = JSON.parse(fs.readFileSync('./module/config.json', 'utf8'))
