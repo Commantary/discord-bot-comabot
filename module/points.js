@@ -5,12 +5,12 @@
  */
 
 module.exports = function (client) {
+  client.on('message', message => {
   // MISE EN PLACE DE CERTAINES VARIABLE
   const fs = require('fs')
   const config = JSON.parse(fs.readFileSync('./module/config.json', 'utf8'))
   const prefix = config.prefix
   let points = JSON.parse(fs.readFileSync('./module/points.json', 'utf8'))
-  client.on('message', message => {
     // MISE EN PLACE DE CERTAINES VARIABLE
     var logs = message.guild.channels.find('name', 'logs')
     const args = message.content.slice(prefix.length).trim().split(/ +/g)
