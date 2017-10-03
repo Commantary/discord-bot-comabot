@@ -83,8 +83,9 @@ module.exports = function (client) {
       // Level up!
       userData.level = curLevel
       message.channel.send({embed: {
-        color: 8453888,
-        description: `level up ! Tu es niveau **${curLevel}** maintenant !`
+        title: ':sunny: **LEVEL UP!**',
+        color: 16241496,
+        description: '**' + message.author.username + `** est niveau **${curLevel}** maintenant !`
       }})
       // message.reply(`Tu as level up ! Tu es niveau **${curLevel}** maintenant !`)
     }
