@@ -8,7 +8,7 @@ const config = JSON.parse(fs.readFileSync('./module/config.json', 'utf8'))
 
 // On start le bot
 client.on('ready', () => {
-  client.user.setGame('+inv | +help | +stats | Sur ' + client.guilds.size + ' serveurs', 'https://www.twitch.tv/the_commentary', 0)  
+  client.user.setGame('+inv | +help | +stats | Sur ' + client.guilds.size + ' serveurs', 'https://www.twitch.tv/the_commentary', 0)
   console.log('-------------------------------------')
   console.log('    [!] ComaBot beta connecté [!]')
   console.log('-------------------------------------')
@@ -19,6 +19,15 @@ client.on('ready', () => {
 /* Partie pour les levels */
 const pointLevel = require('./levels/points.js')
 pointLevel(client)
+
+/* Partie Musique */
+const music = require('./discord.js-music-v11')
+music(client, {
+  prefix: '!', // Prefix of '-'.
+  global: true, // Server-specific queues.
+  maxQueueSize: 10, // Maximum queue size of 10.
+  clearInvoker: true // If permissions applicable, allow the bot to delete the messages that invoke it (start with prefix)
+})
 
 fs.readdir('./events/', (err, files) => {
   if (err) return console.error(err)
@@ -53,23 +62,6 @@ client.on('message', message => {
     }
     console.error(err)
   }
-
-  /* Partie Ping 
-  const ping = require('./module/ping.js')
-  ping(client) */
-
-  /* Partie Musique */
-  const music = require('./discord.js-music-v11')
-  music(client, {
-    prefix: '!', // Prefix of '-'.
-    global: true, // Server-specific queues.
-    maxQueueSize: 10, // Maximum queue size of 10.
-    clearInvoker: true // If permissions applicable, allow the bot to delete the messages that invoke it (start with prefix)
-  })
-
-  /* Partie pour teste fs */
-  const tFs = require('./module/test_fs.js')
-  tFs(client)
 })
 
 var dt = process.env.TOKEN || process.argv[2]
