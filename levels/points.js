@@ -4,7 +4,7 @@
  * 
  */
 
-module.export = function (client) {
+module.exports = function (client) {
   const fs = require('fs')
   const sql = require('sqlite')
   sql.open('./score.sqlite')
