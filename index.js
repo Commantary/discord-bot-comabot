@@ -29,15 +29,9 @@ music(client, {
   clearInvoker: true // If permissions applicable, allow the bot to delete the messages that invoke it (start with prefix)
 })
 
-fs.readdir('./events/', (err, files) => {
-  if (err) return console.error(err)
-  files.forEach(file => {
-    let eventFunction = require(`./events/${file}`)
-    let eventName = file.split('.')[0]
-    // super-secret recipe to call events with all their proper arguments *after* the `client` var.
-    client.on(eventName, (...args) => eventFunction.run(client, ...args))
-  })
-})
+/* ARRIVER ET DEPART */
+const arvdep = require('./events/arriverDeparts.js')
+arvdep(client)
 
 client.on('message', message => {
   if (message.author.bot) return
