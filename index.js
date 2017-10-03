@@ -17,17 +17,8 @@ client.on('ready', () => {
 // Create an event listener for new guild members
 
 /* Partie pour les levels */
-const pointLevel = require('./levels/points.js')
-pointLevel(client)
-
-/* Partie Musique */
-const music = require('./discord.js-music-v11')
-music(client, {
-  prefix: '!', // Prefix of '-'.
-  global: true, // Server-specific queues.
-  maxQueueSize: 10, // Maximum queue size of 10.
-  clearInvoker: true // If permissions applicable, allow the bot to delete the messages that invoke it (start with prefix)
-})
+const levels = require('./levels/points.js')
+levels(client)
 
 /* ARRIVER ET DEPART */
 const arvdep = require('./events/arriverDeparts.js')
