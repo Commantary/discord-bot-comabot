@@ -1,5 +1,5 @@
 { 
-    "prefix": "!", 
+    "prefix": "+", 
     "version": "1.8.9", 
     "name": "ComaBot", 
     "inv": "https://discordapp.com/oauth2/authorize?client_id=350995776131825664&scope=bot&permissions=2146958591", 
