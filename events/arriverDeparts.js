@@ -1,10 +1,5 @@
-/**
- * 
- * @para {Client} client - The discord.js client.
- * 
- */
 
-module.exports = function (client) {
+module.exports.run = async (client) => {
   // ARRIVE
   client.on('guildMemberAdd', member => {
     // Envoie un message au channel designer :
