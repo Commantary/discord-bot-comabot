@@ -7,6 +7,7 @@
 module.exports = function (client) {
   client.on('message', message => {
   // MISE EN PLACE DE CERTAINES VARIABLE
+    var roll = Math.floor(Math.random() * 50)
     const fs = require('fs')
     const config = JSON.parse(fs.readFileSync('./module/config.json', 'utf8'))
     const prefix = config.prefix
@@ -85,7 +86,13 @@ module.exports = function (client) {
       message.channel.send({embed: {
         title: ':sunny: **LEVEL UP!**',
         color: 16241496,
-        description: '**' + message.author.username + `** est niveau **${curLevel}** maintenant !`
+        description: '**' + message.author.username + `** est niveau **${curLevel}** maintenant !`,
+        fields: [
+          {
+            name: 'Récompense',
+            value: ':small_orange_diamond: ' + roll
+          }
+        ]
       }})
       // message.reply(`Tu as level up ! Tu es niveau **${curLevel}** maintenant !`)
     }
