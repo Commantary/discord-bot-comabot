@@ -15,9 +15,13 @@ client.on('ready', () => {
 })
 // Create an event listener for new guild members
 
-/* Partie pour les levels */
+/* Partie pour les levels
 const levels = require('./levels/points.js')
-levels(client)
+levels(client) */
+
+/* LES LEVELS */
+const pointsLevel = require('./levels/points.js')
+pointsLevel(client)
 
 /* ARRIVER ET DEPART */
 const arvdep = require('./events/arriverDeparts.js')
