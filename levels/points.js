@@ -1,3 +1,8 @@
+/**
+ * 
+ * @para {Client} client - The discord.js client.
+ * 
+ */
 
 module.export = function (client) {
   const fs = require('fs')
