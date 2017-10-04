@@ -10,6 +10,7 @@ module.exports = function (client) {
   sql.open('./score.sqlite')
   const config = JSON.parse(fs.readFileSync('./module/config.json', 'utf8'))
   const prefix = config.prefix
+  var roll = Math.floor(Math.random() * 50)
   client.on('message', message => {
     var logs = message.guild.channels.find('name', 'logs')
     // DEBUT DU IF
@@ -53,7 +54,13 @@ module.exports = function (client) {
           message.channel.send({embed: {
             title: ':sunny: **LEVEL UP!**',
             color: 16241496,
-            description: '**' + message.author.username + `** est niveau **${curLevel}** maintenant !`
+            description: '**' + message.author.username + `** est niveau **${curLevel}** maintenant !`,
+            fields: [
+              {
+                name: 'Récompense',
+                value: ':small_orange_diamond: ' + roll
+              }
+            ]
           }})
         }
         sql.run(`UPDATE scores SET points = ${row.points + 1} WHERE userId = ${message.author.id}`)
