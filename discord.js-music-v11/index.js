@@ -1,8 +1,8 @@
+const fs = require('fs')
 const YoutubeDL = require('youtube-dl')
 const ytdl = require('ytdl-core')
 const ficherConfig = JSON.parse(fs.readFileSync('./module/config.json', 'utf8'))
 const prefixConfig = config.prefix
-const fs = require('fs')
 
 /**
  * Takes a discord.js client and turns it into a music bot.
