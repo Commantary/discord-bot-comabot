@@ -13,11 +13,6 @@ client.on('ready', () => {
   console.log('-------------------------------------')
   console.log('le prefix est: ' + setting.prefix)
 })
-// Create an event listener for new guild members
-
-/* Partie pour les levels
-const levels = require('./levels/points.js')
-levels(client) */
 
 /* LES LEVELS */
 const pointsLevel = require('./levels/points.js')
@@ -40,7 +35,7 @@ client.on('message', message => {
     let commandFile = require(`./module/${command}.js`)
     commandFile.run(client, message, args)
   } catch (err) {
-    if (command === 'level') {
+    if (command === 'level' || command === 'play' || command === 'skip' || command === 'leave' || command === 'volume') {
       return
     } else {
       message.channel.send({embed: {
