@@ -1,5 +1,7 @@
 const YoutubeDL = require('youtube-dl')
 const ytdl = require('ytdl-core')
+const ficherConfig = JSON.parse(fs.readFileSync('./module/config.json', 'utf8'))
+const prefixConfig = config.prefix
 
 /**
  * Takes a discord.js client and turns it into a music bot.
@@ -16,7 +18,7 @@ const ytdl = require('ytdl-core')
  */
 module.exports = function (client, options) {
   // Get all options.
-  let PREFIX = (options && options.prefix) || '+'
+  let PREFIX = (options && options.prefix) || prefixConfig
   let GLOBAL = (options && options.global) || true
   let MAX_QUEUE_SIZE = (options && options.maxQueueSize) || 10
   let DEFAULT_VOLUME = (options && options.volume) || 50

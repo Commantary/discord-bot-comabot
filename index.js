@@ -22,6 +22,15 @@ pointsLevel(client)
 const arvdep = require('./events/arriverDeparts.js')
 arvdep(client)
 
+/* Partie Musique */
+const music = require('./discord.js-music-v11')
+music(client, {
+  prefix: '!', // Prefix of '-'.
+  global: true, // Server-specific queues.
+  maxQueueSize: 10, // Maximum queue size of 10.
+  clearInvoker: true // If permissions applicable, allow the bot to delete the messages that invoke it (start with prefix)
+})
+
 client.on('message', message => {
   if (message.author.bot) return
   if (message.content.indexOf(config.prefix) !== 0) return
