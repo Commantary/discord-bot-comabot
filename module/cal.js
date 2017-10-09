@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args) => {
   var number2 = parseInt(calcule.substr(4))
   var signe = calcule.substr(1, 3).trim()
 
-if (number1==NaN||number2==NaN) return message.channel.send('**Erreur: Les nombres doivent être des nombres!**')
+if (number1==NaN||number2==NaN) return message.channel.send('**Erreur: Les chiffres doivent être des chiffres!**')
 
 let calculeMessage = await message.channel.send({embed: {
     color: 10790566,
@@ -56,7 +56,7 @@ ico = divi
       calcule = number1+' ÷ '+number2
       break;
     default:
-    calculeFait = '***Erreur : Mauvaise signe utilisée***'
+    calculeFait = '***Erreur !***'
 
 }
 
