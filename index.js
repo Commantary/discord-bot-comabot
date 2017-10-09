@@ -9,14 +9,15 @@ const config = JSON.parse(fs.readFileSync('./module/config.json', 'utf8'))
 client.on('ready', () => {
   client.user.setGame('+inv | +help | +stats | Sur ' + client.guilds.size + ' serveurs', 'https://www.twitch.tv/the_commentary', 0)
   console.log('-------------------------------------')
-  console.log('    [!] ComaBot beta connecté [!]')
+  console.log('    [!] ComaBot connecté [!]')
   console.log('-------------------------------------')
   console.log('le prefix est: ' + setting.prefix)
 })
 
-/* LES LEVELS */
-const pointsLevel = require('./levels/points.js')
-pointsLevel(client)
+/* LES LEVELS 
+ * const pointsLevel = require('./levels/points.js')
+ * pointsLevel(client) 
+ */
 
 /* ARRIVER ET DEPART */
 const arvdep = require('./events/arriverDeparts.js')
@@ -44,7 +45,7 @@ client.on('message', message => {
     let commandFile = require(`./module/${command}.js`)
     commandFile.run(client, message, args)
   } catch (err) {
-    if (command === 'level' || command === 'play' || command === 'skip' || command === 'leave' || command === 'volume') {
+    if (command === 'play' || command === 'skip' || command === 'leave' || command === 'volume') {
       return
     } else {
       message.channel.send({embed: {
