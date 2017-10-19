@@ -36,7 +36,7 @@ module.exports.run = async (client, message, args) => {
     return message.channel.sendMessage('', {embed: {
       title: 'Commandes:',
       color: 0xff0000,
-      description: ':tools: **Liste des commandes** :tools: \n\n**+avatar** : Cela te permet d\'avoir l\'url d\'un avatar discord\n\n**+ping** : <mystere> \n\n**+choice <choix1> <choix2>** : Pour proposer un choix au bot\n\n**+cal <chiffre> <signe> <chiffre>** : Pour faire un calcule rapide\n\n',
+      description: ':tools: **Liste des commandes** :tools: \n\n**+avatar** : Cela te permet d\'avoir l\'url d\'un avatar discord\n\n**+ping** : <mystere> \n\n**+choice <choix1> <choix2>** : Pour proposer un choix au bot\n\n**+cal <chiffre> <signe> <chiffre>** : Pour faire un calcule rapide\n\n**+cat** : Pour afficher une image de chat random\n\n',
       footer: {
         icon_url: 'https://cdn.discordapp.com/avatars/350995776131825664/d6348248148cb6acd73f2d391c12c9fe.png?size=2048',
         text: 'Message par ComaBot.'
