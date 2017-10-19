@@ -13,14 +13,14 @@ var url = randomCat.get()
 // Random cat picture of specific size 
 // http://lorempixel.com/120/600/cats 
 var urlWithSize = randomCat.get({
-  width: 1080,
-  height: 720
+  width: 720,
+  height: 480
 })
 
 let msg = await message.channel.send({embed: {
 	description: 'Génération du chat....'
 	}})
-await message.channel.sendFile(urlWithSize, 'cat.jpg')
+await message.channel.sendFile(url, 'cat.jpg')
 
 
 msg.delete()
