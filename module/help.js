@@ -3,7 +3,7 @@ module.exports.run = async (client, message, args) => {
 
   
 
-    if(message.content === '!ts'){
+    if(message.content === '+help'){
 async function teste() {
    var i = 0
    const messageInteractif = await message.channel.send({embed: {
