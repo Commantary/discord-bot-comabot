@@ -1,14 +1,17 @@
 
 module.exports.run = async (client, message, args) => {
 
-  async function teste() {
+  
+
+    if(message.content === '!ts'){
+async function teste() {
    var i = 0
    const messageInteractif = await message.channel.send({embed: {
         title: 'Commandes:',
         color: 0xff0000,
         description: ':tools: **COMMANDES** :tools: \n\n__Commandes Admin__: chiffre **1** \n\n__Commandes Fun__: chiffre **2**\n\n__Supprimer__: l\'émoji **poubelle**',
         footer: {
-        icon_url: client.user.avtarURL,
+        icon_url: client.user.avatarURL,
         text: 'Créer par Commentary.'
         }
       }})
@@ -74,9 +77,12 @@ module.exports.run = async (client, message, args) => {
      }
 
    })
-}
 
+}
 teste()
 
+} else {
+  return
 }
 
+}
