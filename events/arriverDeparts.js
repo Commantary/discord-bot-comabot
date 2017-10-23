@@ -1,115 +1,162 @@
 /**
- * 
+ *
  * @para {Client} client - The discord.js client.
- * 
+ *
  */
 
-const fs = require('fs')
-
+const request = require('request')
 
 module.exports = function (client) {
+  // LES VARIABLES
+  var url = 'https://api.myjson.com/bins/1eurgn'
 
   // QUAND LE BOT REJOINT UN NOUVEAU SERVEUR
   client.on('guildCreate', guild => {
-    var contenu = JSON.parse(fs.readFileSync('./events/channel.json', 'utf8'))
-    // ON MET LE CHANNEL A " "
-    contenu[guild.id] = {
-       channel: " "
+    function callback(err, response, body) {
+      if (err) {
+        console.error(err)
       }
-      // ON SAUVEGARDE
-      fs.writeFile('./events/channel.json', JSON.stringify(contenu), (err) => {
-      if (err) console.error(err)
+      console.log('Le channel false a été défini pour le serveur: ' + guild.name)
+    }  // FIN DE LA FUNCTION
+
+    // On get le json
+    request(url, (err, res, body) => {
+      // si sa arrive la on log
+      console.log('Tentation de chargement')
+      // Si y'a une erreur
+      if(err || res.statusCode!== 200)return
+      // Si y'en a pas
+      console.log('chargé avec succés')
+      var objet = JSON.parse(body)
+      var serveur = guild.id
+      objet[serveur] = {
+        channel: false
+      }
+      // On put tout sa!
+      request({ url: url, method: 'PUT', json: objet}, callback)
     })
-  })
+
+  }) // FIN DE L'EVENT GUILDCREATE
 
   client.on('guildDelete', guild => {
     return
-  })
+  }) // FIN DE L'EVENT GUILDDELETE
 
-  // ARRIVE
+  // QUAND UN MEMBRE REJOINT LE SERVEUR
   client.on('guildMemberAdd', member => {
-
-    // Variables
-    var channelRequire = JSON.parse(fs.readFileSync('./events/channel.json', 'utf8'))
-    var channelName = channelRequire[member.guild.id].channel
-    var channel = member.guild.channels.find('name', channelName)
-    
-    // Fais rien si le channel existe pas
-    if (!channel) {
-        if (channel === " ") {
-          return
-        } else {
+    request(url, (err, res, body) => {
+      // Verif de l'erreur
+      if(err || res.statusCode!==200) return
+      // Les variables
+      var obj = JSON.parse(body)
+      var serveur = member.guild.id
+      var channelObj = obj[serveur].channel
+      if(channelObj===false){ // SI Y'A PAS DE CHANNEL SET
+        return // ON FAIS RIEN
+      } else { // SI Y'EN A UN
+        // Les variables
+        var obj = JSON.parse(body)
+        var serveur = member.guild.id
+        var channelObj = obj[serveur].channel
+        var welcomeChannel = member.guild.channels.get(channelObj)
+        var channelName = '<#' + channelObj + '>'
+        if(!welcomeChannel){
           member.guild.createChannel(channelName, 'text')
-    .then(channel => console.log(`Created new channel ${channel}`))
-    .catch(console.error)
-        }
-    } else {
-      // Envoie le message, en mentionnant le membre
-    channel.send({embed: {
-      color: 7659264,
-      author: {
-        name: 'Nouveau membre !',
-        icon_url: member.user.avatarURL
-      },
-      thumbnail: {
-        url: member.user.avatarURL
-      },
-      title: "**@** du membre",
-      description: `${member} ,`,
+            .then(channel => console.log(`Nouveau channel créer ${channel}`))
+            .catch(console.error)
+        } else {
+          // Les variables
+          var obj = JSON.parse(body)
+          var serveur = member.guild.id
+          var channelObj = obj[serveur].channel
+          var welcomeChannel = member.guild.channels.get(channelObj)
+          // Envoie le message, en mentionnant le membre
+          welcomeChannel.send({embed: {
+          color: 7659264,
+          author: {
+            name: 'Nouveau membre !',
+            icon_url: member.user.avatarURL
+          },
+          thumbnail: {
+            url: member.user.avatarURL
+          },
+          title: "**@** du membre",
+          description: `${member} ,`,
 
-      fields: [{
-        name: "**#** du membre",
-        value: `**${member.user.username}#${member.user.discriminator}**`
+          fields: [{
+            name: "**#** du membre",
+            value: `**${member.user.username}#${member.user.discriminator}**`
+          }
+          ],
+          footer: {
+            text: 'Crée par Commentary.'
+          }
+        }})
+        }
       }
-      ],
-      footer: {
-        text: 'Crée par Commentary'
-      }
-    }})
-    //channel.send(`-----------------------------------\n   Bienvenue sur le serveur ${member}\n-----------------------------------`)
-    }
-  })
-  // DEPART
+    }) // FIN DU REQUEST
+  }) // FIN DE L'EVENT GUILD MEMBER ADD
+
+  // QUAND UN MEMBRE QUITTE LE SERVEUR
   client.on('guildMemberRemove', member => {
-    // Variables
-    var channelRequire = JSON.parse(fs.readFileSync('./events/channel.json', 'utf8'))
-    var channelName = channelRequire[member.guild.id].channel
-    var channel = member.guild.channels.find('name', channelName)
-    // Fais rien si le channel existe pas
-    if (!channel) {
-        if (channel === " ") {
-          return
-        } else {
-          member.guild.createChannel(channelName, 'text')
-    .then(channel => console.log(`Created new channel ${channel}`))
-    .catch(console.error)
-        }
+    var botId = client.user.id
+    if(member.id===botId){
+      return
     } else {
-      // Envoie le message, en mentionnant le membre
-    channel.send({embed: {
-      color: 14614785,
-      author: {
-        name: 'Disparition d\'un membre !',
-        icon_url: member.user.avatarURL
-      },
-      thumbnail: {
-        url: member.user.avatarURL
-      },
-      title: "**@** du membre",
-      description: `${member}`,
+      request(url, (err, res, body) => {
+        // Verif de l'erreur
+        if(err || res.statusCode!==200) return
+        // Les variables
+        var obj = JSON.parse(body)
+        var serveur = member.guild.id
+        var channelObj = obj[serveur].channel
+        if(channelObj===false){ // SI Y'A PAS DE CHANNEL SET
+          return // ON FAIS RIEN
+        } else { // SI Y'EN A UN
+          // Les variables
+          var obj = JSON.parse(body)
+          var serveur = member.guild.id
+          var channelObj = obj[serveur].channel
+          var welcomeChannel = member.guild.channels.get(channelObj)
+          var channelName = '<#' + channelObj + '>'
+          if(!welcomeChannel){
+            member.guild.createChannel(channelName, 'text')
+              .then(channel => console.log(`Nouveau channel créer ${channel}`))
+              .catch(console.error)
+          } else {
+            // Les variables
+            var obj = JSON.parse(body)
+            var serveur = member.guild.id
+            var channelObj = obj[serveur].channel
+            var welcomeChannel = member.guild.channels.get(channelObj)
+            // Envoie le message, en mentionnant le membre
+              welcomeChannel.send({embed: {
+              color: 14614785,
+              author: {
+                name: 'Disparition d\'un membre !',
+                icon_url: member.user.avatarURL
+              },
+              thumbnail: {
+                url: member.user.avatarURL
+              },
+              title: "**@** du membre",
+              description: `${member}`,
 
-      fields: [{
-        name: "**#** du membre",
-        value: `**${member.user.username}#${member.user.discriminator}**`
-      }
-      ],
-      footer: {
-        text: 'Crée par Commentary'
-      }
-      
-    }})
-    //channel.send(`-----------------------------------\n   Bienvenue sur le serveur ${member}\n-----------------------------------`)
-    }
-  })
+              fields: [{
+                name: "**#** du membre",
+                value: `**${member.user.username}#${member.user.discriminator}**`
+              }
+              ],
+              footer: {
+                text: 'Crée par Commentary.'
+              }
 
-}
+            }})
+          }
+        }
+      }) // FIN DU REQUEST
+    } // FIN DU ELSE
+
+  }) // FIN DE L'EVENT QUILD MEMBER REMOVE
+
+} // FIN DU MODULE
