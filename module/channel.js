@@ -6,11 +6,10 @@ module.exports.run = async (client, message, args) => {
   var channelId = message.guild.channels.find('name', channel).id
   var serveur = message.guild.id
 
-  var dt = process.env.JSONAPI || process.argv[2]
-  if (!dt) {
+  var url = process.env.JSONAPI || process.argv[2]
+  if (!url) {
   console.log('L\'url n\'existe pas!')
-  }
-
+} else {
   var url = 'https://api.myjson.com/bins/1eurgn'
 
   function callback(err, response, body) {
@@ -47,4 +46,7 @@ module.exports.run = async (client, message, args) => {
     // On put tout sa!
     request({ url: url, method: 'PUT', json: objet}, callback)
   })
+}
+
+
 }
