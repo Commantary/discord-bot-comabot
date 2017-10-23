@@ -10,7 +10,6 @@ module.exports.run = async (client, message, args) => {
   if (!url) {
   console.log('L\'url n\'existe pas!')
 } else {
-  var url = 'https://api.myjson.com/bins/1eurgn'
 
   function callback(err, response, body) {
     if (err) {
