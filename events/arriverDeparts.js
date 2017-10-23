@@ -8,8 +8,10 @@ const request = require('request')
 
 module.exports = function (client) {
   // LES VARIABLES
-  var url = 'https://api.myjson.com/bins/1eurgn'
-
+  var url = process.env.JSONAPI || process.argv[2]
+  if (!url) {
+  console.log('L\'url n\'existe pas!')
+  }
   // QUAND LE BOT REJOINT UN NOUVEAU SERVEUR
   client.on('guildCreate', guild => {
     function callback(err, response, body) {
