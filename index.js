@@ -4,7 +4,7 @@ const client = new discord.Client()
 const setting = require('./module/config.json')
 const fs = require('fs')
 const config = JSON.parse(fs.readFileSync('./module/config.json', 'utf8'))
-// teste
+
 // On start le bot
 client.on('ready', () => {
   client.user.setGame('+inv | +help | +stats | Sur ' + client.guilds.size + ' serveurs', 'https://www.twitch.tv/the_commentary', 0)
