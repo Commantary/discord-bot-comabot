@@ -1,87 +1,83 @@
 /**
- * 
+ *
  * @para {Client} client - The discord.js client.
- * 
+ *
  */
-
+const request = require('request')
+var roll = Math.floor(Math.random() * 50)
+var config = require('./module/config.json')
+var prefix = config.prefix
 module.exports = function (client) {
-  const fs = require('fs')
-  const sql = require('sqlite')
-  sql.open('./score.sqlite')
-  const config = JSON.parse(fs.readFileSync('./module/config.json', 'utf8'))
-  const prefix = config.prefix
-  var roll = Math.floor(Math.random() * 50)
+  // EVENT MESSAGE
   client.on('message', message => {
+    // LES VARIABLES
+    var url = process.env.LEVELAPI || process.argv[2]
+  if (!url) {
+  console.log('L\'url n\'existe pas!')
+  }
     var logs = message.guild.channels.find('name', 'logs')
-    // DEBUT DU IF
-    if (message.author.bot) return
-    if (message.channel.type !== 'text') return
 
-    if (message.content.startsWith(prefix + 'ping')) {
-      message.channel.send('pong!')
-    }
-
-    sql.get(`SELECT * FROM scores WHERE userId ="${message.author.id}"`).then(row => {
-      if (!row) {
-        if (!logs) {
-          sql.run('INSERT INTO scores (userId, points, level) VALUES (?, ?, ?)', [message.author.id, 1, 0])
-          /* message.channel.send({embed: {
-            color: 14211288,
-            description: 'Le channel \'LOGS\' n\'existe pas. Voulez-vous le creer ?'
-          }}).then(function (message) {
-            message.react('✅')
-            message.react('❌')
-          })
-          setTimeout(messageReactionMis, 10000)
-          */
-          // message.guild.createChannel('logs', 'text', 'ADMINISTRATOR')
-          message.channel.send({embed: {
-            color: 14211288,
-            description: 'Le channel \' **LOGS** \' n\'existe pas. Tu devrais le créer !'
-          }})
-        } else {
-          sql.run('INSERT INTO scores (userId, points, level) VALUES (?, ?, ?)', [message.author.id, 1, 0])
-          logs.send({embed: {
-            color: 8453888,
-            description: '<@' + message.author.id + `> a été rajouter à la BDD de level`
-          }})
-        }
-      } else {
-        let curLevel = Math.floor(0.2 * Math.sqrt(row.points + 1))
-        if (curLevel > row.level) {
-          row.level = curLevel
-          sql.run(`UPDATE scores SET points = ${row.points + 1}, level = ${row.level} WHERE userId = ${message.author.id}`)
-          message.channel.send({embed: {
-            title: ':sunny: **LEVEL UP!**',
-            color: 16241496,
-            description: '**' + message.author.username + `** est niveau **${curLevel}** maintenant !`,
-            fields: [
-              {
-                name: 'Récompense',
-                value: ':small_orange_diamond: ' + roll
-              }
-            ]
-          }})
-        }
-        sql.run(`UPDATE scores SET points = ${row.points + 1} WHERE userId = ${message.author.id}`)
+    function callback(err, response, body) { // DEBUT DE CALLBACK
+      if (err) {
+        console.log(err)
       }
-    }).catch(() => {
-      console.error()
-      sql.run('CREATE TABLE IF NOT EXISTS scores (userId TEXT, points INTEGER, level INTEGER)').then(() => {
-        sql.run('INSERT INTO scores (userId, points, level) VALUES (?, ?, ?)', [message.author.id, 1, 0])
-      })
-    })
+    } // FIN DE CALLBACK
 
-    if (!message.content.startsWith(prefix)) return
+    request(url, (err, res, body) => { // DEBUT DU REQUEST
+      // si sa arrive la on log
+      // Si y'a une erreur
+      if(err || res.statusCode!== 200)return // SI YA UNE ERREUR
+      // Si y'en a pas
+      var points = JSON.parse(body)
+      if(message.author.id === client.user.id) return
+      if(!points[message.author.id]){ // ON VERIFIE SI IL EST DANS LA BDD
+        points[message.author.id] = {
+          points: 0,
+          level: 0 // ON LUI MET 0 XP LEVEL 0
+          }
+          if (!logs){ // SI IL Y A PAS LE CHANNEL LOGS
+            return // ON FAIT RIEN
+          } else { // SI IL Y EST
+            logs.send({embed: { // ON ENVOIE LE MESSAGE POUR DIRE QU'IL A ETE RAJOUTER A LA BDD
+              color: 8453888,
+              description: '<@' + message.author.id + `> a été rajouter à la BDD de level`
+            }}) // FIN DE L EMBED
+          } // FIN DU IF SI Y A LE CHANNEL LOGS
 
-    if (message.content.startsWith(prefix + 'level')) {
-      sql.get(`SELECT * FROM scores WHERE userId ="${message.author.id}"`).then(row => {
-        if (!row) return message.reply('Ton niveau actuel est 0')
+
+      } // FIN DU IF DE SI IL EST PAS DANS LA LEVEL BDD
+
+      let userData = points[message.author.id]
+      userData.points++
+
+      let curLevel = Math.floor(0.2 * Math.sqrt(userData.points))
+      if(curLevel > userData.level){
+        // LEVEL UP
+        userData.level = curLevel
         message.channel.send({embed: {
-          color: 8453888,
-          description: '<@' + message.author.id + `> Tu es niveau ${row.level}, avec ${row.points} points`
+          title: ':sunny: **LEVEL UP!**',
+          color: 16241496,
+          description: '**' + message.author.username + `** est niveau **${curLevel}** maintenant !`,
+          fields: [
+            {
+              name: 'Récompense',
+              value: ':small_orange_diamond: ' + roll
+            }
+          ]
         }})
-      })
-    }
-  })
-}
+      }
+
+      if(message.content === prefix + 'level'){ // SI IL FAIT LA COMMANDE POUR LE LEVEL
+        message.channel.send({embed: { // ON ENVOIE L EMBED
+          color: 8453888,
+          description: '<@' + message.author.id + `> Tu es niveau ${userData.level}, avec ${userData.points} points`
+        }}) // FIN DE l'EMBED
+      } // FIN DU IF DE LA COMMANDE LEVEL
+
+      // On put tout sa!
+      request({ url: url, method: 'PUT', json: points}, callback)
+
+    }) // FIN DU REQUEST
+
+  }) // FIN DE L'EVENT MESSAGE
+} // FIN DU MODULE EXPORTS
