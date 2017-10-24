@@ -14,10 +14,10 @@ client.on('ready', () => {
   console.log('le prefix est: ' + setting.prefix)
 })
 
-/* LES LEVELS 
- * const pointsLevel = require('./levels/points.js')
- * pointsLevel(client) 
- */
+/* LES LEVELS */
+ const pointsLevel = require('./levels/points.js')
+ pointsLevel(client) 
+ 
 
 /* ARRIVER ET DEPART */
 const arvdep = require('./events/arriverDeparts.js')
@@ -45,7 +45,7 @@ client.on('message', message => {
     let commandFile = require(`./module/${command}.js`)
     commandFile.run(client, message, args)
   } catch (err) {
-    if (command === 'play' || command === 'skip' || command === 'leave' || command === 'volume') {
+    if (command === 'play' || command === 'skip' || command === 'leave' || command === 'volume' || command === 'level') {
       return
     } else {
       message.channel.send({embed: {
