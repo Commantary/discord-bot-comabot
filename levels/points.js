@@ -4,9 +4,10 @@
  *
  */
 const request = require('request')
+const fs = require('fs')
 var roll = Math.floor(Math.random() * 50)
-var config = require('./module/config.json')
-var prefix = config.prefix
+const config = JSON.parse(fs.readFileSync('./module/config.json', 'utf8'))
+const prefix = config.prefix
 module.exports = function (client) {
   // EVENT MESSAGE
   client.on('message', message => {
