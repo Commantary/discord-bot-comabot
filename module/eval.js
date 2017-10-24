@@ -20,6 +20,11 @@ module.exports.run = async (client, message, args) => {
 
 }
 
-  msgEval()
+    if(message.author.id === '214846601066315776'){
+        msgEval()
+    } else {
+        return
+    }
+  
 
 }
