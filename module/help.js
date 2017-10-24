@@ -17,7 +17,7 @@ module.exports.run = async (client, message, args) => {
         message.channel.send({embed: {
             title: 'Commandes:',
             color: 0xff0000,
-            description: ':tools: **Liste des commandes** :tools: \n\n**Les commandes nécessite le role** __**MOD**__ !\n\n__+ban @ComaBot__ | Pour ban un membre (**non stable**)\n\n__+kick @ComaBot__ | Pour kick un membre (**non stable**)\n\n__+mute @ComaBot__ | Pour mute une personne en texte (**non stable**)\n\n__+unmute @ComaBot__ | Pour unmute une personne en texte (**non stable**)\n\n__+vmute @ComaBot__ | Pour mute serveur un membre\n\n__+vunmute @ComaBot__ | Pour demute serveur un membre\n\nD\'autre commandes sont en dévelopement...',
+            description: ':tools: **Liste des commandes** :tools: \n\n**Les commandes nécessite le role** __**MOD**__ !\n\n__+ban @ComaBot__ | Pour ban un membre (**non stable**)\n\n__+kick @ComaBot__ | Pour kick un membre (**non stable**)\n\n__+mute @ComaBot__ | Pour mute une personne en texte (**non stable**)\n\n__+unmute @ComaBot__ | Pour unmute une personne en texte (**non stable**)\n\n__+vmute @ComaBot__ | Pour mute serveur un membre\n\n__+vunmute @ComaBot__ | Pour demute serveur un membre\n\n__+channel <channel>__ | Pour choisir le channel ou le bot diras les arriver et départs\n\nD\'autre commandes sont en dévelopement...',
             footer: {
               icon_url: client.user.avatarURL,
               text: 'Créer par Commentary.'
