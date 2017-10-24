@@ -5,7 +5,10 @@ module.exports.run = async (client, message, args) => {
   var channel = args.slice('channel').join(' ')
   var channelId = message.guild.channels.find('name', channel).id
   var serveur = message.guild.id
-  var url = 'https://api.myjson.com/bins/1eurgn'
+  var url = process.env.JSONAPI || process.argv[2] 
+  if (!url) { 
+  console.log('L\'url n\'existe pas!') 
+  }
 
   function callback(err, response, body) {
     if (err) {
