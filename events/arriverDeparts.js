@@ -24,15 +24,28 @@ module.exports = function (client) {
     // On get le json
     request(url, (err, res, body) => {
       // si sa arrive la on log
-      console.log('Tentation de chargement')
       // Si y'a une erreur
       if(err || res.statusCode!== 200)return
       // Si y'en a pas
-      console.log('chargé avec succés')
       var objet = JSON.parse(body)
       var serveur = guild.id
       objet[serveur] = {
         channel: false
+      }
+
+      var defaultChannel = guild.defaultChannel
+      if(!defaultChannel){
+        return
+      } else {
+          var objet = JSON.parse(body)
+          var serveur = guild.id
+
+            defaultChannel.send({embed: {
+              color: 8510197,
+              description: 'Bonjour ! Merci de m\'avoir inviter !\n\nVous n\'avez pas défini de channel pour accueillir et dire au revoir aux membre !\nDéfinisser un channel avec la commande `+channel <channel>` en ayant le rôle **Mod** !\nJ\'ai aussi un systeme de level, créer un le channel **logs** pour avoir accées à certains log, faites `+level` pour savoir votre xp !\nN\'oubliez pas de faire `+logs` pour vérifier si vous avez un channel **logs**\n\n__**Bonne journée**__'
+            }})
+
+
       }
       // On put tout sa!
       request({ url: url, method: 'PUT', json: objet}, callback)
