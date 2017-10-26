@@ -29,7 +29,7 @@ module.exports.run = async (client, message, args) => {
           message.channel.send({embed: {
               title: 'Commandes:',
               color: 0xff0000,
-              description: ':tools: **Liste des commandes** :tools: \n\n**+avatar** : Cela te permet d\'avoir l\'url d\'un avatar discord\n\n**+ping** : <mystere> \n\n**+choice <choix1> <choix2>** : Pour proposer un choix au bot\n\n**+cal <chiffre> <signe> <chiffre>** : Pour faire un calcule rapide\n\n**+cat** : Pour afficher une image de chat random\n\n',
+              description: ':tools: **Liste des commandes** :tools: \n\n**+avatar** : Cela te permet d\'avoir l\'url d\'un avatar discord\n\n**+ping** : <mystere> \n\n**+choice <choix1> <choix2>** : Pour proposer un choix au bot\n\n**+cal <chiffre> <signe> <chiffre>** : Pour faire un calcule rapide\n\n**+cat** : Pour afficher une image de chat random\n\n**+dog** | Pour afficher une image de chien random\n\n',
               footer: {
               icon_url: client.user.avatarURL,
               text: 'Créer par Commentary.'
