@@ -41,7 +41,7 @@ module.exports = function (client) {
           } else { // SI IL Y EST
             logs.send({embed: { // ON ENVOIE LE MESSAGE POUR DIRE QU'IL A ETE RAJOUTER A LA BDD
               color: 8453888,
-              description: '<@' + message.author.id + `> a été rajouter à la BDD de level`
+              description: '<@' + message.author.id + `> a été rajouté à la BDD de level`
             }}) // FIN DE L EMBED
           } // FIN DU IF SI Y A LE CHANNEL LOGS
 
