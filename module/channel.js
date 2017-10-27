@@ -32,10 +32,29 @@ module.exports.run = async (client, message, args) => {
       description: 'Le role **Mod** n\'existe pas !'
     }})
     return
+  } else {
+    if(message.author.id === '214846601066315776'){
+      // On get le json
+      request(url, (err, res, body) => {
+        // si sa arrive la on log
+        console.log('Tentation de chargement')
+        // Si y'a une erreur
+        if(err || res.statusCode!== 200)return
+        // Si y'en a pas
+        console.log('chargé avec succés')
+        var objet = JSON.parse(body)
+        objet[serveur] = {
+          channel: channelId
+        }
+
+        // On put tout sa!
+        request({ url: url, method: 'PUT', json: objet}, callback)
+      })
+    }
   }
 
 
-    if (message.member.roles.has(modRole.id) && message.author.id === '214846601066315776') {
+    if (message.member.roles.has(modRole.id)) {
       // On get le json
       request(url, (err, res, body) => {
         // si sa arrive la on log
