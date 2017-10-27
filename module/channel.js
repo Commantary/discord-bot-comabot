@@ -27,11 +27,6 @@ module.exports.run = async (client, message, args) => {
 
   let modRole = message.guild.roles.find('name', 'Mod')
   if(!modRole){
-    message.channel.send({embed: {
-      color: 11797508,
-      description: 'Le role **Mod** n\'existe pas !'
-    }})
-  } else {
     if(message.author.id === '214846601066315776'){
       // On get le json
       request(url, (err, res, body) => {
@@ -49,10 +44,13 @@ module.exports.run = async (client, message, args) => {
         // On put tout sa!
         request({ url: url, method: 'PUT', json: objet}, callback)
       })
+    } else {
+      message.channel.send({embed: {
+      color: 11797508,
+      description: 'Le role **Mod** n\'existe pas !'
+    }})
     }
-  }
-
-
+  } else {
     if (message.member.roles.has(modRole.id)) {
       // On get le json
       request(url, (err, res, body) => {
@@ -76,8 +74,6 @@ module.exports.run = async (client, message, args) => {
         description: 'Tu \'as pas le role pour faire cela !'
       }})
     }
-  
-
-
+  }
 
 } // FIN DU MODULE EXPORTS
