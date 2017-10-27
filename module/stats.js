@@ -21,7 +21,7 @@ module.exports.run = async (client, message, args) => {
  var channelVoiceName = client.channels.filter(filtererVoice).size
 
 
-  return msg.channel.sendMessage('', {embed: {
+  return message.channel.send({embed: {
     author: {
       name: client.user.username,
       icon_url: client.user.avatarURL
