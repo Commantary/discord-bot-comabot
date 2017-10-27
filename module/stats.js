@@ -71,7 +71,7 @@ module.exports.run = async (client, message, args) => {
         inline: true
       },
       {
-        name: 'Channels vocales',
+        name: 'Channels vocaux',
         value: '[' + channelVoiceName + '](about:blank)',
         inline: true
       },
