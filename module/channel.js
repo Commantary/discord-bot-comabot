@@ -31,7 +31,6 @@ module.exports.run = async (client, message, args) => {
       color: 11797508,
       description: 'Le role **Mod** n\'existe pas !'
     }})
-    return
   } else {
     if(message.author.id === '214846601066315776'){
       // On get le json
