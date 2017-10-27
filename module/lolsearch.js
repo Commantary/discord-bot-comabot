@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
   // LES VARIABLES
   var data = {}
   var api_key = process.env.RIOTAPI || process.argv[2]
-  if (!url) {
+  if (!api_key) {
   console.log('L\'url n\'existe pas!')
   }
   var s_toSearch = args.slice('lols').join(' ')
