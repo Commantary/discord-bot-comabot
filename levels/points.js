@@ -24,6 +24,9 @@ module.exports = function (client) {
       }
     } // FIN DE CALLBACK
 
+    if(message.author.bot) return
+    if (message.channel.type === "dm") return
+
     request(url, (err, res, body) => { // DEBUT DU REQUEST
       // si sa arrive la on log
       // Si y'a une erreur
