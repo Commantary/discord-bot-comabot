@@ -134,7 +134,7 @@ module.exports.run = async (client, message, args) => {
                                           },
                                           {
                                             name: 'Classement',
-                                            value: data.tier + '' + data.soloRankDiv + ' ' + data.soloRankName,
+                                            value: 'Rang: ' + data.tier + ' ' + data.soloRankDiv + '\nSurnom du rang: ' + data.soloRankName + '\nLP: ' + data.soloRankLP + '\nPartie\(s\) gagner(s): ' + data.soloRankWins + '\nPartie\(s\) perdu\(s\): ' + data.soloRankLosses,
                                             inline: true
                                           }
                                         ]
