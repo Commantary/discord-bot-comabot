@@ -1,5 +1,6 @@
 var request = require('request');
 var async = require('async');
+const fs = require('fs');
 
 module.exports.run = async (client, message, args) => {
   // LES VARIABLES
@@ -9,10 +10,11 @@ module.exports.run = async (client, message, args) => {
   console.log('L\'url n\'existe pas!')
   }
   var s_toSearch = args.slice('lols').join(' ')
+  var staticDataC = JSON.parse(fs.readFileSync('./module/champions.json', 'utf8'))
   var URLtoSearch = 'https://euw1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + s_toSearch + '?api_key=' + api_key
   var URLforVersion = 'https://ddragon.leagueoflegends.com/realms/euw.json'
   var URLServeurStatus = 'https://euw1.api.riotgames.com/lol/status/v3/shard-data?api_key=' + api_key
-
+  var URLChampions = 'https://gist.githubusercontent.com/nagash/1688617/raw/077bdbbeece2d20b254304c035bd05bbe780b9b2/lol-champions.json/'
 
   // DEBUT DE L'AVENTURE
   async.waterfall([ // ON COMMENCE PAR UN ASYNC
@@ -61,119 +63,188 @@ module.exports.run = async (client, message, args) => {
                         console.log('sizieme request')
                         if(!err && response.statusCode == 200) {
                           var objJson = JSON.parse(body)
-                          data.tier = objJson[0].tier
-                          data.soloRankName = objJson[0].name
-                          let indexRanking = objJson[0]
-                          let summonerIdRank = data.id
-                          let soloRankDivision = indexRanking.entries.find(post => post.playerOrTeamId === '' + summonerIdRank + '')
-                          data.soloRankWins = soloRankDivision.wins
-                          data.soloRankLosses = soloRankDivision.losses
-                          data.soloRankLP = soloRankDivision.leaguePoints
-                          data.soloRankDiv = soloRankDivision.rank
+                          if(objJson[0]==undefined){ // SI IL EST PAS RANKED
 
-                          var URLChampions1 = 'https://euw1.api.riotgames.com/lol/static-data/v3/champions/' + data.premierChamp.championId + '?locale=fr_FR&tags=image&api_key=' + api_key
-                          var URLChampions2 = 'https://euw1.api.riotgames.com/lol/static-data/v3/champions/' + data.deuxiemeChamp.championId + '?locale=fr_FR&tags=image&api_key=' + api_key
-                          var URLChampions3 = 'https://euw1.api.riotgames.com/lol/static-data/v3/champions/' + data.troisiemeChamp.championId + '?locale=fr_FR&tags=image&api_key=' + api_key
-                          request(URLChampions1, function(err, response, body) { // SEPTIEME REQUEST
-                            console.log('septieme request')
-                            if(!err && response.statusCode == 200) {
-                              var jsonObjet = JSON.parse(body)
-                              data.premierChampName = jsonObjet.name
+                            // ON RECUP LES INFOS DES CHAMPS
+                              console.log('Recup des infos des champs')
 
-                              request(URLChampions2, function(err, response, body) { // HUITIEME REQUEST
-                                console.log('huitieme request')
-                                if(!err && response.statusCode == 200) {
-                                  var jsonObject = JSON.parse(body)
-                                  data.deuxiemeChampName = jsonObject.name
+                                // ON RECUPERE LES INFOS DU PREMIER CHAMP
+                                data.premierChampList = staticDataC.data[data.premierChamp.championId]
+                                data.premierChampName = data.premierChampList.name
 
-                                  request(URLChampions3, function(err, response, body) { // NEUVIEME REQUEST
-                                    console.log('neuvieme request')
-                                    if(!err && response.statusCode == 200) {
-                                      var objectJson = JSON.parse(body)
-                                      data.troisiemeChampName = objectJson.name
+                                // ON RECUPERE LES INFOS DU DEUXIEME CHAMP
+                                data.deuxiemeChampList = staticDataC.data[data.deuxiemeChamp.championId]
+                                data.deuxiemeChampName = data.deuxiemeChampList.name
 
-                                      var premierChampURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/' + data.premierChampName + '.png'
-                                      var deuxiemeChampURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/' + data.deuxiemeChampName + '.png'
-                                      var troisiemeChampURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/' + data.troisiemeChampName + '.png'
+                                // ON RECUPERE LES INFOS DU TROISIEME CHAMP
+                                data.troisiemeChampList = staticDataC.data[data.troisiemeChamp.championId]
+                                data.troisiemeChampName = data.troisiemeChampList.name
 
-                                      message.channel.send({embed: {
-                                        author: {
-                                          name: data.name,
-                                          icon_url: URLtoIcon
-                                        },
-                                        color: 16428120,
-                                        thumbnail: {
-                                          "url": URLtoIcon
-                                        },
-                                        description: 'Voila les informations du compte **' + data.name + '**:',
-                                        fields: [
-                                          {
-                                            name: 'Pseudo',
-                                            value: data.name,
-                                            inline: true
+                                        var premierChampURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/' + data.premierChampName + '.png'
+                                        var deuxiemeChampURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/' + data.deuxiemeChampName + '.png'
+                                        var troisiemeChampURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/' + data.troisiemeChampName + '.png'
+
+                                        message.channel.send({embed: {
+                                          author: {
+                                            name: data.name,
+                                            icon_url: URLtoIcon
                                           },
-                                          {
-                                            name: 'Niveaux',
-                                            value: data.summonerLevel,
-                                            inline: true
+                                          color: 16428120,
+                                          thumbnail: {
+                                            "url": URLtoIcon
                                           },
-                                          {
-                                            name: 'ID',
-                                            value: data.id,
-                                            inline: true
-                                          },
-                                          {
-                                            name: 'Nombres de maîtrises',
-                                            value: data.scoresMasteries,
-                                            inline: true
-                                          },
-                                          {
-                                            name: 'Top 3 des champions',
-                                            value: '1er champion: __[' + data.premierChampName + ']()__\n2ème champion: __[' + data.deuxiemeChampName + ']()__\n3ème champion: __[' + data.troisiemeChampName + ']()__',
-                                            inline: true
-                                          },
-                                          {
-                                            name: 'Classement',
-                                            value: 'Rang: ' + data.tier + ' ' + data.soloRankDiv + '\nSurnom du rang: ' + data.soloRankName + '\nLP: ' + data.soloRankLP + '\nPartie\(s\) gagner(s): ' + data.soloRankWins + '\nPartie\(s\) perdu\(s\): ' + data.soloRankLosses,
-                                            inline: true
-                                          }
-                                        ]
-                                      }})
-                                    } else {
-                                      console.log(err)
-                                    }
+                                          description: 'Voila les informations du compte **' + data.name + '**:',
+                                          fields: [
+                                            {
+                                              name: 'Pseudo',
+                                              value: data.name,
+                                              inline: true
+                                            },
+                                            {
+                                              name: 'Niveaux',
+                                              value: data.summonerLevel,
+                                              inline: true
+                                            },
+                                            {
+                                              name: 'ID',
+                                              value: data.id,
+                                              inline: true
+                                            },
+                                            {
+                                              name: 'Nombres de maîtrises',
+                                              value: data.scoresMasteries,
+                                              inline: true
+                                            },
+                                            {
+                                              name: 'Top 3 des champions',
+                                              value: '1er champion: \n**' + data.premierChampName + '** | ' + data.premierChamp.championPoints + ' points\n2ème champion: \n**' + data.deuxiemeChampName + '** | ' + data.deuxiemeChamp.championPoints + ' points\n3ème champion: \n**' + data.troisiemeChampName + '** | ' + data.troisiemeChamp.championPoints + ' points',
+                                              inline: true
+                                            },
+                                            {
+                                              name: 'Classement',
+                                              value: 'Rang: [UNRANKED]()',
+                                              inline: true
+                                            }
+                                          ]
+                                        }})
 
-                                  }) // FIN DU NEUVIEME REQUEST
-                                } else {
-                                  console.log(err)
-                                }
-                              }) // FIN DU HUITIEME REQUEST
+                          } else {
+                            data.tier = objJson[0].tier
+                            data.soloRankName = objJson[0].name
+                            let indexRanking = objJson[0]
+                            let summonerIdRank = data.id
+                            let soloRankDivision = indexRanking.entries.find(post => post.playerOrTeamId === '' + summonerIdRank + '')
+                            data.soloRankWins = soloRankDivision.wins
+                            data.soloRankLosses = soloRankDivision.losses
+                            data.soloRankLP = soloRankDivision.leaguePoints
+                            data.soloRankDiv = soloRankDivision.rank
 
-                            } else {
-                              console.log(err)
-                            }
-                          }) // FIN DU SEPTIEME REQUEST
+                            var URLChampions1 = 'https://euw1.api.riotgames.com/lol/static-data/v3/champions/' + data.premierChamp.championId + '?locale=fr_FR&tags=image&api_key=' + api_key
+                            var URLChampions2 = 'https://euw1.api.riotgames.com/lol/static-data/v3/champions/' + data.deuxiemeChamp.championId + '?locale=fr_FR&tags=image&api_key=' + api_key
+                            var URLChampions3 = 'https://euw1.api.riotgames.com/lol/static-data/v3/champions/' + data.troisiemeChamp.championId + '?locale=fr_FR&tags=image&api_key=' + api_key
 
+                            // ON RECUP LES INFOS DES CHAMPS
+                              console.log('Recup des infos des champs')
+                              // ON RECUPERE LES INFOS DU PREMIER CHAMP
+                              data.premierChampList = staticDataC.data[data.premierChamp.championId]
+                              data.premierChampName = data.premierChampList.name
+
+                                // ON RECUPERE LES INFOS DU DEUXIEME CHAMP
+                                data.deuxiemeChampList = staticDataC.data[data.deuxiemeChamp.championId]
+                                data.deuxiemeChampName = data.deuxiemeChampList.name
+
+                                    // ON RECUPERE LES INFOS DU TROISIEME CHAMP
+                                    data.troisiemeChampList = staticDataC.data[data.troisiemeChamp.championId]
+                                    data.troisiemeChampName = data.troisiemeChampList.name
+
+                                        var premierChampURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/' + data.premierChampName + '.png'
+                                        var deuxiemeChampURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/' + data.deuxiemeChampName + '.png'
+                                        var troisiemeChampURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/' + data.troisiemeChampName + '.png'
+
+                                        message.channel.send({embed: {
+                                          author: {
+                                            name: data.name,
+                                            icon_url: URLtoIcon
+                                          },
+                                          color: 16428120,
+                                          thumbnail: {
+                                            "url": URLtoIcon
+                                          },
+                                          description: 'Voila les informations du compte **' + data.name + '**:',
+                                          fields: [
+                                            {
+                                              name: 'Pseudo',
+                                              value: data.name,
+                                              inline: true
+                                            },
+                                            {
+                                              name: 'Niveaux',
+                                              value: data.summonerLevel,
+                                              inline: true
+                                            },
+                                            {
+                                              name: 'ID',
+                                              value: data.id,
+                                              inline: true
+                                            },
+                                            {
+                                              name: 'Nombres de maîtrises',
+                                              value: data.scoresMasteries,
+                                              inline: true
+                                            },
+                                            {
+                                              name: 'Top 3 des champions',
+                                              value: '1er champion: \n**' + data.premierChampName + '** | ' + data.premierChamp.championPoints + ' points\n2ème champion: \n**' + data.deuxiemeChampName + '** | ' + data.deuxiemeChamp.championPoints + ' points\n3ème champion: \n**' + data.troisiemeChampName + '** | ' + data.troisiemeChamp.championPoints + ' points',
+                                              inline: true
+                                            },
+                                            {
+                                              name: 'Classement solo/duo',
+                                              value: 'Rang: **' + data.tier + '** **' + data.soloRankDiv + '**\nSurnom du rang: **' + data.soloRankName + '**\nLP: **' + data.soloRankLP + '**\nPartie\(s\) gagner(s): **' + data.soloRankWins + '**\nPartie\(s\) perdu\(s\): **' + data.soloRankLosses + '**',
+                                              inline: true
+                                            }
+                                          ]
+                                        }})
+                          }
                         } else {
+                          message.channel.send({embed: {
+                            color: 11797508,
+                            description: 'Il y a eu trop de requete !'
+                          }})
                           console.log(err)
                         }
                       }) // FIN DU SIZIEME REQUEST
                     } else {
+                      message.channel.send({embed: {
+                        color: 11797508,
+                        description: 'Il y a eu trop de requete !'
+                      }})
                       console.log(err)
                     }
                   }) // FIN DU CINQUIEME REQUEST
 
                 } else {
+                  message.channel.send({embed: {
+                    color: 11797508,
+                    description: 'Il y a eu trop de requete !'
+                  }})
                   console.log(err)
                 }
               }) // FIN DU QUATRIEME REQUEST
 
           } else {
+            message.channel.send({embed: {
+              color: 11797508,
+              description: 'Il y a eu trop de requete !'
+            }})
           console.log(err)
           }
           }) // FIN DU DEUXIEME REQUEST
           callback(null, data) // LE P'PTIT CALLBACK
         } else {
+          message.channel.send({embed: {
+            color: 11797508,
+            description: 'Il y a eu trop de requete !'
+          }})
           console.log(err)
         }
       }) // FIN DU PREMIER REQUEST
