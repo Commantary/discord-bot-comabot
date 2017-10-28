@@ -129,7 +129,7 @@ module.exports.run = async (client, message, args) => {
                                           },
                                           {
                                             name: 'Top 3 des champions',
-                                            value: '1er champion: ' + data.premierChampName + '\n2ème champion: ' + data.deuxiemeChampName + '\n3ème champion: ' + data.troisiemeChampName,
+                                            value: '1er champion: __[' + data.premierChampName + ']()__\n2ème champion: __[' + data.deuxiemeChampName + ']()__\n3ème champion: __[' + data.troisiemeChampName + ']()__',
                                             inline: true
                                           },
                                           {
