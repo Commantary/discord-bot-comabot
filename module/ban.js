@@ -1,33 +1,64 @@
 
 module.exports.run = async (client, message, args) => {
   // Mise en place des variables
-    var member = message.guild.member(message.mentions.members.first())
-    let modRole = message.guild.roles.find('name', 'Mod')
-    let banMember = message.guild.member(message.mentions.users.first())
-    const fs = require('fs')
-    // Si il y a pas de mention dans la commande
-    if (!member) {
-      message.channel.send('`+ban [@(le joueur a ban)]`')
+    let reason = args.slice(1).join(' ')
+    let member = message.mentions.members.first();
+    let channelLogs = message.guild.channels.find('name', 'logs')
+
+    if(reason.length < 1) return message.channel.send({embed: {
+      color: 8583768,
+      description: 'Il faut dire une raison pour ban.'
+    }})
+    if(message.mentions.users.size < 1) return message.channel.send({embed: {
+      color: 8583768,
+      description: 'Vous devez mentionné une personne à ban.'
+    }})
+
+
+    if(!message.guild.member(member).bannable) return message.channel.send({embed: {
+      color: 8583768,
+      description: 'Je ne peux pas ban ce membre'
+    }})
+
+    await message.guild.ban(member, 2)
+    if(!channelLogs){
+      message.channel.send({embed: {
+        color: 8583768,
+        description: `${member.user.tag} a été ban par <@${message.author.id}> pour: **${reason}**`
+      }})
     } else {
-    // If du modRole
-      if (message.member.roles.has(modRole.id)) {
-        message.guild.member(banMember).ban()
-        // Message réussis
-        message.channel.send(':wave: **' + banMember.displayName + '** à été __**ban**__ par: **' + message.author.username + '**')
-        console.log('+ban mis par: ' + message.author.username)
-        // ON RAJOUTE LA PERSONNE DANS LE JSON
-        let banlist = JSON.parse(fs.readFileSync('./banlist.json', 'UTF-8'))
-        var banned = {}
-        banned.banlist[message.author.username] = message.author.id
-        // And then, we save the edited file.
-        fs.writeFile('./banlist.json', JSON.stringify(banlist), (err) => {
-          if (err) console.error(err)
-        })
-  
-        // Message du fail
-      } else {
-        message.channel.send('Acces refusé')
-      }
+      channelLogs.send({embed: {
+        color: 122789,
+        fields: [
+        {
+          name: 'Action',
+          value: 'ban',
+          inline: false
+        },
+        {
+          name: 'Membre ban',
+          value: member.user.tag,
+          inline: true
+        },
+        {
+          name: 'Par',
+          value: message.author.tag,
+          inline: true
+        },
+        {
+          name: 'Raison',
+          value: reason,
+          inline: true
+        }
+        ]
+      }})
+      
+      message.channel.send({embed: {
+        color: 8583768,
+        description: `<@${member.user.tag}> a été ban par <@${message.author.id}> pour: **${reason}**`
+      }})
+
+
     }
   }
   
