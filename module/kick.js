@@ -35,10 +35,48 @@ module.exports.run = async (client, message, args) => {
       	color: 0xff0000,
       	description: `Désolé ${message.author} Je ne peux pas kick car : ${error}`
       }}))
-    message.reply({embed: {
-      	color: 0xff0000,
-      	description: `<@${member.user.tag}> a été kick par <@${message.author.tag}> pour: **${reason}`
+
+    var channelLogs = message.guild.channels.find('name', 'logs')
+    if(!channelLogs){
+      message.channel.send({embed: {
+        color: 8583768,
+        description: `${member.user.tag} a été kick par <@${message.author.id}> pour: **${reason}**`
       }})
+    } else {
+      logs.send({embed: {
+        color: 122789,
+        fields: [
+        {
+          name: 'Action',
+          value: 'kick',
+          inline: false
+        },
+        {
+          name: 'Membre kick',
+          value: `${member.user.tag}`,
+          inline: true
+        },
+        {
+          name: 'Par'
+          value: `${message.author.tag}`
+          inline: true
+        },
+        {
+          name: 'Raison',
+          value: `${reason}`,
+          inline: true
+        }
+        ]
+      }})
+
+      message.channel.send({embed: {
+        color: 8583768,
+        description: `${member.user.tag} a été kick par <@${message.author.id}> pour: **${reason}**`
+      }})
+
+
+    }
+    
 
 
 }
