@@ -61,9 +61,8 @@ module.exports.run = async (client, message, args) => {
                         console.log('sizieme request')
                         if(!err && response.statusCode == 200) {
                           var objJson = JSON.parse(body)
-                          data.tier = objJson.tier
-                          console.log(objJson.tier)
-                          data.soloRankName = objJson.name
+                          data.tier = objJson[0].tier
+                          data.soloRankName = objJson[0].name
                           let indexRanking = objJson[0]
                           let summonerIdRank = data.id
                           let soloRankDivision = indexRanking.entries.find(post => post.playerOrTeamId === '' + summonerIdRank + '')
