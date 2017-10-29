@@ -7,10 +7,10 @@ module.exports.run = async (client, message, args) => {
   var data = {}
   var api_key = process.env.RIOTAPI || process.argv[2]
   if (!api_key) {
-  console.log('L\'url n\'existe pas!')
+  console.log('L\'api existe pas n\'existe pas!')
   }
   var s_toSearch = args.slice('lols').join(' ')
-  var staticDataC = JSON.parse(fs.readFileSync('./module/champions.json', 'utf8'))
+  var staticDataC = JSON.parse(fs.readFileSync('./static-data/champions.json', 'utf8'))
   var URLtoSearch = 'https://euw1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + s_toSearch + '?api_key=' + api_key
   var URLforVersion = 'https://ddragon.leagueoflegends.com/realms/euw.json'
   var URLServeurStatus = 'https://euw1.api.riotgames.com/lol/status/v3/shard-data?api_key=' + api_key
@@ -243,7 +243,7 @@ module.exports.run = async (client, message, args) => {
         } else {
           message.channel.send({embed: {
             color: 11797508,
-            description: 'Il y a eu trop de requete !'
+            description: 'L\'api key à expiré !'
           }})
           console.log(err)
         }
