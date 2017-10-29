@@ -62,7 +62,7 @@ module.exports.run = async (client, message, args) => {
                       request(URLrank, function(err, response, body) { // SIZIEME REQUEST
                         console.log('sizieme request')
                         if(!err && response.statusCode == 200) {
-                          var objJson = JSON.parse(body)
+                          let objJson = JSON.parse(body)
                           if(objJson[0]==undefined){ // SI IL EST PAS RANKED
 
                             // ON RECUP LES INFOS DES CHAMPS
@@ -80,9 +80,9 @@ module.exports.run = async (client, message, args) => {
                                 data.troisiemeChampList = staticDataC.data[data.troisiemeChamp.championId]
                                 data.troisiemeChampName = data.troisiemeChampList.name
 
-                                        var premierChampURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/' + data.premierChampName + '.png'
-                                        var deuxiemeChampURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/' + data.deuxiemeChampName + '.png'
-                                        var troisiemeChampURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/' + data.troisiemeChampName + '.png'
+                                        let premierChampURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/' + data.premierChampName + '.png'
+                                        let deuxiemeChampURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/' + data.deuxiemeChampName + '.png'
+                                        let troisiemeChampURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/' + data.troisiemeChampName + '.png'
 
                                         message.channel.send({embed: {
                                           author: {
@@ -129,15 +129,26 @@ module.exports.run = async (client, message, args) => {
                                         }})
 
                           } else {
-                            data.tier = objJson[0].tier
-                            data.soloRankName = objJson[0].name
-                            let indexRanking = objJson[0]
-                            let summonerIdRank = data.id
-                            let soloRankDivision = indexRanking.entries.find(post => post.playerOrTeamId === '' + summonerIdRank + '')
-                            data.soloRankWins = soloRankDivision.wins
-                            data.soloRankLosses = soloRankDivision.losses
-                            data.soloRankLP = soloRankDivision.leaguePoints
-                            data.soloRankDiv = soloRankDivision.rank
+                            // LA ON RECUP LES INFOS DU RANK SOLO/DUO
+                            data.tierSD = objJson[0].tier
+                            data.soloRankNameSD = objJson[0].name
+                            let indexRankingSD = objJson[0]
+                            let soloRankDivisionSD = indexRankingSD.entries.find(post => post.playerOrTeamId === '' + data.id + '')
+                            data.soloRankWinsSD = soloRankDivisionSD.wins
+                            data.soloRankLossesSD = soloRankDivisionSD.losses
+                            data.soloRankLPSD = soloRankDivisionSD.leaguePoints
+                            data.soloRankDivSD = soloRankDivisionSD.rank
+
+                            // LA ON RECUP LES INFOS DU RANK FLEX
+                            data.tierF = objJson[1].tier
+                            data.soloRankNameF = objJson[1].name
+                            let indexRankingF = objJson[1]
+                            let soloRankDivisionF = indexRankingF.entries.find(post => post.playerOrTeamId === '' + data.id + '')
+                            data.soloRankWinsF = soloRankDivisionF.wins
+                            data.soloRankLossesF = soloRankDivisionF.losses
+                            data.soloRankLPF = soloRankDivisionF.leaguePoints
+                            data.soloRankDivF = soloRankDivisionF.rank
+
 
                             var URLChampions1 = 'https://euw1.api.riotgames.com/lol/static-data/v3/champions/' + data.premierChamp.championId + '?locale=fr_FR&tags=image&api_key=' + api_key
                             var URLChampions2 = 'https://euw1.api.riotgames.com/lol/static-data/v3/champions/' + data.deuxiemeChamp.championId + '?locale=fr_FR&tags=image&api_key=' + api_key
@@ -198,8 +209,13 @@ module.exports.run = async (client, message, args) => {
                                               inline: true
                                             },
                                             {
-                                              name: 'Classement solo/duo',
-                                              value: 'Rang: **' + data.tier + '** **' + data.soloRankDiv + '**\nSurnom du rang: **' + data.soloRankName + '**\nLP: **' + data.soloRankLP + '**\nPartie\(s\) gagner(s): **' + data.soloRankWins + '**\nPartie\(s\) perdu\(s\): **' + data.soloRankLosses + '**',
+                                              name: 'Classement Solo/Duo',
+                                              value: 'Rang: **' + data.tierSD + '** **' + data.soloRankDivSD + '**\nSurnom du rang: **' + data.soloRankNameSD + '**\nLP: **' + data.soloRankLPSD + '**\nPartie\(s\) gagner(s): **' + data.soloRankWinsSD + '**\nPartie\(s\) perdu\(s\): **' + data.soloRankLossesSD + '**',
+                                              inline: true
+                                            },
+                                            {
+                                              name: 'Classement Flex',
+                                              value: 'Rang: **' + data.tierF + '** **' + data.soloRankDivF + '**\nSurnom du rang: **' + data.soloRankNameF + '**\nLP: **' + data.soloRankLPF + '**\nPartie\(s\) gagner(s): **' + data.soloRankWinsF + '**\nPartie\(s\) perdu\(s\): **' + data.soloRankLossesF + '**',
                                               inline: true
                                             }
                                           ]
