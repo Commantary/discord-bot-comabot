@@ -10,7 +10,7 @@ module.exports.run = async (client, message, args) => {
   console.log('L\'api existe pas n\'existe pas!')
   }
   var s_toSearch = args.slice('lols').join(' ')
-  var staticDataC = JSON.parse(fs.readFileSync('./static-data/champions.json', 'utf8'))
+  var staticDataC = require('./static-data/champions.json')
   var URLtoSearch = 'https://euw1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + s_toSearch + '?api_key=' + api_key
   var URLforVersion = 'https://ddragon.leagueoflegends.com/realms/euw.json'
   var URLServeurStatus = 'https://euw1.api.riotgames.com/lol/status/v3/shard-data?api_key=' + api_key
