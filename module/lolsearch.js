@@ -210,12 +210,12 @@ module.exports.run = async (client, message, args) => {
                                             },
                                             {
                                               name: 'Classement Solo/Duo',
-                                              value: 'Rang: **' + data.tierSD + '** **' + data.soloRankDivSD + '**\nSurnom du rang: **' + data.soloRankNameSD + '**\nLP: **' + data.soloRankLPSD + '**\nPartie\(s\) gagner(s): **' + data.soloRankWinsSD + '**\nPartie\(s\) perdu\(s\): **' + data.soloRankLossesSD + '**',
+                                              value: 'Rang: **' + data.tierSD + '** **' + data.soloRankDivSD + '**\nSurnom du rang: **' + data.soloRankNameSD + '**\nLP: **' + data.soloRankLPSD + '**\nPartie\(s\) gagnée(s): **' + data.soloRankWinsSD + '**\nPartie\(s\) perdue\(s\): **' + data.soloRankLossesSD + '**',
                                               inline: true
                                             },
                                             {
                                               name: 'Classement Flex',
-                                              value: 'Rang: **' + data.tierF + '** **' + data.soloRankDivF + '**\nSurnom du rang: **' + data.soloRankNameF + '**\nLP: **' + data.soloRankLPF + '**\nPartie\(s\) gagner(s): **' + data.soloRankWinsF + '**\nPartie\(s\) perdu\(s\): **' + data.soloRankLossesF + '**',
+                                              value: 'Rang: **' + data.tierF + '** **' + data.soloRankDivF + '**\nSurnom du rang: **' + data.soloRankNameF + '**\nLP: **' + data.soloRankLPF + '**\nPartie\(s\) gagnée(s): **' + data.soloRankWinsF + '**\nPartie\(s\) perdue\(s\): **' + data.soloRankLossesF + '**',
                                               inline: true
                                             }
                                           ]
