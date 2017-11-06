@@ -5,12 +5,15 @@ const fs = require('fs');
 module.exports.run = async (client, message, args) => {
   // LES VARIABLES
   var data = {}
-  var api_key = process.env.RIOTAPI || process.argv[2]
-  if (!api_key) {
-  console.log('L\'api existe pas n\'existe pas!')
-  }
+
+  var api_key = process.env.RIOTAPI || process.argv[2] 
+  if (!api_key) { 
+  console.log('L\'api existe pas n\'existe pas!') 
+  } 
+
+  // VARIABLES POUR LES LIENS
   var s_toSearch = args.slice('lols').join(' ')
-  var staticDataC = require('./static-data/champions.json')
+  var staticDataC = require('./staticData/champions.json')
   var URLtoSearch = 'https://euw1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + s_toSearch + '?api_key=' + api_key
   var URLforVersion = 'https://ddragon.leagueoflegends.com/realms/euw.json'
   var URLServeurStatus = 'https://euw1.api.riotgames.com/lol/status/v3/shard-data?api_key=' + api_key
@@ -62,7 +65,7 @@ module.exports.run = async (client, message, args) => {
                       request(URLrank, function(err, response, body) { // SIZIEME REQUEST
                         console.log('sizieme request')
                         if(!err && response.statusCode == 200) {
-                          let objJson = JSON.parse(body)
+                          var objJson = JSON.parse(body)
                           if(objJson[0]==undefined){ // SI IL EST PAS RANKED
 
                             // ON RECUP LES INFOS DES CHAMPS
@@ -80,9 +83,9 @@ module.exports.run = async (client, message, args) => {
                                 data.troisiemeChampList = staticDataC.data[data.troisiemeChamp.championId]
                                 data.troisiemeChampName = data.troisiemeChampList.name
 
-                                        let premierChampURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/' + data.premierChampName + '.png'
-                                        let deuxiemeChampURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/' + data.deuxiemeChampName + '.png'
-                                        let troisiemeChampURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/' + data.troisiemeChampName + '.png'
+                                        var premierChampURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/' + data.premierChampName + '.png'
+                                        var deuxiemeChampURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/' + data.deuxiemeChampName + '.png'
+                                        var troisiemeChampURL = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/' + data.troisiemeChampName + '.png'
 
                                         message.channel.send({embed: {
                                           author: {
@@ -125,7 +128,10 @@ module.exports.run = async (client, message, args) => {
                                               value: 'Rang: [UNRANKED]()',
                                               inline: true
                                             }
-                                          ]
+                                          ],
+                                          footer: {
+                                            text: 'Patch 7.21'
+                                          }
                                         }})
 
                           } else {
@@ -210,15 +216,18 @@ module.exports.run = async (client, message, args) => {
                                             },
                                             {
                                               name: 'Classement Solo/Duo',
-                                              value: 'Rang: **' + data.tierSD + '** **' + data.soloRankDivSD + '**\nSurnom du rang: **' + data.soloRankNameSD + '**\nLP: **' + data.soloRankLPSD + '**\nPartie\(s\) gagner(s): **' + data.soloRankWinsSD + '**\nPartie\(s\) perdu\(s\): **' + data.soloRankLossesSD + '**',
+                                              value: 'Rang: **' + data.tierSD + '** **' + data.soloRankDivSD + '**\nSurnom du rang: **' + data.soloRankNameSD + '**\nLP: **' + data.soloRankLPSD + '**\nPartie\(s\) gagnée(s): **' + data.soloRankWinsSD + '**\nPartie\(s\) perdue\(s\): **' + data.soloRankLossesSD + '**',
                                               inline: true
                                             },
                                             {
                                               name: 'Classement Flex',
-                                              value: 'Rang: **' + data.tierF + '** **' + data.soloRankDivF + '**\nSurnom du rang: **' + data.soloRankNameF + '**\nLP: **' + data.soloRankLPF + '**\nPartie\(s\) gagner(s): **' + data.soloRankWinsF + '**\nPartie\(s\) perdu\(s\): **' + data.soloRankLossesF + '**',
+                                              value: 'Rang: **' + data.tierF + '** **' + data.soloRankDivF + '**\nSurnom du rang: **' + data.soloRankNameF + '**\nLP: **' + data.soloRankLPF + '**\nPartie\(s\) gagnée(s): **' + data.soloRankWinsF + '**\nPartie\(s\) perdue\(s\): **' + data.soloRankLossesF + '**',
                                               inline: true
                                             }
-                                          ]
+                                          ],
+                                          footer: {
+                                            text: 'Patch 7.21'
+                                          }
                                         }})
                           }
                         } else {
@@ -259,7 +268,7 @@ module.exports.run = async (client, message, args) => {
         } else {
           message.channel.send({embed: {
             color: 11797508,
-            description: 'L\'api key à expiré !'
+            description: 'Il y a eu trop de requete !'
           }})
           console.log(err)
         }
