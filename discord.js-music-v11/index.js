@@ -19,7 +19,7 @@ const prefixConfig = ficherConfig.prefix
  */
 module.exports = function (client, options) {
   // Get all options.
-  let PREFIX = (options && options.prefix) || prefixConfig
+  let PREFIX = '+'
   let GLOBAL = (options && options.global) || true
   let MAX_QUEUE_SIZE = (options && options.maxQueueSize) || 10
   let DEFAULT_VOLUME = (options && options.volume) || 50
