@@ -35,7 +35,7 @@ module.exports.run = async (client, message, args) => {
           },
           fields: [{
             name: 'Message:',
-            value: args[0]
+            value: args
           }],
           footer: {
             icon_url: message.guild.iconURL,
@@ -46,7 +46,7 @@ module.exports.run = async (client, message, args) => {
     } // FIN DU ELSE
   } // FIN DE LA FONCTION
 
-if(args[1]==undefined) return message.channel.send({embed: {
+if(args[0]==undefined) return message.channel.send({embed: {
   color: 12434877,
   description: 'Vous devez spécifier un message à envoyé !'
 }})
