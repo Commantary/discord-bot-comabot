@@ -2,7 +2,7 @@ const request = require('request')
 const Discord = require('discord.js')
 
 module.exports.run = async (client, message, args) => {
-  function sis(guild){ // FUNCTION POUR SEND LE MESSAGE
+  /*function sis(guild){ // FUNCTION POUR SEND LE MESSAGE
     if(guild.channels.find('name','sis')){
       let chaine = guild.channels.find('name','sis')
 
@@ -52,5 +52,7 @@ if(args[0]==undefined) return message.channel.send({embed: {
 }})
 client.guilds.map(g=>sis(g)) // ON EXECUTE
 
+*/
 
+message.channel.send('Non opérationnel...')
 } // FIN DU MODULE EXPORTS
