@@ -15,9 +15,42 @@ module.exports.run = async (client, message, args) => {
 
       chaine.send({embed})
     } else {
-      message.channel.send('La channel: **\'sis\'** n\'existe pas !')
-    }
-  }
-  client.guilds.map(g=>sis(g)) // ON EXECUTE
+      message.guild.createChannel('sis', 'text') // ON CREER LE CHANNEL
+      .then(message.channel.send({embed: { // ON ENVOIE LE MESSAGE
+        title: 'Info',
+        color: 12434877,
+        description: 'Le channel `sis` a été créer, réessayer '
+      }})) // FIN DE L'EMBED
+      .catch(console.error) // SI IL Y A UNE ERREUR
+      let chaineLocal = message.guild.channels.find('name', 'sis')
+
+        chaineLocal.send({embed: {
+          color: 12515201,
+          author: {
+            name: message.author.username + '(' + message.author.id + ')',
+            icon_url: message.author.avatarURL
+          },
+          thumbnail: {
+            url: message.author.avatarURL,
+          },
+          fields: [{
+            name: 'Message:',
+            value: args[0]
+          }],
+          footer: {
+            icon_url: message.guild.iconURL,
+            text: message.guild.name + '(' + message.guild.id + ')'
+          }
+        }})
+
+    } // FIN DU ELSE
+  } // FIN DE LA FONCTION
+
+if(args[1]==undefined) return message.channel.send({embed: {
+  color: 12434877,
+  description: 'Vous devez spécifier un message à envoyé !'
+}})
+client.guilds.map(g=>sis(g)) // ON EXECUTE
+
 
 } // FIN DU MODULE EXPORTS
