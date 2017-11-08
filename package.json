@@ -4,7 +4,7 @@
   "description": "Un bot",
   "main": "index.js",
   "engines": {
-    "node": "latest",
+    "node": "8.9.1",
     "npm": "latest"
   },
   "scripts": {
