@@ -9,9 +9,9 @@ module.exports.run = async (client, message, args) => {
       let argsTrue = message.content.slice(argsFalse[0].length)
 
       const embed = new Discord.RichEmbed()
-      .setAuthor(message.author.username + '(' + message.author.id + ')', message.author.avatarURL)
+      .setAuthor(message.author.username, message.author.avatarURL)
       .setColor(12515201)
-      .setFooter(message.guild.name + '(' + message.guild.id + ')', message.guild.iconURL,)
+      .setFooter(message.guild.name, message.guild.iconURL,)
       .setThumbnail( message.author.avatarURL)
       .addField("Message:", argsTrue)
 
