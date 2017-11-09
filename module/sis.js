@@ -19,7 +19,7 @@ module.exports.run = async (client, message, args) => {
     }
   } // FIN DE LA FONCTION
 
-  if(args[1]==undefined) return message.channel.send({embed: {
+  if(args[0]==undefined) return message.channel.send({embed: {
     color: 12434877,
     description: 'Vous devez spécifier un message à envoyé !'
   }})
