@@ -12,7 +12,7 @@ module.exports.run = async (client, message, args) => {
       .setAuthor(message.author.username, message.author.avatarURL)
       .setColor(12515201)
       .setFooter(message.guild.name, message.guild.iconURL,)
-      .addField(" ", argsTrue)
+      .description(argsTrue)
 
       chaine.send({embed})
     }
