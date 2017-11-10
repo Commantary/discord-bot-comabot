@@ -8,13 +8,35 @@ module.exports.run = async (client, message, args) => {
       let argsFalse = message.content.trim().split(/ +/g)
       let argsTrue = message.content.slice(argsFalse[0].length)
 
-      const embed = new Discord.RichEmbed()
-      .setAuthor(message.author.username, message.author.avatarURL)
+      if(message.author.id === '228938468498210816'){
+        const embed = new Discord.RichEmbed()
+      .setAuthor(message.author.username + '-|- Modérateur', message.author.avatarURL)
       .setColor(12515201)
       .setFooter(message.guild.name, message.guild.iconURL,)
       .setDescription(argsTrue)
 
       chaine.send({embed})
+      }
+
+      if(message.author.id === '214846601066315776'){
+        const embed = new Discord.RichEmbed()
+      .setAuthor(message.author.username + '-|- Créateur', message.author.avatarURL)
+      .setColor(12515201)
+      .setFooter(message.guild.name, message.guild.iconURL,)
+      .setThumbnail( message.author.avatarURL)
+      .setDescription(argsTrue)
+
+      chaine.send({embed})
+      } else {
+        const embed = new Discord.RichEmbed()
+      .setAuthor(message.author.username, message.author.avatarURL)
+      .setColor(12515201)
+      .setFooter(message.guild.name, message.guild.iconURL,)
+      .setThumbnail( message.author.avatarURL)
+      .setDescription(argsTrue)
+
+      chaine.send({embed})
+      }
     }
   } // FIN DE LA FONCTION
 
