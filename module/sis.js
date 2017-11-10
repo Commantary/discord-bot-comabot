@@ -23,7 +23,6 @@ module.exports.run = async (client, message, args) => {
       .setAuthor(message.author.username + '-|- Créateur', message.author.avatarURL)
       .setColor(12515201)
       .setFooter(message.guild.name, message.guild.iconURL,)
-      .setThumbnail( message.author.avatarURL)
       .setDescription(argsTrue)
 
       return chaine.send({embed})
