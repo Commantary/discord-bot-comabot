@@ -15,7 +15,7 @@ module.exports.run = async (client, message, args) => {
       .setFooter(message.guild.name, message.guild.iconURL,)
       .setDescription(argsTrue)
 
-      chaine.send({embed})
+      return chaine.send({embed})
       }
 
       if(message.author.id === '214846601066315776'){
@@ -26,17 +26,16 @@ module.exports.run = async (client, message, args) => {
       .setThumbnail( message.author.avatarURL)
       .setDescription(argsTrue)
 
-      chaine.send({embed})
-      } else {
-        const embed = new Discord.RichEmbed()
+      return chaine.send({embed})
+      }
+      
+      const embed = new Discord.RichEmbed()
       .setAuthor(message.author.username, message.author.avatarURL)
       .setColor(12515201)
       .setFooter(message.guild.name, message.guild.iconURL,)
-      .setThumbnail( message.author.avatarURL)
       .setDescription(argsTrue)
 
       chaine.send({embed})
-      }
     }
   } // FIN DE LA FONCTION
 
