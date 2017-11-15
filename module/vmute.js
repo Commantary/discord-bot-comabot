@@ -13,7 +13,10 @@ module.exports.run = async (client, message, args) => {
       let mutedMember = message.guild.member(message.mentions.users.first())
       // COMMANDE DU MUTE
       message.guild.member(mutedMember).setMute(true)
-      message.channel.send('**' + member.displayName + '** a été serveur mute par **' + message.author.username + '**')
+      message.channel.send({embed: {
+        color: 12434877,
+        description: '**' + member.displayName + '** a été serveur mute par **' + message.author.username + '**'
+      }})
     }
   }
 }
