@@ -7,11 +7,12 @@ const les_signes = 'https://cdn.discordapp.com/attachments/354420349594763274/36
 
 module.exports.run = async (client, message, args) => {
 // Variables
-
-  var calcule = message.content.slice(message.content.indexOf(message.content.split(' ')[1]))
-  var number1 = parseInt(calcule.substr(0, 1))
-  var number2 = parseInt(calcule.substr(4))
-  var signe = calcule.substr(1, 3).trim()
+  let argsFalse = message.content.trim().split(/ +/g)
+  let argsTrue = message.content.slice(argsFalse[0].length)
+  var calcule = argsTrue
+  var number1 = parseInt(args[0])
+  var number2 = parseInt(args[2])
+  var signe = args[1]
 
 if (number1==NaN||number2==NaN) return message.channel.send('**Erreur: Les chiffres doivent être des chiffres!**')
 

@@ -7,11 +7,11 @@ module.exports.run = async (client, message, args) => {
 
     if(reason.length < 1) return message.channel.send({embed: {
       color: 8583768,
-      description: 'Il faut dire une raison pour ban.'
+      description: 'Il faut dire une raison pour ban'
     }})
     if(message.mentions.users.size < 1) return message.channel.send({embed: {
       color: 8583768,
-      description: 'Vous devez mentionné une personne à ban.'
+      description: 'Vous devez mentionné une personne à ban'
     }})
 
 
