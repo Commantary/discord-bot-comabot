@@ -1,4 +1,4 @@
-
+/*
 module.exports.run = async (client, message, args) => {
   var member = message.guild.member(message.mentions.members.first())
   let modRole = message.guild.roles.find('name', 'Mod')
@@ -21,3 +21,4 @@ module.exports.run = async (client, message, args) => {
     }
   }
 }
+*/
