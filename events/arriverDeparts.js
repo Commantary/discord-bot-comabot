@@ -65,6 +65,12 @@ module.exports = function (client) {
       // Les variables
       var obj = JSON.parse(body)
       var serveur = member.guild.id
+      if(obj[serveur]==undefined){
+      	objet[serveur] = {
+        	channel: false
+      	}
+      	request({ url: url, method: 'PUT', json: objet}, callback)
+      }
       var channelObj = obj[serveur].channel
       if(channelObj===false){ // SI Y'A PAS DE CHANNEL SET
         return // ON FAIS RIEN
