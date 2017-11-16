@@ -130,7 +130,7 @@ module.exports.run = async (client, message, args) => {
                                             }
                                           ],
                                           footer: {
-                                            text: 'Patch 7.21'
+                                            text: 'Patch 7.22'
                                           }
                                         }})
 
@@ -226,7 +226,7 @@ module.exports.run = async (client, message, args) => {
                                             }
                                           ],
                                           footer: {
-                                            text: 'Patch 7.21'
+                                            text: 'Patch 7.22'
                                           }
                                         }})
                           }
