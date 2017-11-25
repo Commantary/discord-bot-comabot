@@ -1,6 +1,5 @@
 
 module.exports.run = async (client, message, args) => {
-if(message.content.startsWith(prefix + "avatar")){
         
      var mentionned = message.mentions.users.first();
       var autheur;
@@ -31,5 +30,4 @@ embed:{
             color:0xffffff
         }})
                 };
-}
 }
