@@ -2,12 +2,16 @@
 module.exports.run = async (client, message, args) => {
 // SI IL MENTIONNE PERSONNE
   if (message.mentions.users.size === 0) {
-    message.reply('Mentionne une personne !')
+    message.channel.send({embed: {
+      description: 'Mentionne une personne !'
+    }})
   } else {
     // ON CREER LA VARIABLE MEMBER
     let member = message.mentions.users.first()
     // ON APPELLER LA VARIABLE MEMBER ET ON CREER L'ARRAY USER POUR MEMBER ET ON RECUPERE L'AVATAR URL
-    let msg = await message.channel.send('Génération de l\'avatar...')
+    let msg = await message.channel.send({embed: {
+      description: 'Génération de l\'avatar...'
+    }})
 
 
     const embed = new Discord.RichEmbed()
