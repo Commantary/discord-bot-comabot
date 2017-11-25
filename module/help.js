@@ -41,7 +41,7 @@ module.exports.run = async (client, message, args) => {
           message.channel.send({embed: {
               title: 'Commandes:',
               color: 0xff0000,
-              description: ':tools: **Liste des commandes** :tools: \n\n**+sis <votre message>** :  vous permet de mettre un message dans tous les serveurs ou est ComaBot qui sont appeller `sis`\n\nD\'autres commandes sont en dévelopement...',
+              description: ':tools: **Liste des commandes** :tools: \n\n**+sis <votre message>** :  vous permet de mettre un message dans tous channels dans les serveurs ou est ComaBot qui sont appeller `sis`\n\n**D\'autres commandes sont en dévelopement...**',
               footer: {
               icon_url: client.user.avatarURL,
               text: 'Créer par Commentary'
