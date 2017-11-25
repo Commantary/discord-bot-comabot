@@ -13,7 +13,6 @@ if(newavatar.includes(".gif")){
 
 message.channel.send("",{
 embed:{
-            title: autheur.username + "'s avatar",
             image:{
                 url: autheur.avatarURL.slice(0,autheur.avatarURL.lastIndexOf('?size='))
             },
@@ -23,7 +22,6 @@ embed:{
             
                    return message.channel.send("",{
 embed:{
-            title: autheur.username + "'s avatar",
             image:{
                 url: autheur.avatarURL
             },
