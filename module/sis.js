@@ -46,13 +46,25 @@ module.exports.run = async (client, message, args) => {
   if(message.guild.channels.exists('name', 'sis')){
     client.guilds.map(g=>sis(g)) // ON EXECUTE
   } else {
-    message.guild.createChannel('sis', 'text') // ON CREER LE CHANNEL
+
+    var comabot = message.guild.roles.find('name', 'ComaBot')
+
+    if(comabot.hasPermission('MANAGE_CHANNELS')){
+      message.guild.createChannel('sis', 'text') // ON CREER LE CHANNEL
     .then(message.channel.send({embed: { // ON ENVOIE LE MESSAGE
       title: 'Info',
       color: 12434877,
       description: 'Le channel `sis` a été créer, réessayer...'
     }})) // FIN DE L'EMBED
     .catch(console.error) // SI IL Y A UNE ERREUR
+  } else {
+    message.channel.send({embed: { // ON ENVOIE LE MESSAGE
+      title: 'Info',
+      color: 12434877,
+      description: 'Je ne peux pas créer le channel `sis`, créer le pour utilisé la commande `+sis`'
+    }})
+    
+  }
   }
 
 
