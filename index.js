@@ -16,7 +16,7 @@ var url = process.env.JSONSITE || process.argv[2]
       if (err) {
         console.error(err)
       }
-      console.log('Le channel false a été défini pour le serveur: ' + guild.name)
+      console.log('Tout marche bien')
     }  // FIN DE LA FUNCTION
 
       if(err || res.statusCode!== 200) return
