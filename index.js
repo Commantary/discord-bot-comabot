@@ -9,14 +9,16 @@ var url = process.env.JSONSITE || process.argv[2]
   if (!url) {
   console.log('L\'url n\'existe pas!')
   }
-  function callback(err, response, body) {
+  
+  function requestget() {
+    request(url, (err, res, body) => {
+      function callback(err, response, body) {
       if (err) {
         console.error(err)
       }
       console.log('Le channel false a été défini pour le serveur: ' + guild.name)
     }  // FIN DE LA FUNCTION
-  function requestget() {
-    request(url, (err, res, body) => {
+    
       if(err || res.statusCode!== 200) return
         var objet = JSON.parse(body)
       objet = {
