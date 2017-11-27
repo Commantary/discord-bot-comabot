@@ -36,7 +36,7 @@ client.on('ready', () => {
   console.log('    [!] ComaBot connecté [!]')
   console.log('-------------------------------------')
   console.log('le prefix est: ' + setting.prefix)
-  setInterval(requestget, 5000)
+  setInterval(requestget, 300000)
 })
 
 /* LES LEVELS */
