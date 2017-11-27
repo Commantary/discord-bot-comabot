@@ -18,7 +18,7 @@ var url = process.env.JSONSITE || process.argv[2]
       }
       console.log('Le channel false a été défini pour le serveur: ' + guild.name)
     }  // FIN DE LA FUNCTION
-    
+
       if(err || res.statusCode!== 200) return
         var objet = JSON.parse(body)
       objet = {
@@ -36,7 +36,7 @@ client.on('ready', () => {
   console.log('    [!] ComaBot connecté [!]')
   console.log('-------------------------------------')
   console.log('le prefix est: ' + setting.prefix)
-  setInterval(requestget(), 5000)
+  setInterval(requestget, 5000)
 })
 
 /* LES LEVELS */
