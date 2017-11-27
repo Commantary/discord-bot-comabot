@@ -3,7 +3,29 @@ const discord = require('discord.js')
 const client = new discord.Client()
 const setting = require('./module/config.json')
 const fs = require('fs')
+const request = require('request')
 const config = JSON.parse(fs.readFileSync('./module/config.json', 'utf8'))
+var url = process.env.JSONSITE || process.argv[2]
+  if (!url) {
+  console.log('L\'url n\'existe pas!')
+  }
+  function callback(err, response, body) {
+      if (err) {
+        console.error(err)
+      }
+      console.log('Le channel false a été défini pour le serveur: ' + guild.name)
+    }  // FIN DE LA FUNCTION
+  function requestget() {
+    request(url, (err, res, body) => {
+      if(err || res.statusCode!== 200) return
+        var objet = JSON.parse(body)
+      objet = {
+        serveurs: '' + [client.guilds.size] + ''
+      }
+      // On put tout sa!
+      request({ url: url, method: 'PUT', json: objet}, callback)
+    })
+  } 
 
 // On start le bot
 client.on('ready', () => {
@@ -12,6 +34,7 @@ client.on('ready', () => {
   console.log('    [!] ComaBot connecté [!]')
   console.log('-------------------------------------')
   console.log('le prefix est: ' + setting.prefix)
+  setInterval(requestget(), 5000)
 })
 
 /* LES LEVELS */
