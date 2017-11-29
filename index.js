@@ -3,7 +3,32 @@ const discord = require('discord.js')
 const client = new discord.Client()
 const setting = require('./module/config.json')
 const fs = require('fs')
+const request = require('request')
 const config = JSON.parse(fs.readFileSync('./module/config.json', 'utf8'))
+var url = process.env.JSONSITE || process.argv[2]
+  if (!url) {
+  console.log('L\'url n\'existe pas!')
+  }
+  
+  function requestget() {
+    request(url, (err, res, body) => {
+      function callback(err, response, body) {
+      if (err) {
+        console.error(err)
+      }
+      console.log('Tout marche bien')
+    }  // FIN DE LA FUNCTION
+
+      if(err || res.statusCode!== 200) return
+        var objet = JSON.parse(body)
+      objet = {
+        serveurs: '' + [client.guilds.size] + '',
+        channels: '' + [client.channels.size] + ''
+      }
+      // On put tout sa!
+      request({ url: url, method: 'PUT', json: objet}, callback)
+    })
+  } 
 
 // On start le bot
 client.on('ready', () => {
@@ -12,12 +37,14 @@ client.on('ready', () => {
   console.log('    [!] ComaBot connecté [!]')
   console.log('-------------------------------------')
   console.log('le prefix est: ' + setting.prefix)
+  requestget()
+  setInterval(requestget, 300000)
 })
 
-/* LES LEVELS 
- * const pointsLevel = require('./levels/points.js')
- * pointsLevel(client) 
- */
+/* LES LEVELS */
+ const pointsLevel = require('./levels/points.js')
+ pointsLevel(client) 
+ 
 
 /* ARRIVER ET DEPART */
 const arvdep = require('./events/arriverDeparts.js')
@@ -45,7 +72,7 @@ client.on('message', message => {
     let commandFile = require(`./module/${command}.js`)
     commandFile.run(client, message, args)
   } catch (err) {
-    if (command === 'play' || command === 'skip' || command === 'leave' || command === 'volume') {
+    if (command === 'play' || command === 'skip' || command === 'leave' || command === 'volume' || command === 'level') {
       return
     } else {
       message.channel.send({embed: {
