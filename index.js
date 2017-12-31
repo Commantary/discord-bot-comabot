@@ -72,7 +72,7 @@ client.on('message', message => {
     let commandFile = require(`./module/${command}.js`)
     commandFile.run(client, message, args)
   } catch (err) {
-    if (command === 'play' || command === 'skip' || command === 'leave' || command === 'volume' || command === 'level') {
+    if (command === 'play' || command === 'skip' || command === 'leave' || command === 'volume' || command === 'level' || command === '+') {
       return
     } else {
       message.channel.send({embed: {
