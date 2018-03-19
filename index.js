@@ -32,7 +32,7 @@ var url = process.env.JSONSITE || process.argv[2]
 
 // On start le bot
 client.on('ready', () => {
-  client.user.setGame('+inv | +help | +stats | Sur ' + client.guilds.size + ' serveurs', 'https://www.twitch.tv/the_commentary', 0)
+  client.user.setGame('VIVE LA TMoST ! <3 | Sur ' + client.guilds.size + ' serveurs', 'https://www.twitch.tv/the_commentary', 0)
   console.log('-------------------------------------')
   console.log('    [!] ComaBot connecté [!]')
   console.log('-------------------------------------')
