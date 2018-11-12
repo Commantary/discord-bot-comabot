@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Commantary/discord-bot-comabot#readme",
   "dependencies": {
     "discord.js": "^11.4.2",
-    "discord.js-music": "^2.1.0"
+    "discord.js-music": "^2.1.0",
+    "request": "^2.88.0"
   }
 }
